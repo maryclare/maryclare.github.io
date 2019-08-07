@@ -10,10 +10,10 @@ Research
 I'm interested in multivariate data and data with little/no replication. I like thinking in terms of models, but because I'm always worried that models are wrong I'm also interested in model misspecification. 
 
 ## News
+* 07/19/19: ["Testing Sparsity Inducing Penalties"](https://www.tandfonline.com/doi/full/10.1080/10618600.2019.1637749), has been accepted for publication at the Journal of Computational and Graphical Statistics!
 * 02/15/19: ["Structured Shrinkage Priors"](https://arxiv.org/pdf/1902.05106.pdf), the last chapter of my thesis, is now online!
 * 02/08/19: ["Lasso ANOVA Decompositions for Matrix and Tensor Data"](https://arxiv.org/pdf/1703.08620.pdf), formerly known as "LANOVA Penalization for Unreplicated Data",  has been accepted for publication at Computational Statistics and Data Analysis!
 * 1/26/19: I have accepted a job as an assistant professor at the University of Massachusetts Amherst, starting September 2019!
-* 1/22/19: I'm teaching [Applied Time Series Analysis](https://maryclare.github.io/atsa) at Cornell this semester.
 
 ## About Me
 
