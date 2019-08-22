@@ -17,7 +17,8 @@ I'm interested in multivariate data and data with little/no replication. I like 
 
 ## About Me
 
-I grew up in Massachusetts, went to college at the University of Chicago, spent the first three years of graduate school in Seattle and the last two in Durham, North Carolina. I received my Ph.D. in Statistics from the University of Washington in 2018 under the supervision of [Peter Hoff](https://pdhoff.github.io). Right now, I'm a postdoctoral associate in the Center for Applied Mathematics at Cornell, where I am learning all about time series from [David Matteson](https://davidsmatteson.com) and [Gennady Samorodnitsky](https://people.orie.cornell.edu/gennady/). In September 2019, I will join the Department of Mathematics and Statistics at the University of Massachusetts Amherst as an assistant professor!
+I just joined the Department of Mathematics and Statistics at the University of Massachusetts Amherst as an assistant professor!
+I grew up in Massachusetts, went to college at the University of Chicago, spent the first three years of graduate school in Seattle and the last two in Durham, North Carolina, and did a postdoc at Cornell in the Center for Applied Mathematics. I received my Ph.D. in Statistics from the University of Washington in 2018 under the supervision of [Peter Hoff](https://pdhoff.github.io). After that, [David Matteson](https://davidsmatteson.com) and [Gennady Samorodnitsky](https://people.orie.cornell.edu/gennady/) tried their best to teach me all about time series! 
 
 ## Interests
 
