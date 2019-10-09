@@ -7,7 +7,14 @@ output:
 Research
 -------
 
-I'm interested in multivariate data and data with little/no replication. I like thinking in terms of models, but because I'm always worried that models are wrong I'm also interested in model misspecification. 
+The bulk of my research examines problems that arise in the context of high dimensional regression, where the number of regression coefficients is quite large relative to the number of observations and strong assumptions must be made to obtain practically useful estimates. In particular, I have explored the usefulness of specific assumptions on the tail behavior and/or known structural relationships relating the unknown regression coefficients from both Bayesian and frequentist perspectives.
+
+I am especially fond of problems that are computationally challenging! 
+
+This has led me to broaden my research interests to include methods for data that are correlated over time and/or space. Specifically:
+
+* Long memory models for time series data, which are simple models that allow for very slowly decaying correlations.
+* Log Gaussian Cox process models, which are used to model the occurance of events over space and/or time.
 
 ## News
 * 07/19/19: ["Testing Sparsity Inducing Penalties"](https://www.tandfonline.com/doi/full/10.1080/10618600.2019.1637749), has been accepted for publication at the Journal of Computational and Graphical Statistics!
