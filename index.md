@@ -17,10 +17,10 @@ This has led me to broaden my research interests to include methods for data tha
 * Log Gaussian Cox process models, which are used to model the occurance of events over space and/or time.
 
 ## News
-* 07/19/19: ["Testing Sparsity Inducing Penalties"](https://www.tandfonline.com/doi/full/10.1080/10618600.2019.1637749), has been accepted for publication at the Journal of Computational and Graphical Statistics!
-* 02/15/19: ["Structured Shrinkage Priors"](https://arxiv.org/pdf/1902.05106.pdf), the last chapter of my thesis, is now online!
-* 02/08/19: ["Lasso ANOVA Decompositions for Matrix and Tensor Data"](https://arxiv.org/pdf/1703.08620.pdf), formerly known as "LANOVA Penalization for Unreplicated Data",  has been accepted for publication at Computational Statistics and Data Analysis!
-* 1/26/19: I have accepted a job as an assistant professor at the University of Massachusetts Amherst, starting September 2019!
+* 11/09/20: ["Likelihood Inference for Possibly Non-Stationary Processes via Adaptive Overdifferencing"](https://arxiv.org/pdf/2011.04168.pdf), a new paper on maximum likelihood estimation for long memory time series models, is online!
+* 11/05/20: The Department of Statistical Science at University College London kindly invited me to talk about my research and posted [a video](https://www.youtube.com/watch?v=G__ddoGlqzc&t=852s) of my talk!
+* 07/18/20: ["Modeling a Nonlinear Biophysical Trend Followed by Long-Memory Equilibrium with Unknown Change Point"](https://arxiv.org/pdf/2007.09417.pdf), a new paper detecting the onset of long memory equilibrium, is online!
+
 
 ## About Me
 
