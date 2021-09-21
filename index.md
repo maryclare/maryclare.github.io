@@ -29,6 +29,6 @@ I grew up in Massachusetts, went to college at the University of Chicago, spent 
 
 ## Interests
 
-Trying to keep my beagle from eating non-food items, chasing my barking hound, finding new pizzas to eat, and hanging out with my mom [Claire](http://www.griffinink.com), dad [John](http://www.crai.com/expert/john-j-griffin), and sister [Norah](https://www.linkedin.com/in/norah-griffin-8451a4146).
+Chasing my barking hounds and finding new pizzas to eat.
 
 
