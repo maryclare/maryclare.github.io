@@ -17,10 +17,9 @@ This has led me to broaden my research interests to include methods for data tha
 * Log Gaussian Cox process models, which are used to model the occurance of events over space and/or time.
 
 ## News
-* 11/09/20: ["Likelihood Inference for Possibly Non-Stationary Processes via Adaptive Overdifferencing"](https://arxiv.org/pdf/2011.04168.pdf), a new paper on maximum likelihood estimation for long memory time series models, is online!
-* 11/05/20: The Department of Statistical Science at University College London kindly invited me to talk about my research and posted [a video](https://www.youtube.com/watch?v=G__ddoGlqzc&t=852s) of my talk!
-* 07/18/20: ["Modeling a Nonlinear Biophysical Trend Followed by Long-Memory Equilibrium with Unknown Change Point"](https://arxiv.org/pdf/2007.09417.pdf), a new paper detecting the onset of long memory equilibrium, is online!
-
+* 06/14/22: ["Modeling a Nonlinear Biophysical Trend Followed by Long-Memory Equilibrium with Unknown Change Point"](https://arxiv.org/pdf/2007.09417.pdf), a paper detecting the onset of long memory equilibrium, has been accepted for publication at Annals of Applied Statistics!
+* 03/04/22: ["Improved Pathwise Coordinate Descent for Power Penalties"](https://arxiv.org/abs/2203.02596), a new paper on solving power penalized regression problems, is online!
+* 12/27/21: A new grant I am PI on, ["Enhancing Underrepresented Participation in Mathematics & Statistics: Mentoring From Junior to Master’s"](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2130262&HistoricalAwards=false), has been awarded!
 
 ## About Me
 
