@@ -7,9 +7,10 @@ output:
 ## News
 -------
 
+* 03/01/23: ["Structured Shrinkage Priors"](https://arxiv.org/pdf/1902.05106.pdf), a paper about defining and working with correlated generalizations of common shrinkage priors with my advisor [Peter Hoff](https://pdhoff.github.io), has been accepted for publication at the Journal of Computational and Graphical Statistics!
 * 02/07/23: ["A Simple Approach for Local and Global Variable Importance in Nonlinear Regression Models"](https://arxiv.org/abs/2302.02024), a paper about interpreting black-box machine learning models with [Emily Winn-Nuñez](https://etwinn.github.io) and [Lorin Crawford](http://www.lorincrawford.com), is now on `arXiv`!
 * 10/20/22: ["Log-Gaussian Cox Process Modeling of Large Spatial Lightning Data using Spectral and Laplace Approximations"](https://arxiv.org/abs/2111.15670), a paper about approximately fitting log-Gaussian Cox process models to big spatial datasets with Megan Gelsinger, [Joe Guinness](https://guinness.cals.cornell.edu), and [David Matteson](https://davidsmatteson.com), has been accepted for publication at Annals of Applied Statistics!
-* 06/14/22: ["Modeling a Nonlinear Biophysical Trend Followed by Long-Memory Equilibrium with Unknown Change Point"](https://arxiv.org/pdf/2007.09417.pdf), a paper about detecting the onset of long memory equilibrium with [Wenyu Zhang](https://sites.coecis.cornell.edu/wenyuzhang/) and [David Matteson](https://davidsmatteson.com), has been accepted for publication at Annals of Applied Statistics!
+
 
 ## About Me
 
