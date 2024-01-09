@@ -7,10 +7,9 @@ output:
 ## News
 -------
 
+* 12/22/23: ["A Simple Approach for Local and Global Variable Importance in Nonlinear Regression Models"](https://arxiv.org/abs/2302.02024), a paper about interpreting black-box machine learning models with [Emily Winn-Nuñez](https://etwinn.github.io) and [Lorin Crawford](http://www.lorincrawford.com), has been accepted for publication at Computational Statistics and Data Analysis!
+* 10/23/23: ["Structured Shrinkage Priors"](https://www.tandfonline.com/doi/full/10.1080/10618600.2023.2233577), a paper about defining and working with correlated generalizations of common shrinkage priors with my advisor [Peter Hoff](https://pdhoff.github.io), has been selected for the [ASA Editor's Choice Collection](https://www.tandfonline.com/journals/uasa20/collections/EditorsChoiceCollectionUASA)!
 * 08/18/23: ["Improved Pathwise Coordinate Descent for Power Penalties"](https://arxiv.org/abs/2203.02596), a paper about computing penalized regression estimates using power penalties, has been accepted for publication at the Journal of Computational and Graphical Statistics!
-* 03/01/23: ["Structured Shrinkage Priors"](https://arxiv.org/pdf/1902.05106.pdf), a paper about defining and working with correlated generalizations of common shrinkage priors with my advisor [Peter Hoff](https://pdhoff.github.io), has been accepted for publication at the Journal of Computational and Graphical Statistics!
-* 02/07/23: ["A Simple Approach for Local and Global Variable Importance in Nonlinear Regression Models"](https://arxiv.org/abs/2302.02024), a paper about interpreting black-box machine learning models with [Emily Winn-Nuñez](https://etwinn.github.io) and [Lorin Crawford](http://www.lorincrawford.com), is now on `arXiv`!
-
 
 ## About Me
 
