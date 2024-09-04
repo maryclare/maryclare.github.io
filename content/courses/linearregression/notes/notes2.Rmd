@@ -1,0 +1,53 @@
+---
+title: "Notes 2"
+author: "Maryclare Griffin"
+date: "2/9/2023"
+header-includes: \usepackage{color}
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+These notes are based on Chapters 1 and 6 of KNNL.
+
+The linear regression model for a dependent variable or response $Y$ and independent variables, predictors, or covariates $X_1$, $\dots$ $X_{p-1}$ is defined as:
+
+\begin{align*}
+Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \dots + \beta_{p - 1}X_{i,p - 1} + \epsilon_i
+\end{align*}
+where:
+
+* $\beta_0, \beta_1, \dots, \beta_{p - 1}$ are parameters
+* $X_{i1},\dots, X_{i,p-1}$ are known constants
+* $\epsilon_i$ is a random error term with mean $E\left\{\epsilon_i\right\} = 0$ and variance $\sigma^2\left\{\epsilon_i\right\} = \sigma^2$; $\epsilon_i$ and $\epsilon_j$ are uncorrelated so that their covariance is zero (i.e., $\sigma\left\{\epsilon_i, \epsilon_j\right\} = 0$ for all $i$, $j$; $i\neq j$)
+* $i = 1, \dots, n$
+
+
+
+> \color{blue}**_Note:_**  When we just have one independent variable or predictor ($p = 2$) and we will call this a **simple** linear regression model. When we have more than one predictor, we will call this a **multiple** linear regression model.\color{black}
+
+We call this a **linear** regression model because it is linear in the parameters $\beta_0, \beta_1, \dots, \beta_{p-1}$.
+
+This model has several important features:
+
+* The response $Y_i$ in the $i$-th trial is the sum of two components: (1) the constant term $\beta_0 + \sum_{k = 1}^p \beta_k X_{ik}$ and (2) the random term $\epsilon_i$. Hence, $Y_i$ is a random variable. 
+\begin{align*}
+Y_i = \underbrace{\beta_0X_{i0} + \beta_1 X_{i1} + \beta_2 X_{i2} + \dots + \beta_{p - 1}X_{i,p - 1}}_{\left(1\right)} + \overbrace{\epsilon_i}^{\left(2\right)}
+\end{align*}
+* Since $E\left\{\epsilon_i\right\} = 0$, it follows from properties of the expected value that:
+\begin{align*}
+E\left\{Y_i\right\} = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \dots + \beta_{p - 1}X_{i,p - 1}
+\end{align*}
+* The response $Y_i$ exceeds or falls short of the regression function $E\left\{Y_i\right\}$ by the error term amount $\epsilon_i$.
+* The error terms $\epsilon_i$ are assumed to have constant variance $\sigma^2$. It then therefore follows that the responses $Y_i$ have the same constant variance:
+\begin{align*}
+\sigma^2\left\{Y_i\right\} = \sigma^2.
+\end{align*}
+Thus, the regression model assumes that the probability distributions of $Y$ have the same variance $\sigma^2$, regardless of the level of the predictor variable $X$.
+* The error terms are assumed to be uncorrelated. Since the error terms $\epsilon_i$ and $\epsilon_j$ are uncorrelated, so are the responses $Y_i$ and $Y_j$.
+
+
+To summarize, the regression model implies that the responses $Y_i$ come from probability distributions whose means are $E\left\{Y_i\right\} = \beta_0 + \sum_{k = 1}^{p-1}\beta_k X_{ik}$ and whose variances are $\sigma^2$, the same for all levels of $X$. Further, any two responses $Y_i$ and $Y_j$ are uncorrelated.

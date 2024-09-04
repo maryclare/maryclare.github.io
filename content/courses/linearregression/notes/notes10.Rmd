@@ -1,0 +1,134 @@
+---
+title: "Notes 10"
+author: "Maryclare Griffin"
+date: "4/4/2023"
+header-includes: \usepackage{color}
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+These notes are based on Chapters 2 and 6 of KNNL.
+
+We will continue to assume the **normal error linear regression model** for a dependent variable or response $Y$ and independent variables, predictors, or covariates $X_1$, $\dots$ $X_{p-1}$ is defined as:
+
+\begin{align*}
+\boldsymbol Y= \boldsymbol X \boldsymbol \beta + \boldsymbol \epsilon
+\end{align*}
+where:
+
+* The elements of $\boldsymbol \beta = \left(\begin{array}{c} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_{p-1} \end{array}\right)$ are parameters
+* The elements of the $n\times p$ matrix $\boldsymbol X = \left(\begin{array}{ccccc} 1 & X_{11} & X_{12} & \dots & X_{1,p-1} \\ 1 & X_{21} & X_{22} & \dots & X_{2,p-1} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & X_{11} & X_{12} & \dots & X_{1,p-1} \end{array}\right)$ are known constants
+* $\boldsymbol \epsilon = \left(\begin{array}{c} \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{array}\right)$ is a random error term elements that are $\epsilon_i$ that are independent and normally distributed with mean $E\left\{\epsilon_i\right\} = 0$  and variance $\sigma^2\left\{\epsilon_i\right\} = \sigma^2$. 
+
+
+Under the **normal error linear regression model**, we have shown that the studentized statistic
+\begin{align*}
+\frac{b_k - \beta_k}{s\left\{b_k\right\}} \sim t\left(n - p\right),
+\end{align*}
+where $t\left(n - p\right)$ refers to a $t$ distribution with $n - p$ degrees of freedom.
+
+This allows us to formally test a null hypothesis of the form $H_0$: $\beta_k = c$ versus an alternative hypothesis of the form $H_a$: $\beta_k \neq c$, for some pre-specified value $c$. In the previous set of notes, we did this in an informal way for $c = 0$ by visually comparing $\frac{b_k - c}{s\left\{b_k\right\}}$ to the density of a $t$ distribution with $n - p$ degrees of freedom, and concluding that the null $H_0$ was unlikely to be true.
+
+
+To formally test this null hypothesis, we will find an interval that contains $\frac{b_k - c}{s\left\{b_k\right\}}$ with probability $1- \alpha$ when the null $H_0$ is true, and conclude the alternative $H_a$ if $\frac{b_k - c}{s\left\{b_k\right\}}$ is outside of that interval. 
+We will call $\alpha$ the **level** of the test or the **Type I error**. The **level** of the test, $\alpha$, describes the probability of concluding the alternative $H_a$ when the null $H_0$ is true.  Remember, if the null $H_0$ is true, then $\frac{b_k - c}{s\left\{b_k\right\}}$ has a $t$ distribution with $n - p$ degrees of freedom. Let $t\left(\alpha/2; n - p\right)$ refer to the $\alpha/2$ quantile of a $t$ distribution with $n - p$ degrees of freedom and let $t\left(1 - \alpha/2; n - p\right)$ refer to the $1 - \alpha/2$ quantile of a $t$ distribution with $n - p$ degrees of freedom. The interval $\left[t\left(\alpha/2; \nu\right), t\left(1 - \alpha/2; \nu\right)\right]$ will contain $\frac{b_k - c}{s\left\{b_k\right\}}$ with probability $1 - \alpha$ when the null $H_0$ is true.
+
+> \color{blue}**_Note:_** Let $t\left(\nu\right)$ be a random variable distributed according to a $t$ distribution with $\nu$ degrees of freedom. The $\alpha$ quantile of a $t$ distribution with $\nu$ degrees of freedom is denoted by $t\left(\alpha; \nu\right)$, and defined as satisfying:
+\begin{align*}
+P\left(t\left(\nu\right) \leq t\left(\alpha; \nu\right)\right) = \alpha.
+\end{align*}
+
+Under the normal errors linear regression model, the decision rule based on a the test statistic $\frac{b_k - c}{s\left\{b_k\right\}}$ for a level $1 - \alpha$ test of the null hypothesis $H_0$: $\beta_k = c$ versus the alternative hypothesis $H_a$: $\beta_k \neq c$ is:
+
+* If $t\left(\alpha/2; n - p\right) \leq \frac{b_k - c}{s\left\{b_k\right\}} \leq t\left(1 - \alpha/2; n - p\right)$, conclude the null $H_0$
+* If $\frac{b_k - c}{s\left\{b_k\right\}} < t\left(\alpha/2; n - p\right)$ or $\frac{b_k - c}{s\left\{b_k\right\}} > t\left(1 - \alpha/2; n - p\right)$, conclude the alternative $H_a$
+
+> \color{blue}**_Note:_** We can think of a test of the null hypothesis $H_0$: $\beta_k = 0$ versus the alternative hypothesis $H_a$: $\beta_k \neq 0$ as a test of the null hypothesis that there is no linear statistical association between the response $\boldsymbol Y$ and the predictor $\boldsymbol X_k$ given the remaining predictors are included in the model versus the alternative hypothesis that there is a linear association between the response $\boldsymbol Y$ and the predictor $\boldsymbol X_k$ given the remaining predictors are included in the model.
+
+We can make this simpler using a nice property of the $t$ distribution.
+
+> \color{blue}**_Note:_** The $t$ distribution with $\nu$ degrees of freedom is symmetrical about $0$. As a result, $-t\left(\alpha/2; n - p\right) = t\left(1 - \alpha/2; n - p\right)$.
+
+Under the normal errors linear regression model, we can alternatively say that the decision rule based on a the test statistic $\frac{b_k - c}{s\left\{b_k\right\}}$ for a level $1 - \alpha$ test of the null hypothesis $H_0$: $\beta_k = c$ versus the alternative hypothesis $H_a$: $\beta_k \neq c$ is:
+
+* If $\left|\frac{b_k - c}{s\left\{b_k\right\}}\right| \leq t\left(1 - \alpha/2; n - p\right)$, conclude the null $H_0$
+* If $\left|\frac{b_k - c}{s\left\{b_k\right\}}\right| > t\left(1 - \alpha/2; n - p\right)$, conclude the alternative $H_a$
+
+> \color{purple}**_Example 1:_**  Again, consider data from a company that manufactures refrigeration equipment, called the Toluca company. They produce refrigerator parts in lots of different sizes, and the amount of time it takes to produce a lot of refrigerator parts depends on the number of parts in the lot and several other variable factors. Let $X$ be the number of refrigerator plots in a lot, and let $Y$ refer to the amount of time it takes to produce a size of lot $X$. Suppose a cost analyst in the Toluca Company is interested in testing whether or not there is a linear association between work hours and lot size, i.e. the null hypothesis $H_0$: $\beta_1 = 0$ at level $\alpha = 0.05$.
+\color{black}
+
+```{r, fig.cap = "Example 1", out.width="50%"}
+load("~/Dropbox/Teaching/STAT525/Spring2023/bookdata/toluca.RData")
+n <- nrow(data) # Extract number of observations
+Y <- data$Y # Extract response
+X <- data$X # Extract predictor
+linmod <- lm(Y~X) # Fit linear model
+b1 <- linmod$coef[2]
+s.b1 <- summary(linmod)$coef[2, 2]
+alpha <- 0.05
+tquantile <- qt(1 - alpha/2, n - 2)
+```
+> \color{purple}We obtain $b_1 = `r round(b1, 3)`$ and $s\left\{b_1\right\} = `r round(s.b1, 3)`$. Accordingly, the test statistic is $b_1/s\left\{b_1\right\} = `r round (b1/s.b1, 3)`$. We compare this to the $`r round(1 - alpha/2, 3)`$ quantile of a $t$ distribution with $`r n - 2`$ degrees of freedom, $t\left(`r round(1 - alpha/2, 3)`; `r n - 2`\right) = `r round(tquantile, 3)`$. Because the test statistic $b_1/s\left\{b_1\right\}$ exceeds $t\left(`r round(1 - alpha/2, 3)`; `r n - 2`\right)$, we conclude $H_a$: $\beta_1 \neq 0$, i.e. we conclude that there is evidence of a linear association between work hours and lot size at level $\alpha = 0.05$.
+
+When we are performing a test, it can also be helpful to compute the corresponding **$p$-value**, which is the probability of observing a test statistic that is more extreme than the observed value if the null $H_0$ is true. When we are performing a level $1 - \alpha$ test of the null hypothesis $H_0$: $\beta_k = c$ versus the alternative hypothesis $H_a$: $\beta_k \neq c$, the $p$-value is 
+\begin{align*}
+P\left(t\left(n - p\right) < -\left|\frac{b_k - c}{s\left\{b_k\right\}}\right| \text{ or } t\left(n - p\right) > \left|\frac{b_k - c}{s\left\{b_k\right\}}\right|\right) &= P\left(t\left(n - p\right) < -\left|\frac{b_k - c}{s\left\{b_k\right\}}\right|\right) + P\left(t\left(n - p\right) > \left|\frac{b_k - c}{s\left\{b_k\right\}}\right|\right) \\
+&= 2P\left(t\left(n - p\right) < -\left|\frac{b_k - c}{s\left\{b_k\right\}}\right|\right).
+\end{align*}
+
+The last line is a simpification that follows from the symmetry of a $t$ distribution with $\nu$ degrees of freedom about $0$.
+
+> \color{purple}**_Example 2:_**  Consider the same data. What is the $p$-value of the test of whether or not there is a linear association between work hours and lot size, i.e. the $p$-value of the test of the the null hypothesis $H_0$: $\beta_1 = 0$?
+\color{black}
+```{r, fig.cap = "Example 2", out.width="50%"}
+pvalue <- 2*pt(-abs(b1/s.b1), n - 2)
+```
+> \color{purple}We obtain a $p$-value of $`r pvalue`$.
+
+> \color{blue}**_Note:_** We **never** say that a $p$-value is $0$. When a $p$-value is extremely small, we either provide the value as we do above, write $p < 10^{-3}$, or write $p = 0+$.
+
+We can also conduct **one-sided tests** of the form $H_0$: $\beta_k = 0$ versus the alternative $H_a$: $\beta_k > 0$ or $H_0$: $\beta_k = 0$ versus the alternative $H_a$: $\beta_k < 0$. These are rarely used in practice, so we will not discuss them here.
+
+The last thing we will discuss is obtaining a $100 \times \left(1 - \alpha\right)$\% confidence interval for $\beta_k$. Because we know that $\frac{b_k - \beta_k}{s\left\{b_k\right\}}$ follows a $t$ distribution with $n - p$ degrees of freedom, the following  holds for all probabilities $\alpha$:
+\begin{align*}
+P\left(t\left(\alpha/2; n - p\right) \leq \frac{b_k - \beta_k}{s\left\{b_k\right\}} \leq t\left(\alpha/2; n - p\right) \right) = 1 - \alpha.
+\end{align*}
+
+Let's rearrange the terms, to see if we can get an inequality for $\beta_k$.
+
+\begin{align*}
+P\left(t\left(\alpha/2; n - p\right) \leq \frac{b_k - \beta_k}{s\left\{b_k\right\}} \leq t\left(1 - \alpha/2; n - p\right) \right) &= P\left(t\left(\alpha/2; n - p\right)s\left\{b_k\right\} \leq b_k - \beta_k \leq t\left(1 - \alpha/2; n - p\right)s\left\{b_k\right\} \right) \\
+ &= P\left(t\left(\alpha/2; n - p\right)s\left\{b_k\right\} - b_k \leq - \beta_k \leq t\left(1 - \alpha/2; n - p\right)s\left\{b_k\right\} - b_k \right) \\
+  &= P\left(b_k - t\left(1 - \alpha/2; n - p\right)s\left\{b_k\right\} \leq \beta_k \leq b_k - t\left(\alpha/2; n - p\right)s\left\{b_k\right\}  \right) \\
+  &= P\left(b_k + t\left(\alpha/2; n - p\right)s\left\{b_k\right\} \leq \beta_k \leq b_k - t\left(\alpha/2; n - p\right)s\left\{b_k\right\}  \right)
+\end{align*}
+
+The last step follows again from symmetry of a $t$ distribution with $\nu$ degrees of freedom about $0$. We will often denote the limits of a $100 \times \left(1 - \alpha\right)$\% confidence interval for $\beta_k$ as $b_k \pm t\left(\alpha/2; n - p\right)s\left\{b_k\right\}$.
+
+> \color{purple}**_Example 3:_**  Consider the same data. What is a 95% confidence interval for $\beta_1$?
+\color{black}
+```{r, fig.cap = "Example 3", out.width="50%"}
+lower <- b1 + s.b1*qt(alpha/2, n - 2)
+upper <- b1 - s.b1*qt(alpha/2, n - 2)
+```
+> \color{purple}We obtain a $`r round(100*(1 - alpha), 0)`$\% confidence interval of $\left(`r round(lower, 3)`, `r round(upper, 3)`\right)$ for $\beta_1$.
+
+To conclude, we'll work through one more examples.
+
+> \color{purple}**_Example 4:_**  Consider data from portrait studios in 21 cities run by Dwaine Studios, Inc. The studios specialize in portraits of children. Let $X_1$ be the number of persons aged 16 or younger in a city, let $X_2$ refer to per capita disposable income in a city, and let $Y$ be the sales of portraits of children in that city from one of the 21 studies. The portrait studio is interested in testing whether or not there is a linear association between the number of persons aged 16 or younger and the sales of portraits of children having accounted for per capita disposabe income, i.e. the null hypothesis $H_0$: $\beta_1 = 0$ at level $\alpha = 0.05$.
+\color{black}
+
+```{r, fig.cap = "Example 1", out.width="50%", echo = TRUE, }
+load("~/Dropbox/Teaching/STAT525/Spring2023/bookdata/dwaine.RData")
+n <- nrow(data)
+X1 <- data$X1 # Extract the first predictor
+X2 <- data$X2 # Extract the second predictor
+Y <- data$Y # Extract the response
+linmod <- lm(Y~X1+X2) # Obtain the linear regression coefficients
+summary(linmod)
+```
+> \color{purple}From the printed regression results, we can see that we observe a $p$-value for a test of the null hypothesis $H_0$: $\beta_1 = 0$ that is less than $\alpha = 0.05$. Accordingly, we conclude $H_a$: $\beta_1 \neq 0$, i.e. we conclude that there is evidence of a linear association between the number of persons aged 16 or younger and the sales of portraits of children having accounted for per capita disposabe income at level $\alpha = 0.05$.

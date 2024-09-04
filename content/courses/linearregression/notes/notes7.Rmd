@@ -1,0 +1,249 @@
+---
+title: "Notes 7"
+author: "Maryclare Griffin"
+date: "3/9/2023"
+header-includes: \usepackage{color}
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+These notes are based on Chapters 1, 5, and 6 of KNNL.
+
+The linear regression model for a dependent variable or response $Y$ and independent variables, predictors, or covariates $X_1$, $\dots$ $X_{p-1}$ is defined as:
+
+\begin{align*}
+\boldsymbol Y= \boldsymbol X \boldsymbol \beta + \boldsymbol \epsilon
+\end{align*}
+where:
+
+* The elements of $\boldsymbol \beta = \left(\begin{array}{c} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_{p-1} \end{array}\right)$ are parameters
+* The elements of the $n\times p$ matrix $\boldsymbol X = \left(\begin{array}{ccccc} 1 & X_{11} & X_{12} & \dots & X_{1,p-1} \\ 1 & X_{21} & X_{22} & \dots & X_{2,p-1} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & X_{n1} & X_{n2} & \dots & X_{n,p-1} \end{array}\right)$ are known constants
+* $\boldsymbol \epsilon = \left(\begin{array}{c} \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{array}\right)$ is a random error term with mean $\boldsymbol E\left\{\boldsymbol \epsilon\right\} = \boldsymbol 0$ and variance $\boldsymbol \sigma^2\left\{\boldsymbol \epsilon\right\} = \sigma^2\boldsymbol I_n$.
+
+The least squares minimizing estimator $\boldsymbol b$ is given by:
+\begin{align*}
+\boldsymbol b = \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\boldsymbol Y
+\end{align*}
+
+Recall that the variance of the least squares estimator is:
+\begin{align*}
+\sigma^2\left\{\boldsymbol b\right\} &= \sigma^2 \left(\boldsymbol X'\boldsymbol X\right)^{-1} 
+\end{align*}
+
+Without knowing $\sigma^2$, the variance of the least squares estimator $\boldsymbol b$ is unknown.
+In practice, we will **estimate** $\sigma^2$ in order to estimate the variance of the least squares estimator $\boldsymbol b$. Recall that $\sigma^2$ is the variance of the random errors, $\boldsymbol \epsilon$. We do not observe the random errors, but we can estimate them and, accordingly, $\sigma^2$. Given that $\boldsymbol Y = \boldsymbol X \boldsymbol \beta + \boldsymbol \epsilon$ and given that $\hat{\boldsymbol Y}$ is an unbiased estimator of $\boldsymbol X \boldsymbol \beta$, a natural estimator of $\boldsymbol \epsilon$ is $\boldsymbol e = \boldsymbol Y - \hat{\boldsymbol Y}$. We will refer to $\boldsymbol e$ as the **residuals**. Each values of the residuals $e_i = Y_i - \hat{Y}_i$ describes the deviation of the corresponding observed value $Y_i$ from the fitted value $\hat{Y}_i$.
+
+A naive estimator of $\sigma^2$ might be obtained by computing the sample variance of the residuals $\boldsymbol e$. Letting $\bar{e} = \frac{1}{n} \sum_{i = 1}^n e_i$ be the sample mean of the residuals, the sample variance is
+\begin{align*}
+\frac{1}{n-1}\sum_{i = 1}^n \left(e_i - \bar{e}\right)^2.
+\end{align*}
+
+An important property of the residuals $\boldsymbol e$ allows us to simplify this expression. Under the linear model with an intercept, i.e. with $X_{i0} = 1$ for all $i = 1, \dots, n$, $\bar{e} = 0$.
+
+\begin{align*}
+\frac{1}{n-1}\sum_{i = 1}^n e^2_i
+\end{align*}
+
+To assess if this is a good estimator of $\sigma^2$, we will take its expectation.
+\begin{align*}
+E\left\{\frac{1}{n-1}\sum_{i = 1}^n e^2_i\right\} &= \frac{1}{n-1}\sum_{i = 1}^n E\left\{e^2_i\right\}.
+\end{align*}
+
+To make this simpler, we're going to use some more linear algebra! We can recognize that
+\begin{align*}
+E\left\{\frac{1}{n-1}\sum_{i = 1}^n e^2_i\right\} &= \frac{1}{n-1}E\left\{\sum_{i = 1}^n e^2_i\right\} \\
+&= \frac{1}{n-1}E\left\{\boldsymbol e'\boldsymbol e\right\}
+\end{align*}
+
+We're going to see identity matrices of different dimensions up ahead, so we'll introduce some more notation. Let $\boldsymbol I_m$ refer to an $m\times m$ identity matrix. Each $\boldsymbol e$ can be written as a product of a matrix of fixed, constant elements and a vector of random variables, specifically $\boldsymbol Y$:
+\begin{align*}
+\boldsymbol e &= \boldsymbol Y - \boldsymbol X \boldsymbol b \\
+&= \boldsymbol Y - \boldsymbol X \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\boldsymbol Y \\
+&= \left(\boldsymbol I_n - \boldsymbol X \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\right)\boldsymbol Y \\
+&= \left(\boldsymbol I_n - \boldsymbol X \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\right)\left(\boldsymbol X\boldsymbol \beta + \boldsymbol \epsilon \right) \\
+&= \left(\boldsymbol X - \boldsymbol X \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\boldsymbol X\right)\boldsymbol \beta + \left(\boldsymbol I_n - \boldsymbol X \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\right)\boldsymbol \epsilon \\
+&=\left(\boldsymbol I_n - \boldsymbol X \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\right)\boldsymbol \epsilon 
+\end{align*}
+
+For convenience, we will define $\boldsymbol H = \boldsymbol X \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'$, so that we can parsimoniously write $\boldsymbol e = \left(\boldsymbol I_n - \boldsymbol H\right)\boldsymbol \epsilon$. Now let's plug this into our expression for $E\left\{\frac{1}{n-1}\sum_{i = 1}^n e^2_i\right\}$.
+\begin{align*}
+E\left\{\frac{1}{n-1}\sum_{i = 1}^n e^2_i\right\}
+&= \frac{1}{n-1}E\left\{\left(\left(\boldsymbol I_n - \boldsymbol H\right)\boldsymbol \epsilon\right)'\left(\boldsymbol I_n - \boldsymbol H\right)\boldsymbol \epsilon\right\} \\
+&= \frac{1}{n-1}E\left\{\boldsymbol \epsilon' \left(\boldsymbol I_n - \boldsymbol H\right)'\left(\boldsymbol I_n - \boldsymbol H\right)\boldsymbol \epsilon\right\} \\
+&= \frac{1}{n-1}E\left\{\boldsymbol \epsilon' \left(\boldsymbol I_n - \boldsymbol H\right)\boldsymbol \epsilon\right\}
+\end{align*}
+The last step follows from expanding out $\left(\boldsymbol I_n - \boldsymbol H\right)'\left(\boldsymbol I_n - \boldsymbol H\right)$, plugging in $\boldsymbol H = \boldsymbol X \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'$, simplifying, and rewriting in terms of $\boldsymbol I_n$ and $\boldsymbol H$.
+
+> \color{blue}**_Note:_** Given a square  $r\times r$ matrix $\boldsymbol A$ that is symmetric, with $A_{ij} = A_{ji}$ for all $i, j = 1, \dots, r$, the transpose of $\boldsymbol A$ is $\boldsymbol A$ itself, i.e. $\boldsymbol A' = \boldsymbol A$.
+
+We are not quite done, because $E\left\{\boldsymbol \epsilon' \left(\boldsymbol I_n - \boldsymbol H\right)\boldsymbol \epsilon\right\}$ is not a quantity we can readily take an expectation of. We only know how to compute expectations involving matrix products when the matrix product has a "sandwich" type form, with the matrix/matrices involving random elements in the middle (the "meat" of the "sandwich") and the matrix/matrices with fixed elements on the outside (the "filling" of the "sandwich") . To rewrite this expectation in a "sandwich" type form, we're going to need the trace of a matrix.
+
+> \color{blue}**_Note:_** Given a square  $r\times r$ matrix $\boldsymbol A$, the trace of a matrix $\text{tr}\left(\boldsymbol A\right)$ is the sum of its diagonal elements, $\text{tr}\left(\boldsymbol A\right) = \sum_{k = 1}^r A_{kk}$.
+
+Using this fact about the trace, we can recognize that the $1\times 1$ matrix $\boldsymbol \epsilon' \left(\boldsymbol I_n - \boldsymbol H\right)\boldsymbol \epsilon$ is equal to the trace of the $1\times 1$ matrix $\text{tr}\left(\boldsymbol \epsilon' \left(\boldsymbol I_n - \boldsymbol H\right)\boldsymbol \epsilon\right)$. How is this helpful? We need another trace fact.
+
+> \color{blue}**_Note:_** Given an $r\times c$ matrix $\boldsymbol A$, a $c\times s$ matrix $\boldsymbol B$, and a $s\times r$ matrix $\boldsymbol D$, the trace of the product matrix $\text{tr}\left(\boldsymbol A\boldsymbol B \boldsymbol C\right)$ has a cyclic property that allows the elements to be rearranged, specifically **cyclically permuted**. This means:
+\begin{align*}
+\text{tr}\left(\boldsymbol A\boldsymbol B \boldsymbol C\right) = \text{tr}\left(\boldsymbol B \boldsymbol C\boldsymbol A\right) = \text{tr}\left(\boldsymbol C\boldsymbol A \boldsymbol B\right)
+\end{align*}
+
+This allows us to go a step further, letting:
+\begin{align*}
+E\left\{\frac{1}{n-1}\sum_{i = 1}^n e^2_i\right\}
+&=\frac{1}{n-1}E\left\{\text{tr}\left(\boldsymbol \epsilon' \left(\boldsymbol I_n - \boldsymbol H\right)\boldsymbol \epsilon\right)\right\} \\
+&= \frac{1}{n-1}E\left\{\text{tr}\left( \left(\boldsymbol I_n - \boldsymbol H\right)\boldsymbol \epsilon \boldsymbol \epsilon'\right)\right\} \\
+&= \frac{1}{n-1}\text{tr}\left( \left(\boldsymbol I_n - \boldsymbol H\right)E\left\{\boldsymbol \epsilon \boldsymbol \epsilon'\right\}\right)
+\end{align*}
+
+The last step follows from recognizing that the trace of a matrix is just a special sum, so the expectation of the trace of a matrix $E\left\{\text{tr}\left(\boldsymbol A\right)\right\}$ is the trace of the expectation, $E\left\{\text{tr}\left(\boldsymbol A\right)\right\} = \text{tr}\left(E\left\{\boldsymbol A\right\}\right)$.
+
+Now we can really start getting somewhere! Using what we have assumed about the mean and variance of $\boldsymbol \epsilon$, we have:
+\begin{align*}
+E\left\{\frac{1}{n-1}\sum_{i = 1}^n e^2_i\right\}
+&= \frac{1}{n-1}\text{tr}\left( \left(\boldsymbol I_n - \boldsymbol H\right)\left(\sigma^2 \boldsymbol I_n\right)\right) \\
+&= \frac{\sigma^2}{n-1}\text{tr}\left( \left(\boldsymbol I_n - \boldsymbol H\right)\right) \\
+&= \frac{\sigma^2}{n-1}\left(\text{tr}\left(\boldsymbol I_n\right) - \text{tr}\left(\boldsymbol H\right)\right) \\
+&= \frac{\sigma^2}{n-1}\left(n - \text{tr}\left(\boldsymbol X \left(\boldsymbol X'\boldsymbol X\right)^{-1}\boldsymbol X'\right)\right) \\
+&= \frac{\sigma^2}{n-1}\left(n - \text{tr}\left(\left(\boldsymbol X'\boldsymbol X\right)^{-1}\boldsymbol X'\boldsymbol X\right)\right) \\
+&= \frac{\sigma^2}{n-1}\left(n - \text{tr}\left(\boldsymbol I_p\right)\right) \\
+&= \frac{\sigma^2}{n-1}\left(n - p\right) \\
+&= \sigma^2\left(\frac{n - p}{n-1}\right)
+\end{align*}
+
+Putting this all together, we have that the expectation of the sample variance of the residuals is $\frac{1}{n-1}\sum_{i = 1}^n e^2_i = \sigma^2\left(\frac{n - p}{n-1}\right)$.
+
+This is only **unbiased** for $\sigma^2$ when $p = 1$, which is when we do not have any predictors. This suggests that we define the following **unbiased** estimator for $\sigma^2$, that is unbiased for any $p \geq 0$
+\begin{align*}
+\frac{1}{n - p}\sum_{i = 1}^n e^2_i.
+\end{align*}
+
+We will refer to this estimator going forward as $s^2$ or $MSE$, i.e.
+\begin{align*}
+s^2 = MSE = \frac{1}{n - p}\sum_{i = 1}^n e^2_i.
+\end{align*}
+
+Remember - we went down this path because the variance of the least squares estimator $\boldsymbol b$ involved $\sigma^2$, which is unknown. Accordingly, we can now define the estimated variance of the least squares estimator,
+\begin{align*}
+s^2\left\{\boldsymbol b\right\} &= s^2 \left(\boldsymbol X'\boldsymbol X\right)^{-1}. 
+\end{align*}
+
+Putting this all together, this means that we can compute the least squares estimator $\boldsymbol b$ given data, know that it is an unbiased for $\boldsymbol \beta$, and obtain an estimated variance of $\boldsymbol b$ about its mean $\boldsymbol \beta$ by computing $s^2\left\{\boldsymbol b\right\}$.
+
+> \color{purple}**_Example:_**  Let's return to the data from portrait studios in 21 cities run by Dwaine Studios, Inc. The studios specialize in portraits of children. Let $X_1$ be the number of persons aged 16 or younger in a city, let $X_2$ refer to per capita disposable income in a city, and let $Y$ be the sales of portraits of children in that city from one of the 21 studies. Previously, we're constructed an design matrix and compute $b_0$, $b_1$, and $b_2$ by hand. Now we're going to go a step further, and compute $s^2$, the estimated variance of $\boldsymbol b$, fitted values $\hat{\boldsymbol Y}$, and the estimated variance of the fitted values $\hat{\boldsymbol Y}$. \color{black}
+
+```{r}
+load("~/Dropbox/Teaching/STAT525/Spring2023/bookdata/dwaine.RData")
+X1 <- data$X1 # Extract the first predictor
+X2 <- data$X2 # Extract the second predictor
+Y <- data$Y # Extract the response
+n <- length(Y) # Record the number of observations
+p <- 3 # Record the number of predictors + 1
+X <- cbind(rep(1, n), X1, X2)
+XtY <- t(X)%*%Y # Compute X'Y
+XtX <- t(X)%*%X # Compute X'X
+XtX.inv <- solve(XtX) # Invert XtX
+b <- XtX.inv%*%XtY # Solve for b
+b0 <- b[1] # Extract the intercept
+b1 <- b[2] # Extract b1
+b2 <- b[3] # Extract b2
+
+Y.hat <- X%*%b # Compute fitted values
+e <- Y - Y.hat # Compute residuals
+
+s.sq <- sum(e^2)/(n - p) # Compute unbiased estimator of sigma^2
+s.sq.b <- s.sq*XtX.inv # Compute estimated variance of b
+
+s.sq.b0 <- s.sq.b[1, 1] # Extract the estimated variance of b_0
+s.sq.b1 <- s.sq.b[2, 2] # Extract the estimated variance of b_1
+s.sq.b2 <- s.sq.b[3, 3] # Extract the estimated variance of b_2
+```
+
+> \color{purple}We obtain estimates $b_0 = `r round(b0, 3)`$, $b_1 = `r round(b1, 3)`$, and $b_2 = `r round(b2, 3)`$, an estimate $s^2 = `r round(s.sq, 3)`$ of the noise variance $\sigma^2$, and variance estimates $s^2\left\{b_0\right\} = `r round(s.sq.b0, 3)`$, $s^2\left\{b_1\right\} = `r round(s.sq.b1, 3)`$, and $s^2\left\{b_2\right\} = `r round(s.sq.b2, 3)`$. 
+
+\clearpage
+
+> \color{purple}We could have also obtained these variance estimates from `lm` directly!
+```{r}
+linmod <- lm(Y~X1+X2) # Fit linear model to our data
+summary(linmod)
+```
+
+> \color{purple}The **residual standard error** corresponds to $s = \sqrt{MSE}$, and the corresponding degrees of freedom gives $n - p$ for this dataset. The **standard errors** for each estimated regression coefficient correspond to the square roots of the estimated variances, i.e. the standard error of $b_0$ is $\sqrt{s^2\left\{b_0\right\}} = s\left\{b_0\right\}$. We can extract them directly from `lm` going forward, so we don't have to compute them by hand every time.
+
+```{r}
+s <- summary(linmod)$s
+s.b0 <- summary(linmod)$coef[1, 2]
+s.b1 <- summary(linmod)$coef[2, 2]
+s.b2 <- summary(linmod)$coef[3, 2]
+```
+
+Using similar logic, we can also compute the fitted values $\hat{\boldsymbol Y} = \boldsymbol X \boldsymbol b$, know that they are unbiased for $\boldsymbol X \boldsymbol \beta$, and obtain an estimated variance of $\hat{\boldsymbol Y}$ about its mean $\boldsymbol X \boldsymbol \beta$. 
+
+To obtain an estimated variance of $\hat{\boldsymbol Y}$, we first compute the variance of the fitted values:
+\begin{align*}
+\sigma^2\left\{\hat{\boldsymbol Y} \right\} =& \sigma^2\left\{\hat{\boldsymbol Y} \right\} \\
+ =& \sigma^2\left\{\boldsymbol X\left(\boldsymbol X'\boldsymbol X\right)^{-1}\boldsymbol X' \boldsymbol Y \right\} \\
+ =& \sigma^2\left\{\boldsymbol H \boldsymbol Y \right\} \\
+ =& \sigma^2\left\{\boldsymbol H \boldsymbol \epsilon \right\} \\
+ =& \boldsymbol H\sigma^2\left\{\boldsymbol \epsilon \right\}\boldsymbol H' \\
+ =& \boldsymbol H\left(\sigma^2 \boldsymbol I_n \right)\boldsymbol H' \\
+ =& \sigma^2\boldsymbol H \boldsymbol H' \\
+ =& \sigma^2 \boldsymbol H
+\end{align*}
+
+It follows that we can define an estimated variance of $\hat{\boldsymbol Y}$ about its mean $\boldsymbol X \boldsymbol \beta$ to be 
+\begin{align*}
+s^2\left\{\hat{\boldsymbol Y} \right\} = s^2 \boldsymbol H
+\end{align*}
+
+> \color{purple}Going back to the data, let's compute the estimated variance of the standard errors. 
+
+```{r}
+H <- X%*%XtX.inv%*%t(X)
+s.sq.Y.hat <- s.sq*H
+```
+
+> \color{purple}There are a lot of fitted values to summarize, so let's just zoom in on one - the fitted value for the second observation $\hat{Y}_2$ and its estimated variance $s^2\left\{\hat{Y}_2\right\}$
+
+```{r}
+Y.hat.2 <- Y.hat[2]
+s.sq.Y.hat.2 <- s.sq.Y.hat[2, 2]
+```
+
+> \color{purple}We obtain a fitted value of $\hat{Y}_2 = `r round(Y.hat.2, 3)`$ and an estimated variance of $s^2\left\{\hat{Y}_2\right\} = `r round(s.sq.Y.hat.2, 3)`$.
+
+> \color{purple}If we don't want to do this by hand, the `lm` function alone does not directly return the estimated variances of the fitted values. To obtain them, we need to apply the `predict` function to the saved output from `lm`.
+
+```{r}
+pred <- predict(linmod, se.fit = TRUE) # Obtain fitted values and their standard errors
+Y.hat <- pred$fit # Extract fitted values
+s.Y.hat <- pred$se.fit # Extract standard errors
+```
+
+> \color{purple} The standard errors returned by `predict` correspond to the square roots of the estimated variances we computed earlier, i.e. they correspond to $\sqrt{s^2\left\{\boldsymbol Y\right\}} = s\left\{\boldsymbol Y\right\}$.
+
+To wrap up, we'll introduce one more concept! Often, it can be useful to summarize how much of the observed variability in the response can be attributed to the variability of the fitted values. We can think of this as summarizing what proportion of the variation in the data is explained by our linear model. We refer to this as $R^2$, and it is defined as:
+
+\begin{align*}
+R^2 = 1 - \frac{\sum_{i = 1}^n e^2_i}{\sum_{i = 1}^n \left(Y_i - \bar{Y}\right)^2}
+\end{align*}
+
+The denominator $\sum_{i = 1}^n \left(Y_i - \bar{Y}\right)^2$ is often called the **total sum of squares**, and the numerator $\sum_{i = 1}^n e^2_i$ is often called the **residual sum of squares** or SSR, for sum of squared residuals.
+
+```{r}
+sse <- sum(e^2)
+ssto <- sum((Y - mean(Y))^2)
+r.sq <- 1 - sse/ssto
+```
+> \color{purple}We obtain $R^2 = `r round(r.sq, 3)`$, which tells us that approximately 92\% of the variability in sales of portraits of children in the Dwaine data can be attributed to variability in the number of persons aged 16 or younger in a city and per capita disposable income.
+
+> \color{purple}$R^2$ is also included in the output of `lm`. We can find it above in the printed summary, and we can also extract it from the `lm` object.
+
+```{r}
+r.sq <- summary(linmod)$r.sq
+```
+

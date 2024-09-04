@@ -1,0 +1,197 @@
+---
+title: "Notes 5"
+author: "Maryclare Griffin"
+date: "3/2/2023"
+header-includes: \usepackage{color}
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+These notes are based on Chapters 1, 5, and 6 of KNNL.
+
+Recall from the previous notes, the linear regression model for a dependent variable or response $Y$ and independent variables, predictors, or covariates $X_1$, $\dots$ $X_{p-1}$ is defined as:
+
+\begin{align*}
+Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \dots + \beta_{p - 1}X_{i,p - 1} + \epsilon_i
+\end{align*}
+where:
+
+* $\beta_0, \beta_1, \dots, \beta_{p - 1}$ are parameters
+* $X_{i1},\dots, X_{i,p-1}$ are known constants
+* $\epsilon_i$ is a random error term with mean $E\left\{\epsilon_i\right\} = 0$ and variance $\sigma^2\left\{\epsilon_i\right\} = \sigma^2$; $\epsilon_i$ and $\epsilon_j$ are uncorrelated so that their covariance is zero (i.e., $\sigma\left\{\epsilon_i, \epsilon_j\right\} = 0$ for all $i$, $j$; $i\neq j$)
+* $i = 1, \dots, n$
+
+Remember, we don't observe $\beta_0, \beta_1, \dots, \beta_{p-1}$ in the real world. Instead, we **estimate** them by finding the values $b_0, b_1,\dots, b_{p-1}$ that minimize the sum of squared deviations of the response values $Y_i$ from the regression function $\beta_0 + \sum_{k = 1}^{p-1} \beta_k X_{ik}$  with respect to $\beta_0, \beta_1, \dots, \beta_{p-1}$.
+
+In the previous set of notes, we showed how the `lm` function in `R` can be used to compute $b_0, b_1,\dots, b_{p-1}$. We also showed how closed form equations can be derived for $b_0$ and $b_1$ when $p = 2$. What about when we have multiple predictors? We want to find the values $b_0, b_1, \dots, b_{p-1}$ that solve all $p$ of the **normal equations**:
+
+* $\sum_{i = 1}^n - 2Y_i + 2b_0 + 2\left(\sum_{k = 1}^{p-1} b_k X_{ik}\right) = 0$
+* For $k > 0$, $\sum_{i = 1}^n  - 2Y_iX_{ik} + 2b_k X_{ik}^2 + 2 b_0  X_{ik}+ 2\sum_{l = 1, l\neq k}^{p-1} b_l X_{il} X_{ik}= 0$
+
+First, let's rewrite the equations a bit, getting rid of the extra twos and starting with the terms involving elements of $\boldsymbol b$ and/or $\boldsymbol X$:
+
+* $\sum_{i = 1}^n b_0 + \sum_{k = 1}^{p-1} b_k X_{ik} - Y_i  = 0$
+* For $k > 0$, $\sum_{i = 1}^n  b_k X_{ik}^2 + b_0  X_{ik}+ \sum_{l = 1, l\neq k}^{p-1} b_l X_{il} X_{ik}- 2Y_iX_{ik} = 0$
+
+For this, we'll need linear algebra. Linear algebra lets us write out sums and sets of equations efficiently. We will define:
+
+* The $n\times 1$ column vector $\boldsymbol Y = \left(\begin{array}{c} Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{array}\right)$
+* The $n\times p$ **design matrix** $\boldsymbol X = \left(\begin{array}{ccccc} 1 & X_{11} & X_{12} & \dots & X_{1,p-1} \\ 1 & X_{21} & X_{22} & \dots & X_{2,p-1} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & X_{n1} & X_{n2} & \dots & X_{n,p-1} \end{array}\right)$
+* The $p\times 1$ vector $\boldsymbol b = \left(\begin{array}{c} b_0 \\ b_1 \\ \vdots \\ b_{p-1} \end{array}\right)$
+
+> \color{blue}**_Note:_** Matrix multiplication gives us a nice way of computing several sums at once. If $\boldsymbol A$ is an $r \times c$ matrix and $\boldsymbol B$ is a $c\times s$ matrix, the product $\boldsymbol D = \boldsymbol A \boldsymbol B$ is an $r\times s$ matrix with elements:
+\begin{align*}
+d_{ij} = \sum_{k = 1}^c a_{ik} b_{kj}.
+\end{align*}
+
+This looks a bit familiar, and suggests that we can write out our normal equations using matrix multiplication. The normal equations involve sums $\sum_{i = 1}^n Y_i X_{ik}$ for different values of $k$, as well as sums $\sum_{i = 1}^n b_k X_{ik}^2$, and $\sum_{i = 1}^n  \sum_{l = 1, l\neq k}^{p-1} b_l X_{il}X_{ik}$. The first term resembles what we would expect to obtain if we multiplied $\boldsymbol X$ and $\boldsymbol Y$, however their dimensions are not amenable to matrix multiplication as-is. 
+
+> \color{blue}**_Note:_** The transpose of a vector or matrix is obtained by interchanging the rows and columns.
+* The transpose of the $n\times 1$ column vector $\boldsymbol Y$ is the $1\times n$ row vector ormatrix $\boldsymbol Y' = \left(\begin{array}{cccc} Y_1 & Y_2 & \dots & Y_n\end{array} \right)$
+* The transpose of the $n \times p$ matrix $\boldsymbol X$ is $\boldsymbol X' = \left(\begin{array}{cccc} 1 & 1 & \dots & 1 \\ X_{11} & X_{21} & \dots & X_{n1} \\ X_{12} & X_{22} & \dots & X_{n2} \\ \vdots & \vdots & \ddots & \vdots \\ X_{1,p-1} & X_{2,p-1} & \dots & X_{n,p-1} \end{array}\right)$
+
+We can compute $\boldsymbol X'\boldsymbol Y$, let's try it!
+
+\begin{align*}
+\boldsymbol X' \boldsymbol Y = \left(\begin{array}{c} \sum_{i = 1}^n Y_k \\  \sum_{i = 1}^n Y_k X_{i1} \\ \vdots \\ \sum_{i = 1}^n Y_k X_{i,p-1} \\ \end{array}\right)
+\end{align*}
+
+Aha! We have the $\sum_{i = 1}^n Y_k$ that appears in the first normal equation and the $\sum_{i = 1}^n Y_k X_{ik}$ terms that appear in the remaining $p - 1$ normal equations. What about the terms involving $\boldsymbol b$ and elements of $\boldsymbol X$? A natural quantity to consider is $\boldsymbol X \boldsymbol b$. Let's compute that!
+
+\begin{align*}
+\boldsymbol X \boldsymbol b = \left(\begin{array}{c} b_0 + \sum_{k = 1}^{p - 1} b_k X_{1k} \\ b_0 + \sum_{k = 1}^{p - 1} b_k X_{2k} \\ \vdots \\ b_0 + \sum_{k = 1}^{p - 1} b_k X_{nk} \\ \end{array}\right)
+\end{align*}
+
+This isn't quite what we're looking for. We are missing terms involving squares $X^2_{ik}$ and products $X_{ik} X_{il}$ for $l \neq k$. This suggests seeing what we get if we multiply by $\boldsymbol X'$ to get a $p\times 1$ vector:
+\begin{align*}
+\boldsymbol X' \boldsymbol X \boldsymbol b &= \left(\begin{array}{cccc} 1 & 1 & \dots & 1 \\ X_{11} & X_{21} & \dots & X_{n1} \\ X_{12} & X_{22} & \dots & X_{n2} \\ \vdots & \vdots & \ddots & \vdots \\ X_{1,p-1} & X_{2,p-1} & \dots & X_{n,p-1} \end{array}\right)\left(\begin{array}{c} b_0 + \sum_{k = 1}^{p - 1} b_k X_{1k} \\ b_0 + \sum_{k = 1}^{p - 1} b_k X_{2k} \\ \vdots \\ b_0 + \sum_{k = 1}^{p - 1} b_k X_{nk} \\ \end{array}\right) \\
+&= \left(\begin{array}{c} \sum_{i = 1}^n b_0 +  \sum_{k = 1}^{p-1}b_k X_{ik} \\ 
+\sum_{i = 1}^n X_{i1} \left(b_0 + \sum_{k = 1}^{p-1} b_k X_{ik}\right) \\
+\sum_{i = 1}^n X_{i2} \left(b_0 + \sum_{k = 1}^{p-1} b_k X_{ik}\right) \\
+\vdots \\ 
+\sum_{i = 1}^n X_{i,p-1} \left(b_0 + \sum_{k = 1}^{p-1} b_k X_{ik}\right) \\
+\end{array} \right) \\
+&= \left(\begin{array}{c}  \sum_{i = 1}^nb_0 +  \sum_{k = 1}^{p-1} b_k X_{ik} \\ 
+\sum_{i = 1}^nb_1  X_{i1}^2 + b_0 X_{i1} + \sum_{l = 2}^{p-1} b_l X_{i1} X_{il}\\
+\sum_{i = 1}^nb_2  X_{i2}^2 + b_0 X_{i2} + b_1 X_{i1} X_{i2} + \sum_{l = 3}^{p-1} b_l X_{ik} X_{il}\\ 
+\vdots \\ 
+\sum_{i = 1}^nb_{p-1}  X_{i,p-1}^2 + b_0 X_{i,p-1} +  \sum_{l = 1}^{p-2} b_l  X_{il} X_{i,p-1}  \\
+\end{array} \right) 
+\end{align*}
+
+The first element of $\boldsymbol X' \boldsymbol X \boldsymbol b$ minus the first element of $\boldsymbol X' \boldsymbol Y$ set equal to $0$ gives us the first normal equation! The second element of $\boldsymbol X' \boldsymbol X \boldsymbol b$ minus the second element of $\boldsymbol X' \boldsymbol Y$ set equal to $0$ gives us the first normal equation!  And so on!
+
+> \color{blue}**_Note:_** Two vectors or matrices are said to be equal if they have the same dimension and all of the corresponding elements are equal, i.e. if $\boldsymbol A$ is an $r\times c$ matrix and $\boldsymbol B$ is an $r\times c$ matrix, then elements of $\boldsymbol A = \boldsymbol B$ indicates that $a_{ij} = b_{ij}$ for $i = 1, \dots r$ and $j = 1, \dots c$.
+
+> \color{blue}**_Note:_** The difference of two vectors or matrices of the same dimensions is the difference of their elements, i.e. if $\boldsymbol A$ is an $r\times c$ matrix and $\boldsymbol B$ is an $r\times c$ matrix, then elements of $\boldsymbol D = \boldsymbol A - \boldsymbol B$ satisfy $d_{ij} = a_{ij} - b_{ij}$.
+
+Accordingly, if $\boldsymbol 0$ is a $p\times 1$ vector with all elements exactly equal to zero, we can write all $p$ of the normal equations simultanously using linear algebra as:
+
+\begin{align*}
+\boldsymbol X'\boldsymbol X \boldsymbol b -\boldsymbol X'\boldsymbol Y = \boldsymbol 0.
+\end{align*}
+
+
+This equation is a ``nice'' function of $\boldsymbol b$! A few more linear algebra facts will allow us to solve it.
+
+> \color{blue}**_Note:_** The sum of two vectors or matrices of the same dimensions is the sum of their elements, i.e. if $\boldsymbol A$ is an $r\times c$ matrix and $\boldsymbol B$ is an $r\times c$ matrix, then elements of $\boldsymbol D = \boldsymbol A + \boldsymbol B$ satisfy $d_{ij} = a_{ij} + b_{ij}$.
+
+\begin{align*}
+\boldsymbol X'\boldsymbol X \boldsymbol b =\boldsymbol X'\boldsymbol Y 
+\end{align*}
+
+> \color{blue}**_Note:_** The **identity matrix** or **unit matrix** is denoted by $\boldsymbol I$. It is a diagonal matrix whose elements on the main diagonal $I_{kk}$ are all equal to $1$, and remaining elements are equal to $0$. Premultiplying or postmultiplying any $r \times r$ matrix $\boldsymbol A$ by the $r\times r$ identity matrix $\boldsymbol I$ leaves $\boldsymbol A$ unchanged, i.e. $\boldsymbol I \boldsymbol A = \boldsymbol A$ and $\boldsymbol A = \boldsymbol A \boldsymbol I$.
+
+> \color{blue}**_Note:_** The inverse of a $r\times r$ square matrix $\boldsymbol A$ is another $r\times r$ square matrix, denoted by $\boldsymbol A^{-1}$, such that $\boldsymbol A^{-1} \boldsymbol A = \boldsymbol I$. The inverse matrix $\boldsymbol A^{-1}$ exists if the matrix $\boldsymbol A$ is rank $r$, i.e. if $\boldsymbol A$ is **nonsingular** or **full rank**. A matrix with rank less than $r$ is said to be **singular** or **not of full rank**. The inverse of a matrix with with rank $r$ also has rank $r$.
+
+If $\boldsymbol X'\boldsymbol X$ is full rank, then we have a closed form solution for $\boldsymbol b$:
+\begin{align*}
+ \boldsymbol b = \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\boldsymbol Y
+\end{align*}
+
+> \color{blue}**_Note:_** $\boldsymbol X'\boldsymbol X$ is full rank when there we cannot write any column of $\boldsymbol X$ as a linear combination of the remaining columns of $\boldsymbol X$. Practically, this means that $\boldsymbol X'\boldsymbol X$ is never full rank when $n < p$.
+
+> \color{purple}**_Example 1:_**  Let's return to the data from portrait studios in 21 cities run by Dwaine Studios, Inc. The studios specialize in portraits of children. Let $X_1$ be the number of persons aged 16 or younger in a city, let $X_2$ refer to per capita disposable income in a city, and let $Y$ be the sales of portraits of children in that city from one of the 21 studies. We're going to construct an design matrix and compute $b_0$, $b_1$, and $b_2$ by hand. \color{black}
+
+```{r}
+load("~/Dropbox/Teaching/STAT525/Spring2023/bookdata/dwaine.RData")
+X1 <- data$X1 # Extract the first predictor
+X2 <- data$X2 # Extract the second predictor
+Y <- data$Y # Extract the response
+n <- length(Y) # Record the number of observations
+X <- cbind(rep(1, n), X1, X2)
+XtY <- t(X)%*%Y # Compute X'Y
+XtX <- t(X)%*%X # Compute X'X
+XtX.inv <- solve(XtX) # Invert XtX
+b <- XtX.inv%*%XtY # Solve for b
+b0 <- b[1] # Extract the intercept
+b1 <- b[2] # Extract b1
+b2 <- b[3] # Extract b2
+```
+
+> \color{purple}We obtain estimates $b_0 = `r round(b0, 3)`$, $b_1 = `r round(b1, 3)`$, and $b_2 = `r round(b2, 3)`$. These are the same numbers we got from `lm` previously!
+
+Now that we've introduced linear algebra, it's worth noting that we can write the linear regression model and $Q$, the sum of squares criterion using linear algebra. 
+
+Letting $\boldsymbol \epsilon = \left(\begin{array}{c} \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{array}\right)$, the linear regression model for a dependent variable or response $Y$ and independent variables, predictors, or covariates $X_1$, $\dots$ $X_{p-1}$ is defined as:
+
+\begin{align*}
+\boldsymbol Y= \boldsymbol X \boldsymbol \beta + \boldsymbol \epsilon
+\end{align*}
+where:
+
+* The elements of $\boldsymbol \beta = \left(\begin{array}{c} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_{p-1} \end{array}\right)$ are parameters
+* The elements of the $n\times p$ matrix $\boldsymbol X = \left(\begin{array}{ccccc} 1 & X_{11} & X_{12} & \dots & X_{1,p-1} \\ 1 & X_{21} & X_{22} & \dots & X_{2,p-1} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & X_{n1} & X_{n2} & \dots & X_{n,p-1} \end{array}\right)$ are known constants
+* For $i = 1, \dots, n$, $\epsilon_i$ is a random error term with mean $E\left\{\epsilon_i\right\} = 0$ and variance $\sigma^2\left\{\epsilon_i\right\} = \sigma^2$; $\epsilon_i$ and $\epsilon_j$ are uncorrelated so that their covariance is zero (i.e., $\sigma\left\{\epsilon_i, \epsilon_j\right\} = 0$ for all $i$, $j$; $i\neq j$)
+
+The $p\times 1$ vector of estimated regression coefficients $\boldsymbol b$ corresponds to the value of $\boldsymbol \beta$ that minimizes
+
+\begin{align*}
+Q = \left(\boldsymbol Y - \boldsymbol X \boldsymbol \beta\right)'\left(\boldsymbol Y - \boldsymbol X \boldsymbol \beta \right)
+\end{align*}
+
+Accordingly, the $p$ normal equations are obtained by taking the derivative of $\boldsymbol Q$ with respect to $\boldsymbol \beta$ and setting them equal to $\boldsymbol 0$. We can see this by first expanding out $Q$, and then taking derivatives.
+
+\begin{align*}
+Q = \boldsymbol Y'\boldsymbol Y - \boldsymbol Y'\boldsymbol X \boldsymbol \beta - \left(\boldsymbol X \boldsymbol \beta\right)'\boldsymbol Y + \left(\boldsymbol X \boldsymbol \beta\right)'\left(\boldsymbol X \boldsymbol \beta\right)
+\end{align*}
+
+> \color{blue}**_Note:_** Given two $1\times p$ vectors $\boldsymbol a$ and $\boldsymbol c$, $\boldsymbol a'\boldsymbol c = \boldsymbol c'\boldsymbol a$.
+
+\begin{align*}
+Q = \boldsymbol Y'\boldsymbol Y - 2\boldsymbol Y'\boldsymbol X \boldsymbol \beta + \left(\boldsymbol X \boldsymbol \beta\right)'\left(\boldsymbol X \boldsymbol \beta\right)
+\end{align*}
+
+> \color{blue}**_Note:_** The transpose of a product of matrices $\left(\boldsymbol A \boldsymbol B\right)'$ is obtained by reversing the order of the elements in the product and taking the transpose of each, $\boldsymbol B'\boldsymbol A'$.
+
+\begin{align*}
+Q = \boldsymbol Y'\boldsymbol Y - 2\boldsymbol Y'\boldsymbol X \boldsymbol \beta + \boldsymbol \beta'\boldsymbol X'\boldsymbol X \boldsymbol \beta
+\end{align*}
+
+> \color{blue}**_Note:_** Given an $1\times p$ vector $\boldsymbol A$, the derivative of $\boldsymbol A \boldsymbol \beta$ with respect to $\boldsymbol \beta$ is $\boldsymbol A$.
+
+\begin{align*}
+\frac{\partial Q}{\partial \boldsymbol \beta} = - 2\boldsymbol Y'\boldsymbol X + \frac{\partial Q}{\partial \boldsymbol \beta} \boldsymbol \beta'\boldsymbol X'\boldsymbol X \boldsymbol \beta
+\end{align*}
+
+> \color{blue}**_Note:_** Given an $1\times p$ vector $\boldsymbol A$, the derivative of $\boldsymbol \beta'\boldsymbol A \boldsymbol \beta$ with respect to $\boldsymbol \beta$ is $2\boldsymbol \beta'\boldsymbol A$.
+
+\begin{align*}
+\frac{\partial Q}{\partial \boldsymbol \beta} = - 2\boldsymbol Y'\boldsymbol X + 2 \boldsymbol \beta'\boldsymbol X'\boldsymbol X 
+\end{align*}
+
+If we substitute $\boldsymbol b$ in for $\boldsymbol \beta$, this looks very similar to the expression we got for the normal equations but transposed and multiplied by $2$. Substituting $\boldsymbol b$ in for $\boldsymbol \beta$ and taking the transpose, we get:
+\begin{align*}
+- 2\boldsymbol X'\boldsymbol Y + 2 \boldsymbol X'\boldsymbol X \boldsymbol b = \boldsymbol 0
+\end{align*}
+
+Dividing by $2$ and rearranging yields our normal equations:
+\begin{align*}
+\boldsymbol X'\boldsymbol X \boldsymbol b-\boldsymbol X'\boldsymbol Y  = \boldsymbol 0
+\end{align*}
+
+Ta-da!

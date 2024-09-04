@@ -1,0 +1,84 @@
+---
+title: "Notes 6"
+author: "Maryclare Griffin"
+date: "3/7/2023"
+header-includes: \usepackage{color}
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+These notes are based on Chapters 1, 5, and 6 of KNNL.
+
+Recall the linear regression model, which we can now write out using linear algebra. Let $\boldsymbol \epsilon = \left(\begin{array}{c} \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{array}\right)$. 
+
+> \color{blue}**_Note:_** Given an  $r\times 1$ vector $\boldsymbol A$ with elements $A_{i}$ that are random variables, the expected value of $\boldsymbol A$, denoted by $\boldsymbol E\left\{A\right\}$, is an $r\times 1$ vector:
+\begin{align*}
+\boldsymbol E\left\{\boldsymbol A\right\} &= \boldsymbol E\left\{\left(\begin{array}{c} A_1 \\ A_2 \\ \vdots \\ A_r \end{array} \right) \right\} = \left(\begin{array}{c} E\left\{A_1\right\} \\ E\left\{A_2\right\} \\ \vdots\\  E\left\{A_r\right\} \end{array} \right) 
+\end{align*}
+
+> \color{blue}**_Note:_** Given an  $r\times 1$ vector $\boldsymbol A$ with elements $A_{i}$ that are random variables, the variance of $\boldsymbol A$, denoted by $\boldsymbol \sigma^2\left\{A\right\}$, is an $r\times r$ matrix:
+\begin{align*}
+\boldsymbol \sigma^2\left\{\boldsymbol A\right\} &= \boldsymbol \sigma^2\left\{\left(\begin{array}{c} A_1 \\ A_2 \\ \vdots \\ A_r \end{array} \right) \right\} = \left(
+\begin{array}{cccc} 
+\sigma^2\left\{A_1\right\} & \sigma\left\{A_1, A_2\right\} & \dots & \sigma\left\{A_1, A_r\right\} \\ 
+\sigma\left\{A_1, A_2\right\} & \sigma^2\left\{A_2\right\} & \dots & \sigma\left\{A_2, A_r\right\} \\ 
+\vdots & \vdots & \ddots & \vdots \\  
+\sigma\left\{A_1, A_r\right\} & \sigma\left\{A_2, A_r\right\} & \dots & \sigma^2\left\{A_r\right\}
+\end{array} \right) 
+\end{align*}
+
+
+The linear regression model for a dependent variable or response $Y$ and independent variables, predictors, or covariates $X_1$, $\dots$ $X_{p-1}$ is defined as:
+
+\begin{align*}
+\boldsymbol Y= \boldsymbol X \boldsymbol \beta + \boldsymbol \epsilon
+\end{align*}
+where:
+
+* The elements of $\boldsymbol \beta = \left(\begin{array}{c} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_{p-1} \end{array}\right)$ are parameters
+* The elements of the $n\times p$ matrix $\boldsymbol X = \left(\begin{array}{ccccc} 1 & X_{11} & X_{12} & \dots & X_{1,p-1} \\ 1 & X_{21} & X_{22} & \dots & X_{2,p-1} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & X_{n1} & X_{n2} & \dots & X_{n,p-1} \end{array}\right)$ are known constants
+* $\boldsymbol \epsilon = \left(\begin{array}{c} \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{array}\right)$ is a random error term with mean $\boldsymbol E\left\{\boldsymbol \epsilon\right\} = \boldsymbol 0$ and variance $\boldsymbol \sigma^2\left\{\boldsymbol \epsilon\right\} = \sigma^2\boldsymbol I$.
+
+The least squares minimizing estimator $\boldsymbol b$ is given by:
+\begin{align*}
+\boldsymbol b = \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\boldsymbol Y
+\end{align*}
+
+> \color{blue}**_Note:_** Given an  $c\times s$ matrix $\boldsymbol B$ with elements $B_{ij}$ that are random variables, and $r\times c$ and $s\times f$ matrices $\boldsymbol A$ and $\boldsymbol D$ with elements $A_{ij}$ and $D_{ij}$ that are fixed constants, the expected value of $\boldsymbol A\boldsymbol B\boldsymbol D$, denoted by $\boldsymbol E\left\{\boldsymbol A\boldsymbol B\boldsymbol D\right\}$, is an $r\times f$ matrix:
+\begin{align*}
+\boldsymbol E\left\{\boldsymbol A\boldsymbol B\boldsymbol D\right\} &= \boldsymbol A \boldsymbol E\left\{\boldsymbol B\right\}\boldsymbol D
+\end{align*}
+
+Using the above fact about expectations of products of matrices, we can show that the least squares estimator is unbiased for $\boldsymbol \beta$ when the linear regression model holds. We have:
+\begin{align*}
+E\left\{\boldsymbol b\right\} &= \mathbb{E}\left\{\left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\boldsymbol Y\right\} \\
+&= \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\mathbb{E}\left\{\boldsymbol Y\right\} \\
+&= \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\mathbb{E}\left\{\boldsymbol X \boldsymbol \beta + \boldsymbol \epsilon \right\} \\
+&= \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\left(\boldsymbol X \boldsymbol \beta + \mathbb{E}\left\{\boldsymbol \epsilon \right\}\right) \\
+&= \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\boldsymbol X \boldsymbol \beta \\
+&= \boldsymbol \beta
+\end{align*}
+It follows that $\hat{\boldsymbol Y} = \boldsymbol X \boldsymbol b$, which we will refer to as the **fitted values**, **estimated regression function**, or the **estimated mean response** is an unbiased estimator for $E\left\{\boldsymbol Y\right\} = \boldsymbol X \boldsymbol \beta$. 
+
+> \color{blue}**_Note:_** Given an  $c\times 1$ vector $\boldsymbol B$ with elements $B_{i}$ that are random variables, and $r\times c$ matrix $\boldsymbol A$ with elements $A_{ij}$ that are fixed constants, the variance of $\boldsymbol A\boldsymbol B$, denoted by $\boldsymbol \sigma^2\left\{\boldsymbol A\boldsymbol B\right\}$, is an $r\times r$ matrix:
+\begin{align*}
+\boldsymbol \sigma^2\left\{\boldsymbol A\boldsymbol B\right\} &= \boldsymbol A \boldsymbol \sigma^2\left\{\boldsymbol B\right\}\boldsymbol A'
+\end{align*}
+
+Using the above fact about the variance of a product of a fixed matrix and a random vector, we can also derive the variance of the least squares estimator,
+\begin{align*}
+\sigma^2\left\{\boldsymbol b\right\} &= \sigma^2\left\{\left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\boldsymbol Y\right\} \\
+&= \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\sigma^2\left\{\boldsymbol Y\right\}\boldsymbol X\left(\boldsymbol X'\boldsymbol X\right)^{-1} \\
+&= \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\sigma^2\left\{\boldsymbol \epsilon\right\}\boldsymbol X\left(\boldsymbol X'\boldsymbol X\right)^{-1} \\
+&= \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\left(\sigma^2 \boldsymbol I\right)\boldsymbol X\left(\boldsymbol X'\boldsymbol X\right)^{-1}  \\
+&= \sigma^2 \left(\boldsymbol X'\boldsymbol X\right)^{-1} \boldsymbol X'\boldsymbol X\left(\boldsymbol X'\boldsymbol X\right)^{-1}  \\
+&= \sigma^2 \left(\boldsymbol X'\boldsymbol X\right)^{-1} 
+\end{align*}
+
+Without knowing $\sigma^2$, the variance of the least squares estimator $\boldsymbol b$ is unknown.
+Nonetheless, we can state that the least squares estimator $\boldsymbol b$ is has the lowest variance of all estimators of $\boldsymbol \beta$ that are linear in $\boldsymbol Y$.
+
