@@ -1,5 +1,5 @@
 ---
-title: "Overview"
+title: "Statistical Learning"
 author: "Maryclare Griffin"
 date: "`r Sys.Date()`"
 output: pdf_document
