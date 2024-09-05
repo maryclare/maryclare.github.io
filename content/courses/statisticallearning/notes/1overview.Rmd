@@ -29,4 +29,4 @@ Throughout, we will use the following notation:
 * When outputs are observed, we denote our observed data as $\{(x1, y_1), \dots, (x_n, y_n)\}$.
 * We may sometimes drop the subscripts and capitalize to refer to an arbitrary, potentially not yet observed, input or output e.g. $X = (X_1,\dots, X_p)$ or $Y$
 
-
+Note that the terminology can vary. For instance, what we are referring to as inputs are sometimes also called **predictors**, **independent variables**, or **features**. What we are referring to as outputs are sometimes called **responses** or **dependent variables**.
