@@ -7,9 +7,10 @@ output:
 ## News
 -------
 
+* 08/03/24: ["Review and Demonstration of a Mixture Representation for Simulation from Densities Involving Sums of Powers"](https://arxiv.org/abs/2408.01617), a technical note about posterior simulation for prior distributions that correspond to power or bridge penalties using gradient-based Markov Chain Monte Carlo methods is online!
 * 12/22/23: ["A Simple Approach for Local and Global Variable Importance in Nonlinear Regression Models"](https://arxiv.org/abs/2302.02024), a paper about interpreting black-box machine learning models with [Emily Winn-Nuñez](https://etwinn.github.io) and [Lorin Crawford](http://www.lorincrawford.com), has been accepted for publication at Computational Statistics and Data Analysis!
-* 10/23/23: ["Structured Shrinkage Priors"](https://www.tandfonline.com/doi/full/10.1080/10618600.2023.2233577), a paper about defining and working with correlated generalizations of common shrinkage priors with my advisor [Peter Hoff](https://pdhoff.github.io), has been selected for the [ASA Editor's Choice Collection](https://www.tandfonline.com/journals/uasa20/collections/EditorsChoiceCollectionUASA)!
-* 08/18/23: ["Improved Pathwise Coordinate Descent for Power Penalties"](https://arxiv.org/abs/2203.02596), a paper about computing penalized regression estimates using power penalties, has been accepted for publication at the Journal of Computational and Graphical Statistics!
+* 10/23/23: ["Structured Shrinkage Priors"](https://www.tandfonline.com/doi/full/10.1080/10618600.2023.2233577), a paper about defining and working with correlated generalizations of common shrinkage priors with my advisor [Peter Hoff](https://pdhoff.github.io), has been selected for the [ASA Editors' Choice Collection](https://www.tandfonline.com/journals/uasa20/collections/EditorsChoiceCollectionUASA)!
+
 
 ## About Me
 
