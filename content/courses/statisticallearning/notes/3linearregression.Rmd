@@ -94,7 +94,7 @@ with respect to $b_0, b_1, \dots, \beta_p$. Importantly, there is only a unique 
 
 The least squares criterion evaluated at the estimates $\hat{\beta}_0, \hat{\beta}_1, \dots, \hat{\beta}_p$ is
 \begin{align}
-\text{RSS} = \sum_{i = 1}^n (y_i - \hat{\beta}_0 - x_{i1} \hat{\beta}_1 - \dots - x_{ip} \hat{\beta}_p)^2\label{eq:rss},
+\text{RSS} = \sum_{i = 1}^n (y_i - \hat{\beta}_0 - x_{i1} \hat{\beta}_1 - \dots - x_{ip} \hat{\beta}_p)^2\label{eq:rssmlr},
 \end{align}
 where $y_i - \hat{\beta}_0 - \hat{\beta}_1 x_{i1} - \dots - \hat{\beta}_p x_{ip}$ continues to refer to the $i$-th **residual**, denoted by $e_i$.
 
@@ -107,6 +107,11 @@ The closed form expression for the estimate vector of regression coefficients $\
 \hat{\boldsymbol \beta} = \left(\boldsymbol X^\top \boldsymbol X\right)^{-1}\boldsymbol X^\top \boldsymbol y.
 \end{align*}
 Note we need to be able to invert $\boldsymbol X^\top \boldsymbol X$ to obtain the least squares estimator. This corresponds to the condition for a unique minimizer of the least squares criterion that we referenced earlier - $\boldsymbol X^\top \boldsymbol X$ is invertible when $p < n$, i.e. we have more observations than predictors, and when the predictors $\boldsymbol x_1, \dots, \boldsymbol x_p$ aren't too correlated with each other.
+Having obtained $\hat{\boldsymbol \beta}$, a predicted value of the response $\hat{Y}$ can be obtained from the estimated coefficients as 
+\begin{align*}
+\hat{Y} = \hat{\beta}_0 + \hat{\beta}_1 X_1 + \dots + \hat{\beta}_p X_p.
+\end{align*}
+
 
 Accordingly, the residual sum of squares (RSS) is
 \begin{align*}
@@ -121,8 +126,8 @@ We can plug in the least squares estimator for $\sigma^2$, $RSS/(n-p-1)$, to obt
 \begin{align*}
 \left(\frac{RSS}{n-p-1}\right) \left(\boldsymbol X^\top \boldsymbol X\right)^{-1}
 \end{align*}
-Square roots of diagonal elements of this variance-covariance matrix are the standard errors of the corresponding regression coefficent.
-
+Square roots of diagonal elements of this variance-covariance matrix are the standard errors of the corresponding regression coefficent. As in the simple linear regression setting, we can use the estimated standard errors, along with the estimated coefficients, to construct confidence intervals and perform tests of null hypotheses that an individual regression coefficient is equal to a specific value.
+Furthermore, the estimated variance-covariance matrix can be used to estimate the variance of predictions, construct confidence intervals for predictions, and construct prediction intervals for future values.
 <!-- Go over figure here 3.4 here --> 
 
 When the linear regression model holds and the errors are independent and identically distributed with finite variance $\text{Var}[\epsilon] = \sigma^2 < \infty$, we can test the null hypothesis $H_0$ that that there is no relationship between the response and the predictors versus the alternative $H_a$ that there is a relationship between at least one of the predictors. The null hypothesis $H_0$ corresponds to the scenario where $\beta_1 = \dots = \beta_p = 0$, and the alternative hypothesis $H_a$ corresponds to the scenario where at least one $\beta_j$ is non-zero. To perform a level-$\alpha$ test of this hypothesis, we can compute the $F$-statistic
@@ -147,29 +152,48 @@ More broadly, comparing models requires a measure of model fit. It is especially
 
 <!-- Go over figure here 3.5 here --> 
 
+
+Linear models are much more flexible than one might initially realize, because they only require linearity of $f(X)$ in $\boldsymbol \beta$. This means that we can use linear models to relate a response to qualitative predictors/variables and we can use linear models to describe nonlinear relationships between $Y$ and $X_1, \dots, X_p$. 
+
 <!--9 Qualitative Predictors -->
 
-<!--8 Interactions -->
+We can incorporate qualitative predictor that takes on $K$ unique values by constructing $K-1$ binary variables 
+\begin{align*}
+v_{ik} = \left\{\begin{array}{cc} 1 & \text{if the qualitative predictor takes on the $k$-th unique value} \\
+0 & \text{otherwise}\end{array}\right.
+\end{align*}
+for $k = 1, \dots, K-1$. These are sometimes called **dummy variables**. Alternatively, this way of coding a qualitative predictor is sometimes called **one-hot encoding**. Note that if we want to test if there is a relationship between a qualitative predictor and the response, we need to test if all of the coefficients associated with all of the corresponding dummy variables are jointly equal to zero.
+
+Incorporating interactions refers to incorporating an additional variable that correspond to the product of a pair of predictors, e.g.
+\begin{align*}
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 (X_1\times X_2) + \epsilon.
+\end{align*}
+This allows for the average change in response associated with changes in one variable to depend on the value of the other variable. Note that when interactions have been introduced, the question of whether or not a specific predictor is associated with the response no longer corresponds to the question of whether or not a single regression coefficient is equal to zero, but rather the question of whether or not all of the regression coefficients associated with functions of the specific predictor are jointly equal to zero.
+
 
 <!-- Go over figure here 3.7 here --> 
 
-<!--7 Polynomial terms -->
+
+Last, if there is evidence that the relationship between the response and a predictor is non-linear, we can introduce polynomial functions of the predictor as additional variables in the multiple linear model, e.g.
+\begin{align*}
+Y = \beta_0 + \beta_1 X + \beta_2 X^2 + \epsilon.
+\end{align*}
+Again, when additional polynomial functions of a predictor have been introduced, the question of whether or not a specific predictor is associated with the response no longer corresponds to the question of whether or not a single regression coefficient is equal to zero, but rather the question of whether or not all of the regression coefficients associated with functions of the specific predictor are jointly equal to zero. We will explore this idea more later in the semester.
 
 <!-- Go over figure here 3.8 here --> 
 
 <!--Problems -->
 
-<!--6 Non-linearity -->
+The arguments we made to justify the value of the multiple least squares estimator assumed that the linear regression model holds. This is unrealistic! There are many ways that it can be violated, some of which have greater consequences than others. Violations of the linear regression model can often be diagnosed by examining the residuals, $e_i = y_i - \hat{\beta}_0 - \hat{\beta}_1 x_{i1} - \dots - \hat{\beta}_p x_{ip}$. In general, if the linear model holds, the residuals should not contain any meaningful trends or information.
+\begin{itemize}
+  \item Trends relating the residuals to the predictors can indicate nonlinearity and motivate the inclusion of interactions and/or polynomial terms.
+  \item Residuals that become more variable as the associated values of the response increase or decrease indicate violation of the constant variance assumption. In some cases, this can be addressed by implementing weighted least squares. For instance, if the $i$-th value of the response $y_i$ reflects an average over $n_i$ units, we could perform weighted least squares with weights equal to $n_i$.
+    \item If observations are related in some way a priori, e.g. correspond to consecutive points in time or space or related individuals, and residuals corresponding to more related observations tend to be more similar, the assumption of independent errors may be violated. 
+  \item Extreme residual values suggest the presence of outliers. 
+\end{itemize}
+We haven't talked about how to address the last two issues yet.
 
-<!--5 Correlated errors -->
-
-<!--4 Non-constant Variance -->
-
-<!--3 Outliers -->
-
-<!--2 High leverage points -->
-
-<!--1 Collinearity -->
+There can also be issues that arise due to the structure of the data itself. Specifically, certain observations may have high leverage, meaning that they make an especially large contribution to estimation of the linear regression coefficients. These tend to be observations that correspond to extreme values of the predictors. Additionally, predictors can be strongly correlated with each other, which can lead to more variable and difficult to interpret estimates of the regression coefficients. This is often referred to as **collinearity** of the matrix of variables $\boldsymbol X$.
 
 <!-- Go over figure here 3.15 here --> 
 
