@@ -186,7 +186,7 @@ Again, when additional polynomial functions of a predictor have been introduced,
 
 The arguments we made to justify the value of the multiple least squares estimator assumed that the linear regression model holds. This is unrealistic! There are many ways that it can be violated, some of which have greater consequences than others. Violations of the linear regression model can often be diagnosed by examining the residuals, $e_i = y_i - \hat{\beta}_0 - \hat{\beta}_1 x_{i1} - \dots - \hat{\beta}_p x_{ip}$. In general, if the linear model holds, the residuals should not contain any meaningful trends or information.
 \begin{itemize}
-  \item Trends relating the residuals to the predictors can indicate nonlinearity and motivate the inclusion of interactions and/or polynomial terms.
+  \item Trends relating the residuals to the predictors can indicate nonlinearity and motivate the inclusion of interactions and/or polynomial terms. They can also motivate transforming the response, which we haven't talked about yet.
   \item Residuals that become more variable as the associated values of the response increase or decrease indicate violation of the constant variance assumption. In some cases, this can be addressed by implementing weighted least squares. For instance, if the $i$-th value of the response $y_i$ reflects an average over $n_i$ units, we could perform weighted least squares with weights equal to $n_i$.
     \item If observations are related in some way a priori, e.g. correspond to consecutive points in time or space or related individuals, and residuals corresponding to more related observations tend to be more similar, the assumption of independent errors may be violated. 
   \item Extreme residual values suggest the presence of outliers. 
