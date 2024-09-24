@@ -16,6 +16,7 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
   * Overview ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/1overview.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/1overview.Rmd))
   * Statistical Learning ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/2statisticallearning.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/2statisticallearning.Rmd))
   * Regression ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/3linearregression.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/3linearregression.Rmd))
+    * Classification ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/4classification.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/4classification.Rmd))
 
 ### Time Series
 

@@ -1,5 +1,5 @@
 ---
-title: "Statistical Learning"
+title: "Linear Regression"
 author: "Maryclare Griffin"
 date: "`r Sys.Date()`"
 output: pdf_document
@@ -90,7 +90,7 @@ As in simple linear regression, we estimate $\beta_0, \beta_1, \dots, \beta_p$ b
 \begin{align*}
 \sum_{i = 1}^n (y_i - b_0 - x_{i1} b_1 - \dots - x_{ip}b_p)^2,
 \end{align*}
-with respect to $b_0, b_1, \dots, \beta_p$. Importantly, there is only a unique minimizer of the leasts squares criterion when $p < n$, i.e. we have more observations than predictors, and when the predictors $\boldsymbol x_1, \dots, \boldsymbol x_p$ aren't too correlated with each other.
+with respect to $b_0, b_1, \dots, b_p$. Importantly, there is only a unique minimizer of the leasst squares criterion when $p < n$, i.e. we have more observations than predictors, and when the predictors $\boldsymbol x_1, \dots, \boldsymbol x_p$ aren't too correlated with each other.
 
 The least squares criterion evaluated at the estimates $\hat{\beta}_0, \hat{\beta}_1, \dots, \hat{\beta}_p$ is
 \begin{align}
