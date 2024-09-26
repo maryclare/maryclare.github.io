@@ -90,3 +90,67 @@ Similarly, the simplest parametric classifier is obtained by using linear regres
 \end{align*}
 with respect to $b_0, b_1, \dots, b_p$. Then predictions $\hat{Y}$ can be obtained by setting $\hat{Y} = I(\hat{\beta}_0+ \hat{\beta}_1 X_1 + \dots + \hat{\beta}_p X_p > 0.5)$. As in the regression case, there is only a unique minimizer of the least squares criterion when $p < n$, i.e. we have more observations than predictors, and when the predictors $\boldsymbol x_1, \dots, \boldsymbol x_p$ aren't too correlated with each other. We emphasize that this is only reasonable in the binary setting with $M = 2$ when the output is defined to take on values $0$ and $1$. 
 
+There are one obvious issue with using linear regression for classification in this way - it can produce nonsensical estimated probabilities that are less than $0$ or greater than $1$! This leads us to **logistic regression**, which is a special case of a **generalized linear model**. A generalized linear model is made up of:
+
+* A choice of **link function** $g(\cdot)$ that relates the conditional mean of an output $E[Y|X]$ to a linear function of the inputs $\beta_0 + \beta_1 X_1 + \dots + \beta_p X_p$, satisfying $E[Y|X] = g(\beta_0 + \beta_1 X_1 + \dots + \beta_p X_p)$;
+* An assumed conditional distribution of the output given values of the input.
+
+The parameters of a generalized linear model, including $\beta_0, \beta_1, \dots, \beta_p$, can then be estimated using maximimum likelihood. 
+
+Logistic regression uses the link function
+\begin{align*}
+g(\beta_0 + \beta_1 X_1 + \dots + \beta_p X_p) &= \frac{\text{exp}\{ \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p\}}{1 + \text{exp}\{ \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p\}} \\
+ &= \frac{1}{1 + \text{exp}\{-\beta_0 - \beta_1 X_1 - \dots - \beta_p X_p\}},
+\end{align*}
+which maps the real valued linear function $\beta_0 + \beta_1 X_1 + \dots + \beta_p X_p$ to a number between $0$ and $1$. This is sometimes called the **logistic** or **sigmoid** function. Logistic regression also assumes that the outputs $Y$ are Bernoulli random variables conditional on the inputs $X$, 
+\begin{align*}
+Y|X\stackrel{indep.}{\sim} \text{Bernoulli}\left(\frac{1}{1 + \text{exp}\{-\beta_0 - \beta_1 X_1 - \dots - \beta_p X_p\}}\right).
+\end{align*}
+
+When we use a nonlinear model, we can still interpret nonzero $\beta_j$ for $j > 0$ as indicating the presence of a relationship between the outpout and the input, but the interpretation of individual $\beta_j$ for $j > 0$ changes. The interpretation will now describe how the log odds of $Y = 1$ change with changes in individual inputs $X_j$, where the log odds are 
+\begin{align*}
+\text{log}\left(\frac{\text{Pr}\left(Y = 1 | X\right)}{1 - \text{Pr}\left(Y = 1 | X\right)}\right).
+\end{align*}
+Personally, I don't find log odds very interpretable beyond the fact that higher log odds correspond to $Y = 1$ being more likely and lower log odds correspond to $Y = 0$ being more likely. Nonetheless, the interpretation of any $\beta_j$ for $j > 0$ will be the expected change in log odds of $Y = 1$ associated with a one unit change in $X_j$, holding all other predictors constant. Sometimes, people point to this awkward interpretation of the regression coefficients as a reason not to use logistic regression but that is beyond the scope of this class.
+
+Estimates of the logistic regression coefficients $\hat{\beta}_0, \hat{\beta}_1, \dots, \hat{\beta}_p$ can then be obtained by maximizing the log likelihood
+\begin{align*}
+\sum_{i = 1}^n \text{log}\left(p\left(y_i | x_i\right)\right) = \sum_{i = 1}^n &y_i \text{log}\left(\frac{1}{1 + \text{exp}\{-b_0 - b_1 X_1 - \dots - b_p X_p\}} \right) + \\
+&\left(1 - y_i\right)\text{log}\left(1 -  \frac{1}{1 + \text{exp}\{-b_0 - b_1 X_1 - \dots - b_p X_p\}}\right) \\
+= \sum_{i = 1}^n &y_i \text{log}\left(\frac{1}{1 + \text{exp}\{-b_0 - b_1 X_1 - \dots - b_p X_p\}} \right) + \\
+&\left(1 - y_i\right)\text{log}\left(\frac{\text{exp}\{-b_0 - b_1 X_1 - \dots - b_p X_p\}}{1 + \text{exp}\{-b_0 - b_1 X_1 - \dots - b_p X_p\}}\right) 
+\end{align*}
+with respect to $b_0, b_1, \dots, b_p$. This is a nonlinear function of $b_0, b_1, \dots, b_p$, and we will rely on statistical software to maximize it and find the maximum likelihood estimator $\hat{\beta}_0, \hat{\beta}_1, \dots, \hat{\beta}_p$. 
+
+This may seem new, we have already been using maximum likelihood in this class without explicitly saying it! The least squares estimator is the maximum likelihood estimator obtained by assuming that the outpout is conditionally normal given the inputs with mean $\beta_0 + \beta_1 X_1 + \dots + \beta_p X_p$ and constant variance!
+
+A great think about many commonly used generalized linear models broadly and also for logistic regression is that it has been shown that the asymptotic distribution of the estimated regression coefficients $\hat{\beta}_0, \hat{\beta}_1, \dots, \hat{\beta}_p$ as $n \rightarrow \infty$ can be derived to be normal and centered at the truth $\beta_0,\beta_1, \dots, \beta_p$ with a variance-covariance matrix that can be estimated from the data. This means that we can construct hypotheses tests of null hypotheses that any individual $\beta_j$ is equal to a certain value or that subsets of coefficients are equal to a certain value and construct confidence intervals for the estimated regression coefficients.
+
+Logistic regression is also straightforward to extend to qualitative outputs with $M > 2$ levels. This extension is called **multinomial logistic regression**. Let $\beta_{kj}$ for $j = 0, 1, \dots, p$ refer to the regression coefficient associated with the probability that the output $Y$ is equal to the $k$-th level $v_k$ for the intercept (if $j = 0$) or predictor $X_j$ (if $j > 0$). Multinomial logistic regression assumes that the probability that the probability that the output $Y$ is equal to the $k$-th level $v_k$ is 
+\begin{align*}
+\frac{\text{exp}\{ \beta_{k0} + \beta_{k1} X_1 + \dots + \beta_{kp} X_p\}}{\sum_{l= 1}^m \text{exp}\{ \beta_{l0} + \beta_{l1} X_1 + \dots + \beta_{lp} X_p\}\}}.
+\end{align*}
+Going back to the notation we introduced when we first started talking about qualitative outputs, this is $f_k(X)$ or $\text{Pr}(Y = v_k | X)$. Having assumed this link function, multinomial logistic regression then assumes that the outputs $Y$ are multinomial random variables conditional on the inputs $X$ with size $1$,
+\begin{align*}
+Y&|X\stackrel{indep.}{\sim} \\
+&\text{Multinomial}\left(1, \left(\frac{\text{exp}\{ \beta_{10} + \beta_{11} X_1 + \dots + \beta_{1p} X_p\}}{\sum_{l= 1}^m \text{exp}\{ \beta_{l0} + \beta_{l1} X_1 + \dots + \beta_{lp} X_p\}\}}, \dots, \frac{\text{exp}\{ \beta_{M0} + \beta_{M1} X_1 + \dots + \beta_{Mp} X_p\}}{\sum_{l= 1}^m \text{exp}\{ \beta_{l0} + \beta_{l1} X_1 + \dots + \beta_{lp} X_p\}\}}\right)\right).
+\end{align*}
+
+Interpretation of the estimated regression coefficients is related to the log odds ratio of level $k$ versus level $l$,
+\begin{align*}
+\text{log}\left(\frac{\text{Pr}\left(Y = v_k | X\right)}{\text{Pr}\left(Y = v_l | X\right)}\right) = \left(\beta_{k0} - \beta_{l0} \right) + \left(\beta_{k1} - \beta_{l1} \right)X_1 + \dots + \left(\beta_{kp} - \beta_{lp} \right)X_p.
+\end{align*}
+Note that we just see the differences of pairs of regression coefficients for different levels or classes in this expression. This is related to the fact that the multinomial probabilities must sum to $1$, which means that the regression coefficients associated with one level/class are a deterministic function of the rest, and reflects the fact that the linear logistic regression model can only identify each regression coefficient up to a constant. To address this in practice, it is common to choose a **reference** or **baseline** level and set the associated regression coefficients to $0$. Often the last level, level $M$, is chosen as a baseline, meaning that $\beta_{M0} = \beta_{M1} = \dots = \beta_{Mp} = 0$ is assumed. Then the remaining regression coefficients $\beta_{kj}$ for $k = 1, \dots, M - 1$ and $j > 0$ can be interpreted as the expected change in log odds of $Y = v_k$ relative to the reference level $Y = v_M$ associated with a one unit change in $X_j$, holding all other predictors constant.
+
+Alternatively, the **softmax** coding, which does not explicitly constrain the regression coefficients can be used. However in this case it is crucial that inference be based on contrasts of the regression coefficients $\beta_{kj} - \beta_{lj}$ to be meaningful.
+
+The probabilities $\text{Pr}\left(Y = v_k | X\right)$ are invariant to the coding used.
+
+As with logistic regression for binary outputs, the parameters $\hat{\beta}_{k0}, \hat{\beta}_{k1}, \dots, \hat{\beta}_{kp}$ are estimated using maximum likelihood and there is theory that supports the construction of normal-based confidence intervals and hypothesis tests of the value(s) of the regression coefficients.
+
+Now we will consider alternative **generative** models for classification that:
+\begin{itemize}
+  \item Are more stable than linear or logistic regression based methods when classes or levels of the output are ``well separated'' by the inputs;
+  \item Can be more accurate if the distribution of the inputs conditional on the output is approximately normal;
+  \item Can also easily be used for qualitative outputs with $M > 2$ levels.
+\end{itemize}
