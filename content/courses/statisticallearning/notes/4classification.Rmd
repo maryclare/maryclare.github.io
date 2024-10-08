@@ -154,3 +154,124 @@ Now we will consider alternative **generative** models for classification that:
   \item Can be more accurate if the distribution of the inputs conditional on the output is approximately normal;
   \item Can also easily be used for qualitative outputs with $M > 2$ levels.
 \end{itemize}
+
+These models all build from Bayes theorem, 
+\begin{align*}
+\text{Pr}(A | B) &= \frac{\text{Pr}(A, B)}{\text{Pr}(B)} \\
+&= \text{Pr}(B |  A)\left(\frac{\text{Pr}(A)}{\text{Pr}(B)}\right) \\
+&= \frac{\text{Pr}(B |  A)\text{Pr}(A)}{\sum_{A'} \text{Pr}(B | A') \text{Pr}(A')}.
+\end{align*}
+
+
+In the specific context of classification, the event $A$  corresponds to the event that $Y = v_k$ and the event $B$ corresponds to the event that $X = x$. A generative model specifies a model for the inputs conditional on the value $v_k$ of the output $Y$ that defines
+\begin{align*}
+\text{Pr}(B |  A) = \text{Pr}(X = x |  Y = v_k),
+\end{align*}
+denoted (with some abuse of notation) as $f_k (X)$, 
+and a model for the **prior** probability that the output $Y$ takes on value $v_k$,
+\begin{align*}
+\text{Pr}(A) = \text{Pr}(Y = v_k), 
+\end{align*}
+denoted by $\pi_k$, which we can estimate using the proportion of values of the output in the training data equal to the $k$-th value $v_k$. 
+
+The term generative describes that such models are based on how the observed values of the inputs are generated given the level or class of the output.
+
+Probabilities used for classification are given by
+\begin{align*}
+\text{Pr}(Y = v_k | X) = \frac{\pi_k f_k(X)}{\sum_{l = 1}^M \pi_l f_l(X)}.
+\end{align*}
+
+We will talk about three different models, which differ in their assumed distribution of the inputs given the class of the output:
+
+* **Linear discriminant analysis (LDA)**, which assumes that inputs are conditionally normally distributed given $Y = v_k$ with a mean $\mu_k$ that depends on the value of the output but a common variance $\Sigma$ that is common across all possible values of the output $v_k$
+* **Quadratic discriminant analysis (QDA)**, which assumes that inputs are conditionally normally distributed given $Y = v_k$ with a mean $\mu_k$ and variance $\Sigma_k$ that both depend on the value of the output 
+* **Naive Bayes**
+
+**LDA** assumes
+\begin{align*}
+X | Y = v_k \sim \text{normal}(\mu_k, \Sigma)
+\end{align*}
+for $k = 1, \dots, M$. Letting $\mathcal{W}_k$ refer to the set of $n_k$ indices for training observations with output equal to $v_k$, i.e. $\mathcal{W}_k = \{i : Y_i = v_k\}$, estimates $\hat{\mu}_k$ and $\hat{\Sigma}$ of $\mu_k$ and $\Sigma$ can be obtained according to
+\begin{align*}
+\hat{\mu}_k &= \frac{1}{n_k} \sum_{i \in \mathcal{W}_k} x_i\text{ for } k = 1, \dots, M \\
+\hat{\Sigma} &= \frac{1}{n - M}\sum_{k = 1}^M \sum_{i \in \mathcal{W}_k} \left(x_i - \hat{\mu}_k \right) \left( x_i - \hat{\mu}_k \right)^\top.
+\end{align*}
+
+**QDA** assumes
+\begin{align*}
+X | Y = v_k \sim \text{normal}(\mu_k, \Sigma_k)
+\end{align*}
+for $k = 1, \dots, M$. Estimates $\hat{\mu}_k$ of $\mu_k$ are the same as in LDA, and estimates $\hat{\Sigma}$ of $\Sigma$ can be obtained according to
+\begin{align*}
+\hat{\mu}_k &= \frac{1}{n_k} \sum_{i \in \mathcal{W}_k} x_i\text{ for } k = 1, \dots, M \\
+\hat{\Sigma}_k &= \frac{1}{n_k - 1} \sum_{i \in \mathcal{W}_k} \left(x_i - \hat{\mu}_k \right) \left( x_i - \hat{\mu}_k \right)^\top.
+\end{align*}
+
+For LDA and QDA, $f_k(X)$ is a multivariate normal density function, which yields probabilities of the form
+\begin{align*}
+\text{Pr}(Y = v_k | X) &= \frac{\frac{\pi_k }{\sqrt{2\pi}^p \sqrt{|\Sigma|_k}}\text{exp}\{-\frac{1}{2} (x - \mu_k)^\top \Sigma^{-1}_k (x - \mu_k) \}}{\sum_{l = 1}^m  \frac{\pi_l}{\sqrt{2\pi}^p \sqrt{|\Sigma|_l}}\text{exp}\{-\frac{1}{2} (x - \mu_l)^\top \Sigma^{-1}_l (x - \mu_l)\}} \\
+&= \frac{ \frac{\pi_k}{\sqrt{|\Sigma|_k}}\text{exp}\{-\frac{1}{2} (x - \mu_k)^\top \Sigma^{-1}_k (x - \mu_k) \}}{\sum_{l = 1}^m  \frac{\pi_l}{\sqrt{|\Sigma|_l}}\text{exp}\{-\frac{1}{2} (x - \mu_l)^\top \Sigma^{-1}_l (x - \mu_l)\}},
+\end{align*}
+which can be estimated by setting $\Sigma_k = \Sigma$ for LDA and plugging in the estimates $\hat{\pi}_k$, $\hat{\mu}_k$, and $\hat{\Sigma}_k$ (or $\hat{\Sigma}$ for LDA) described above. 
+
+Note that when we use LDA, we can simplify further,
+\begin{align*}
+\text{Pr}(Y = v_k | X) 
+&= \frac{ \frac{\pi_k}{\sqrt{|\Sigma|}}\text{exp}\{-\frac{1}{2} (x - \mu_k)^\top \Sigma^{-1} (x - \mu_k) \}}{\sum_{l = 1}^m  \frac{\pi_l}{\sqrt{|\Sigma|}}\text{exp}\{-\frac{1}{2} (x - \mu_l)^\top \Sigma^{-1} (x - \mu_l)\}} \\
+&=\frac{\pi_k \text{exp}\{x^\top \Sigma^{-1} \mu_k - \frac{1}{2} \mu_k^\top\Sigma^{-1} \mu_k \}}{\sum_{l = 1}^m \pi_l\text{exp}\{x^\top \Sigma^{-1} \mu_l - \frac{1}{2} \mu_l \Sigma^{-1} \mu_l\}}.
+\end{align*}
+
+In practice, instead of computing these normalized probabilities we may recognize that the ordering of the probabilities $\text{Pr}(Y = v_k | X)$ is the same as the ordering of the numerators of $\text{Pr}(Y = v_k | X)$. Furthermore, applying a log transformation retains the ordering while offering more computational stability.
+
+We can also rearrange terms to relate LDA and QDA to the softmax parameterization of multinomial logistic regression,
+\begin{align*}
+\text{Pr}(Y = v_k | X) &= \frac{\left(\text{exp}\{\text{log}\left(\pi_k\right) -\frac{1}{2}\left(\mu_k^\top \Sigma^{-1}_k \mu_k + \text{log}\left(\left|\Sigma_k\right|\right)\right) \}\right)\text{exp}\{x^\top \Sigma^{-1}_k \mu_k - \frac{1}{2}\text{tr}\left( \Sigma^{-1}_k x x^\top\right) \}}{\sum_{l = 1}^M \left(\text{exp}\{\text{log}\left(\pi_l\right) -\frac{1}{2}\left(\mu_l^\top \Sigma^{-1}_l \mu_l + \text{log}\left(\left|\Sigma_l\right|\right)\right) \}\right)\text{exp}\{x^\top \Sigma^{-1}_l \mu_l - \frac{1}{2}\text{tr}\left( \Sigma^{-1}_l xx^\top\right)  \}},
+\end{align*}
+
+where we can recognize $\text{log}\left(\pi_k\right) -\frac{1}{2}\left(\mu_k^\top \Sigma^{-1}_k \mu_k + \text{log}\left(\left|\Sigma_k\right|\right)\right)$ as the intercept, elements of $\Sigma^{-1}_k \mu_k$ as regression coefficients for linear functions of the predictors, and elements of $\Sigma^{-1}_k$ as regression coefficients for quadratic functions of the predictors and their two-way interactions. With some additional algebra, we could alternatively relate LDA and QDA to the baseline parametrization of multinomial logistic regression.
+
+Note that elements of $\Sigma^{-1}_k$ are constrained to ensure that $\Sigma^{-1}_k$ is a symmetric positive definite matrix. When we use LDA, as opposed to QDA, the two-way interactions cancel and vanish. 
+
+Note that although we can recognize LDA and QDA as multinomial logistic regression models, fitted LDA and QDA models may not be identical to the multinomial logistic regression models obtained by using the same predictors because the LDA and QDA coefficients are not obtained by maximizing the multinomial logistic regression likelihood. 
+
+**Naive Bayes** addresses a major limitation of LDA and QDA, computational challenges that arise for LDA and QDA when $p$ is large, specifically the challenges that arise when estimating one or more $p\times p$ covariance matrices, by assuming independence of individual predictors $X_1, \dots, X_p$.  
+The assumption of independence of individual predictors is rarely something that we actually believe, thus **naive** in the name of the method, but is often practically useful. It also can address the limitation of needing to assume normality of the predictors $X$.
+
+Assuming independence of individual predictors allows the multivariate density of the predictors $f_k(X)$ to be factorized into $p$ simpler univariate densities $f_{kj}(X_j)$, 
+\begin{align*}
+f_k(X) = \prod_{j = 1}^p f_{kj}(X_j).
+\end{align*}
+The univariate densities $f_{kj}(X_j)$ can be modeled and estimated flexibly, without assuming that the distribution of each predictor $X_j$ is independent and do not require estimation of any $p\times p$ covariance matrices. There are many ways to model $f_{kj}(X_j)$ and we will not discuss all of them here. Two of the simplest ways are:
+
+* If $X_j$ is continuous, assuming $X_j | Y = v_k \sim \text{normal}(\mu_{kj}, \sigma^2_{kj})$;
+*  If $X_j$ is qualitative with relatively few levels $L$, estimating $f_{kj}(X_j)$ using a histogram.
+
+A more flexible but also more advanced approach may non-parametrically estimate $f_{kj}(X_j)$, e.g. by estimating $f_{kj}(X_j)$ by smoothing a histogram of $X_j$ as done by a **kernel density estimator**.
+
+The probabilities used for classification in Naive Bayes are:
+\begin{align*}
+\text{Pr}(Y = v_k | X) = \frac{\pi_k \prod_{j = 1}^p f_{kj}(X_j)}{\sum_{l = 1}^M \pi_l \prod_{j = 1}^p f_{lj}(X_j)}.
+\end{align*}
+
+Rewriting this as before to resemble the softmax parametrization of multinomial logistic regression, we have
+\begin{align*}
+\text{Pr}(Y = v_k | X) = \frac{\text{exp}\left\{\text{log}(\pi_k) +  \sum_{j = 1}^p\text{log}(f_{kj}(X_j))\right\}}{\sum_{l = 1}^M \text{exp}\left\{\text{log}(\pi_l) +  \sum_{j = 1}^p\text{log}(f_{lj}(X_j))\right\}},
+\end{align*}
+where we can recognize $\text{log}(\pi_k)$ as an intercept and $\text{log}(f_{kj}(X_j))$ as potentially nonlinear functions of each predictor. This corresponds to a **generalized additive model**, which we will learn about in future weeks. 
+
+To summarize, we have learned about the following types of models for classification:
+* Linear Regression Models
+* Logistic Regression Models
+* Linear Discriminant Analysis
+* Quadratic Discriminant Analysis
+* Naive Bayes
+
+All of these models take different approaches to specifying a functional form for and estimating the parameters of the unknown probabilities
+\begin{align*}
+\text{Pr}(Y = v_k | X).
+\end{align*}
+ There is no single choice that is always best regardless of the data.
+ 
+One last point to consider is whether or not we may sometimes want to adjust the threshold used to convert estimated probabilities to predicted values of the output. In the context of binary classification with $M = 2$, we have been using the threshold of $0.5$ to obtain predicted values, i.e. we predict $\hat{Y} = 1$ when $\hat{\text{Pr}}(Y = v_k | X) > 0.5$ and $\hat{Y} = 0$ otherwise. This is known to minimize average classification error, treating false positives (predicting $\hat{Y} = 1$ when the true $Y = 0$) and false negatives (predicting $\hat{Y} = 0$ when the true $Y = 1$) equivalently. In real life, there may be reason to weight false positives and false negatives differently. When this is the case, it can make sense to choose an alternative cutoff $c$ and then predict $\hat{Y} = 1$ when $\hat{\text{Pr}}(Y = v_k | X) > c$ and $\hat{Y} = 0$ otherwise. Each cutoff $c$ is associated with a corresponding false positive rate and false negative rate, and the ``best'' value of $c$ can be chosen by a practitioner either to reflect different costs of false positives versus false negatives or to ensure that the number of false positives does not exceed some prespecified number. We won't talk about this in detail but it's something I want you to be aware of.
+ 
+ 
