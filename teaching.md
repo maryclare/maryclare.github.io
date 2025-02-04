@@ -9,6 +9,11 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
 
 - [R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
+### Statistical Computing
+
+- [Syllabus](https://maryclare.github.io/content/courses/statisticallearning/syllabus/syllabus_535_spring2025.pdf)
+
+
 ### Statistical Learning
 
 - [Syllabus](https://maryclare.github.io/content/courses/statisticallearning/syllabus/syllabus_statlearn_fall2024.pdf)
