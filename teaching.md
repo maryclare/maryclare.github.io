@@ -12,7 +12,8 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
 ### Statistical Computing
 
 - [Syllabus](https://maryclare.github.io/content/courses/statisticalcomputing/syllabus/syllabus_535_spring2025.pdf)
-
+- Typed Notes:
+  * Week 2: Coding, IDE ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/2codingide.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/2codingide.qmd))
 
 ### Statistical Learning
 
