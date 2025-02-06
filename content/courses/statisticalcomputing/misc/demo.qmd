@@ -1,0 +1,18 @@
+---
+title: "Quarto Demonstration"
+format: pdf
+editor: source
+---
+
+Quarto is tool that lets us combine word processing with executable code in several programming languages, including `R`. It is super useful, not just for creating reports but also for creating presentations!
+
+You will be asked to submit your homework assignments using Quarto - specifically you will be asked to provide a `.qmd` source file that includes all of your code and a compiled `.pdf` that includes what you want to present to the reader, in this case the instructor and grader. You will also occasionally be asked to provide presentations in the same format.
+
+Your first assignment will include modifying this `.qmd` document, compiling it to `.pdf`, and submitting both the `.qmd` and `.pdf` files.
+
+For now, all I'll demonstrate in this document is typesetting math equations. Specifically, I'm going to demonstrate the density of a gamma distribution, using the shape rate parametrization. If a variable $x\sim \text{Gamma}\left(\alpha, \lambda\right)$, then its density is
+
+\begin{align*}
+f\left(x\right) = \left(\frac{\lambda^\alpha}{\Gamma\left(\alpha\right)}\right)x^{\alpha - 1} \text{exp}\left\{-\lambda x\right\},
+\end{align*}
+where $\Gamma\left(\alpha\right)$ is the gamma function evaluated at $\alpha$.

@@ -1,0 +1,17 @@
+---
+title: "Problem Set 1"
+format: pdf
+---
+
+```{r, eval = TRUE, echo = FALSE}
+
+```
+
+In this problem set, you will be asked to work with the gamma distribution. I recommend Wikipedia as a reference, `https://en.wikipedia.org/wiki/Gamma_distribution`. Keep your rendered `.pdf` to no more than 1 page.
+
+1. Consider two sets of values for the shape parameter $\alpha$ and rate parameter $\lambda$: $\left(\alpha_1, \lambda_1\right) = \left(0.5, 0.5\right)$ and $\left(\alpha_2, \lambda_2\right) = \left(2, 1\right)$. Summarize the two sets of values in a $2\times 5$ table made using `kable`, with a row for each pair of values named "Choice 1" and "Choice 2," one column for the $\alpha$ values named "Shape," one column for the $\lambda$ values named "Rate," one column for the corresponding mode named "Mode," and one column for the corresponding mean named "Mean," and one column for the corresponding variance named "Variance." 
+
+2. Use either `curve` or `plot` to plot the densities corresponding to the two gamma distributions described in the previous part using the `dgamma` function. Use different colors and line types to distinguish the two choices. Make sure that your plot includes a legend, is legible, and is self contained. 
+
+3. Provide the equation for the CDF of the gamma function for general shape and rate parameters $\alpha$ and $\beta$. You may find this reference helpful if you are new to typesetting math, specifically Greek letters: `https://en.wikibooks.org/wiki/LaTeX/Mathematics#Greek_letters`.
+
