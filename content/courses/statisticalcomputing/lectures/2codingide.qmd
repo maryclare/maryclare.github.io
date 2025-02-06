@@ -223,6 +223,12 @@ legend("bottomright",
        legend = c("curve", "lines"), cex = 1.5)
 ```
 
+Notes: 
+
+- The default line type is a solid line, which is `lty = 1`
+- `c` stands for **concatenate**. It is a function that joins consecutive elements together as a vector
+
+
 ## Adding a Legend
 
 ```{r, eval = TRUE, echo = FALSE}
@@ -238,8 +244,8 @@ legend("bottomright",
 ## Making A More Complicated Plot
 
 ```{r, eval = TRUE, echo = TRUE}
-plot(x, 2*y + exp(x)/3, type = "l", xlab = "x", 
-     ylab = "2*log(x) + exp(x)/3",
+plot(x, 2*y^2 + exp(x)/3, type = "l", xlab = "x", 
+     ylab = "2*log(x)^2 + exp(x)/3",
      cex.lab = 1.5, cex.axis = 1.5)
 ```
 
@@ -273,13 +279,17 @@ colnames(Y) <- c("Column 1", "Column 2")
 row.names(Y) <- c("Row 1", "Row 2")
 ```
 
-```{r}
+```{r, eval = TRUE, echo = TRUE}
 knitr::kable(Y)
 ```
 
 ## Referencing a Value from `R`
 
+We can reference individual elements of an matrix by using brackets and specifying the desired row and column, e.g. `Y[1, 1]` will return the element in the first row and first column of `Y`.
+
 Based on what we defined earlier, $Y_{11} = `r Y[1, 1]`$, $Y_{12} = `r Y[1, 2]`$, $Y_{21} = `r Y[2, 1]`$, and $Y_{22} = `r Y[2, 2]`$.
+
+Note - these values were directly pulled from `R`, look at the `.qmd` file associated with this `.pdf` to see how!
 
 ## Takeaways
 
