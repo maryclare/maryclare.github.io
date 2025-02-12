@@ -14,6 +14,8 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
 - [Syllabus](https://maryclare.github.io/content/courses/statisticalcomputing/syllabus/syllabus_535_spring2025.pdf)
 - Typed Notes:
   * Week 2: Coding, IDE ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/2codingide.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/2codingide.qmd))
+  * Week 2: Modes, Structures ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/3modesstructures.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/3modesstructures.qmd))
+
 - Problem Sets:
   * Due 5/12 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.qmd))
 - Misc:
