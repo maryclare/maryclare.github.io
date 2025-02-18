@@ -1,0 +1,33 @@
+---
+title: "Problem Set 2"
+format: pdf
+---
+
+In this problem set, you will continue to be asked to work with the gamma distribution and you may find it useful to refer back to the previous problem set and/or solutions. I recommend Wikipedia as a reference, `https://en.wikipedia.org/wiki/Gamma_distribution`. 
+
+Keep your rendered `.pdf` to no more than 4 pages. Only provide code in the rendered `.pdf` when it is specifically requested.
+
+1. 
+
+  (a) Consider four sets of values for the shape parameter $\alpha$ and rate parameter $\lambda$: $\left(\alpha_1, \lambda_1\right) = \left(0.5, 0.5\right)$, $\left(\alpha_2, \lambda_2\right) = \left(2, 1\right)$, $\left(\alpha_3, \lambda_3\right) = \left(0.5, 1\right)$, and $\left(\alpha_4, \lambda_4\right) = \left(2, 0.5\right)$. Create a matrix named `Y` with 4 rows and 2 columns using the `matrix` function, providing a vector of values for the shape and rate parameters and specifying the `nrow` and `ncol` arguments. It should have one row for each pair of values, one column for the shape parameter, and one column for the rate parameter. Print the code you use to create this matrix to the rendered `.pdf`.
+  (b) Describe what the argument `byrow` to the `matrix` function controls and what the default value is in at most one sentence (you may find `help(matrix)` useful).
+  (c) Setting `byrow=TRUE` in the `matrix` function, use the `matrix` function to construct the same `Y` you constructed in (a). Print the code you use to create this matrix to the rendered `.pdf`.
+  (d) In class, we learned about how to index a specific element of a vector. For instance, if `x` is a vector then `x[2]` returns the second element of `x`. We can do something similar with a matrix, but indexing a specific element of a matrix requires providing the row index and the column index. For instance, `Y[1, 2]` returns the second element in the first row. Print the code you would use to obtain the first element of the third row of `Y` to the rendered `.pdf`.
+
+2. Our goal will be to plot all four densities on the same plot, using an $x$ axis that goes from 0 to 6 and a $y$-axis that goes from 0 to 2.25. We will do this three times, using three different ways to calculate the density. This will help you explore `R`, but it will also help you practice the idea of how to debug your code by taking two or more ways of doing the same thing and verifying that they produce the same output.
+
+- The first step is to define a vector $x$ that goes from $0$ to $6$. You can decide how many elements $x$ should have, but you'll want to be sure that it's enough for the plot to look smooth. We've used a function for this in the slides from class.
+- The second step is to make an empty plot with no lines (see options for the `type` argument), the requested $x$ and $y$ limits (use the `ylim` and `xlim` arguments and recall what you learned about vectors), the $y$ axis label "Density" (use the `ylab` argument), and the $x$-axis label "x" (use the `xlab` argument). I recommend using the vector `x` that you created in the previous step as your first and second arguments.
+- The third step is to write a for loop and within each step of the loop, use the `lines` command to add a line to the plot that is the gamma density corresponding to the parameters in the corresponding row of `Y`, setting the `col` argument to the row number of `Y`.
+- The fourth step is to add a legend with the title "(Shape, Rate)" (using the `title` argument of `legend`) that relates each line color used to a pair of shape and rate values, e.g. "(0.5, 0.5)". 
+
+
+(a) Create the requested plot using the `dgamma` function in the `lines` command.
+(b) Create the requested plot using the `exp` function and the `dgamma` function with `log=TRUE` in the `dgamma function` in the `lines` command.
+(c) Create the requested plot using the expression for the gamma density from Wikipedia and simple mathematical operations applied to vectors and scalars in `R`, e.g. `^`, `*`, `exp`, `/`, and `gamma` instead of the `dgamma` function.
+
+3. Referring back to 2. (you do not have to have completed 2. complete this question), for each of the following structures, identify one place where it was used and describe how it was used in at most one sentence:
+
+(a) A logical (Boolean) vector
+(b) A numeric vector
+(c) A character vector

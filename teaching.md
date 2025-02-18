@@ -17,7 +17,8 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
   * Week 2: Modes, Structures ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/3modesstructures.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/3modesstructures.qmd))
 
 - Problem Sets:
-  * Due 5/12 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.qmd))
+  * Due 2/12 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.qmd))
+  * Due 2/26 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.qmd))
 - Misc:
   * Demo file ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.qmd))
 
