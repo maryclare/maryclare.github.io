@@ -1,0 +1,436 @@
+---
+title: "Modes and Data Structures"
+format: beamer
+---
+
+## What is a "mode"?
+
+In `R`, individual elements (the smallest unit that we store) have a "mode", which describes the type of quantity they describe. Possible modes include:
+
+- Integer
+- Numeric (Floating Point, Double)
+- Character (String)
+- Logical (Boolean)
+- Complex
+
+We usually don't need to tell `R` what the mode should be when we define something. It guesses from what we provide. 
+
+We can use the `str` and `typeof` functions to learn what the mode of a variable we have defined is.
+
+## Numeric (Floating Point, Double)
+
+```{r, eval = TRUE, echo = TRUE}
+x <- 1.1
+str(x)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+typeof(x)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+mode(x)
+```
+
+
+## Character (String)
+
+```{r, eval = TRUE, echo = TRUE}
+x <- "a"
+str(x)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+typeof(x)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+mode(x)
+```
+
+Note: Characters can include more than one element, e.g. `x <- "abc"`.
+
+## Logical (Boolean)
+
+```{r, eval = TRUE, echo = TRUE}
+x <- TRUE
+str(x)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+typeof(x)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+mode(x)
+```
+
+The logical mode can take on values `TRUE` and `FALSE`, which can be abbreviated `T` and `F`.
+
+Note: For this reason, naming variables `T` or `F` is discouraged.
+
+## Integer?
+
+```{r, eval = TRUE, echo = TRUE}
+x <- 1
+str(x)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+typeof(x)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+mode(x)
+```
+
+If `R` has to guess whether a number is an integer or a numeric, it will default to numeric.
+
+## Integer!
+
+We actually do need to tell `R` the mode when we want to define an integer. A way to do that is to apply the function `as.integer` to the integer we provide.
+
+```{r, eval = TRUE, echo = TRUE}
+x <- as.integer(1)
+str(x)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+typeof(x)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+mode(x)
+```
+
+## Vectors
+
+Vectors are collections of elements that share the same mode. 
+
+The length of a vector describes the number of elements in a vector. 
+
+In fact, everything we've seen so far was a vector of length $1$!
+
+```{r, eval = TRUE, echo = TRUE}
+x <- 1
+str(x)
+```
+
+## Creating a Vector
+
+We can construct vectors from multiple elements using the `c` function, where `c` stands for **concatenate**. 
+
+```{r, eval = TRUE, echo = TRUE}
+x <- c(1, 5, 2)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+str(x)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+x
+```
+
+## Determining the Number of Elements in a Vector
+
+The `length` function, when applied to a vector, returns the number of elements in a vector.
+
+```{r, eval = TRUE, echo = TRUE}
+length(x)
+```
+
+## Viewing an Element of a Vector
+
+```{r, eval = TRUE, echo = TRUE}
+x[1]
+```
+
+```{r, eval = TRUE, echo = TRUE}
+x[2]
+```
+
+```{r, eval = TRUE, echo = TRUE}
+x[3]
+```
+
+## Viewing Elements of a Vector
+
+```{r, eval = TRUE, echo = TRUE}
+x[1:2]
+```
+
+```{r, eval = TRUE, echo = TRUE}
+x[c(1, 3)]
+```
+
+```{r, eval = TRUE, echo = TRUE}
+x[-2]
+```
+
+```{r, eval = TRUE, echo = TRUE}
+x[-c(1, 3)]
+```
+
+## Growing a Vector
+
+Unlike some other languages, `R` allows you to make a vector longer or make it shorter.
+
+```{r, eval = TRUE, echo = TRUE}
+x <- c(x, 4)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+x
+```
+
+## Shortening a Vector
+
+```{r, eval = TRUE, echo = TRUE}
+x <- x[1:3]
+```
+
+```{r, eval = TRUE, echo = TRUE}
+x
+```
+
+## Replacing an Element of a Vector
+
+```{r, eval = TRUE, echo = TRUE}
+x[2] <- 5.1
+```
+
+```{r, eval = TRUE, echo = TRUE}
+x
+```
+
+## Elementwise Assignment of a Vector
+
+We can only assign a value to an individual element of a vector if the vector exists.
+
+For instance, we have not defined `z`. 
+
+What happens if we type `z[1] <- 2` without defining `z`?
+
+## Elementwise Assignment of a Vector
+
+Once a vector has been defined, we can assign a value to any element of the vector, even if we are assigning a value to an element of the vector that doesn't exist yet.
+
+```{r, echo = TRUE, eval = TRUE}
+x[4] <- 4 
+```
+
+```{r, echo = TRUE, eval = TRUE}
+x
+```
+
+```{r, echo = TRUE, eval = TRUE}
+x[6] <- 30
+```
+
+```{r, echo = TRUE, eval = TRUE}
+x
+```
+
+## What the heck is `NA`???
+
+`R` encodes missing values as `NA` for all modes. 
+
+`NA` means there should be a value, but there isn't.
+
+```{r, eval = TRUE, echo = TRUE}
+c(1, NA, 3)
+```
+
+`R` has another way of denoting that something is undefined, which is the value `NULL`. However, `NULL` means something different than `NA`. `NULL` means that the element or object does not exist at all.
+
+```{r, eval = TRUE, echo = TRUE}
+c(1, NULL, 3)
+```
+
+## Other Ways to Create a Vector
+
+These create "empty" length 3 vectors.
+
+```{r, eval = TRUE, echo = TRUE}
+x <- numeric(3)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+x <- vector(length = 3)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+x <- rep(NA, 3)
+```
+
+Alternatively, because we can grow vectors in `R`, initializing a vector `x` of a smaller size or assigning `x` to be `NA`, or `NULL` will work.
+
+```{r, eval = TRUE, echo = TRUE}
+x <- NA
+```
+
+```{r, eval = TRUE, echo = TRUE}
+x <- NULL
+```
+
+```{r, eval = TRUE, echo = TRUE}
+x[1] <- 1
+x[2] <- 5.1
+x[3] <- 2
+```
+
+## Looping Over Elements of a Vector
+
+It is common that we may want to apply a function to one element of a vector at a time. 
+
+```{r, eval = TRUE, echo = TRUE}
+for (i in 1:length(x)) {
+  x[i] <- i
+}
+```
+
+```{r, eval = TRUE, echo = TRUE}
+x
+```
+
+## Operations on Vectors 
+
+Many basic mathematical operations, including addition, are performed elementwise when applied to a vector in `R`.
+```{r, eval = TRUE, echo = TRUE}
+x <- c(1, 4)
+y <- c(9.2214, 0.12)
+x + y
+```
+
+Other operations include:
+
+- Subtraction `-`
+- Multiplication `*`
+- Division `/`
+- Square rooting `sqrt`
+- Exponentiation `^`
+- Rounding `round`
+
+## Operations on Vectors - Recycling
+
+```{r, eval = TRUE, echo = TRUE}
+y <- y[1]
+x + y
+```
+
+Although we're demonstrating recycling with addition, the same behavior appears in the context of subtraction, multiplication, and division.
+
+Recycling also comes up when we use logical vectors to subset a vector.
+
+## Subsetting/Filtering Using Logical Vectors
+
+Earlier we saw that we can subset a vector by providing a vector of indices that we would like to retain, e.g.
+
+```{r, eval = TRUE, echo = TRUE}
+x <- c(1, 5, 2)
+x[c(1, 3)]
+```
+
+`x[c(1, 3)]` creates a new vector by taking a subset of elements of the original vector, specifically the 1st and third elements.
+
+We can also subset a vector by providing a logical vector of the same length, and elements of the original vector that correspond elements of the logical vector with value `TRUE` will be retained.
+
+```{r, eval = TRUE, echo = TRUE}
+x[c(TRUE, FALSE, TRUE)]
+```
+
+## Operations on Vectors that Yield Logical Vectors
+
+The ability to subset vectors using logical vectors of the same length helps us subset vectors according to their values. Specifically, we have the following functions:
+
+- Greater than `>`
+- Greater than or equal to `>=`
+- Less than `<`
+- Less than or equal to `<=`
+- Equal to `==`
+- Not equal to `!=`
+
+```{r, echo = TRUE, eval = TRUE}
+x[x < 5]
+```
+
+## Recycling when Using Logicals to Subset
+
+Recycling comes up in the context of subsetting/filtering a vector if we subset a vector by a shorter logical vector. 
+
+To make sense of the fact that the logical vector is shorter than the vector it is being used to subset, `R` will just repeat the logical vector over and over until it is the same length as the vector it is being used to subset.
+
+```{r, echo = TRUE, eval = TRUE}
+x[TRUE]
+```
+
+```{r, echo = TRUE, eval = TRUE}
+x[c(TRUE, FALSE)]
+```
+
+
+## Creating Special Vectors - Repeating
+
+We have now seen recycling twice. What is happening when `R` recycles a vector is that it repeats a vector to achieve a certain length.
+
+This introduces the idea of creating a special vector that repeats itself.
+
+## Creating Special Vectors - Repeating
+
+We can create a repeating vector using the `rep` function, which has several arguments. Two determine what should be repeated: 
+- The first argument is the vector that should be repeated
+- The `each` argument indicates the number of times each element of the first argument should be repeated in succession
+
+```{r, eval = TRUE, echo = TRUE}
+rep(c("a", "b", "c"))
+```
+
+```{r, eval = TRUE, echo = TRUE}
+rep(c("a", "b", "c"), each = 2)
+```
+
+
+## Creating Special Vectors - Repeating
+
+Given what should be repeated, determined by the first argument to `rep` and a value of `each` (if provided), either `times` or `length.out` can be specified to determine how many times the repeating should occur:
+
+- The `times` argument indicates how many times the repeating should occur
+- The `length.out` argument indicates the length of the repeated vector
+
+```{r, eval = TRUE, echo = TRUE}
+rep(c("a", "b", "c"), each = 2, length.out = 2)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+rep(c("a", "b", "c"), each = 2, times = 2)
+```
+
+  
+## Creating Special Vectors - Sequences
+
+Frequently, we may want to create a vector with a special desired structure. For instance, we may want to make a vector with elements that are equally spaced from one minimum value up to a maximum value.
+
+- Using `:` gives a sequence of integers, `1:5` or `0:2`
+- Using `seq` gives a numeric sequence based on specified minimum and maximum values and either:
+  - Specification of the number of elements between the minimum and maximum, `length.out`
+  - Specification of the difference between consecutive values, `by`
+  
+  
+```{r, echo = TRUE, eval = TRUE}
+x <- seq(0, 5, by = 1)
+x <- seq(0, 5, length.out = 6)
+```
+  
+Do these two commands produce the same `x`?
+  
+## Functions Summarizing Vectors
+
+- `sum`
+- `mean`
+- `identical`
+
+- `all`
+- `any`
+
+
