@@ -22,7 +22,7 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
 
 - Misc:
   * Demo ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.qmd))
-  * Smoothing ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/smoothing.R)
+  * Smoothing ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/smoothing.R))
 
 ### Statistical Learning
 
