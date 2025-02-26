@@ -655,13 +655,13 @@ What happens if we use mathematical functions like `+` with a matrix and a vecto
 
 Matrix multiplication uses `%*%`.
 
-```{r, eval = TRUE, echo = FALSE}
+```{r, eval = TRUE, echo = TRUE}
 A%*%c(1, 2)
 ```
 
 The `t` function transposes a matrix.
 
-```{r, eval = TRUE, echo = FALSE}
+```{r, eval = TRUE, echo = TRUE}
 t(A)
 ```
 
@@ -669,6 +669,42 @@ t(A)
 
 It can be very handy to give a matrix's rows and/or columns names, for easier use.
 
-```{r, eval = TRUE, echo = FALSE}
-
+```{r, eval = TRUE, echo = TRUE}
+colnames(A) <- c("Sad", "Happy")
+row.names(A) <- c("Red", "Hope", "Wavy")
 ```
+
+```{r, eval = TRUE, echo = TRUE}
+A
+```
+
+## Summarizing Rows of a Matrix
+
+- `rowSums`
+- `rowMeans`
+
+```{r, eval = TRUE, echo = TRUE}
+rowMeans(A)
+```
+
+## Summarizing Rows of a Matrix
+
+- `colSums`
+- `colMeans`
+
+```{r, eval = TRUE, echo = TRUE}
+colSums(A)
+```
+
+## Summarizing Dimensions of a Matrix More Generally
+
+The `apply` function allows us to apply functions along dimensions of a matrix.
+
+```{r, eval = TRUE, echo = TRUE}
+apply(A, 2, sum)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+apply(A, 2, function(x) {sum(x)})
+```
+
