@@ -22,7 +22,7 @@ Keep your rendered `.pdf` to no more than 4 pages. Only provide code in the rend
 (f) Using the `ifelse` command and some simple mathematical operations applied to `Y` as well as what you know about the Gamma distribution, create a vector of length 4 named `modex` with elements that correspond to the mode of a Gamma distribution with the shape and rate parameters in each row of `A`. Print the code you use to create this vector to the rendered `.pdf`.
 
 
-(g) Summarize what you find in (d) using a $4\times 4$ table made using `kable`, with a row for each pair of values named "Choice 1," "Choice 2," "Choice 3," and "Choice 4" one column for the $\alpha$ values named "Shape," one column for the $\lambda$ values named "Rate," one column for the corresponding mode named "Mode" and one column for the corresponding value of `x` where the density is maximized named "Approximate Mode". Use at most 2 significant digits (you can adjust the number of digits printed by changing the argument `digits` that can be applied when using the `kable` function).
+(g) Summarize what you find in (e) and (f) using a $4\times 4$ table made using `kable`, with a row for each pair of values named "Choice 1," "Choice 2," "Choice 3," and "Choice 4" one column for the $\alpha$ values named "Shape," one column for the $\lambda$ values named "Rate," one column for the corresponding mode named "Mode" and one column for the corresponding value of `x` where the density is maximized named "Approximate Mode". Use at most 2 significant digits (you can adjust the number of digits printed by changing the argument `digits` that can be applied when using the `kable` function).
 
 (g) In at most two sentences, explain how the "Mode" and "Approximate Mode" columns compare and justify any differences you observe.
 
@@ -38,7 +38,7 @@ Keep your rendered `.pdf` to no more than 4 pages. Only provide code in the rend
 
 (d) Create vectors `ymean`, `zmean`, and `wmean` which contain the average of each row of `Y`, `Z`, and `W`, respectively.  Print the code you use to create this matrix to the rendered `.pdf`.
 
-(e) Create vectors `ysd`, `zsd`, and `wmsd` which contain the standard deviation of each row of `Y`, `Z`, and `W`, respectively.  Print the code you use to create this matrix to the rendered `.pdf`.
+(e) Create vectors `ysd`, `zsd`, and `wsd` which contain the standard deviation of each row of `Y`, `Z`, and `W`, respectively.  Print the code you use to create this matrix to the rendered `.pdf`.
 
-(f) Create a pair of plots by prefacing your `plot` commands with `par(mfrow = c(2, 1))`. In the first plot, plot `x` against the row means you constructed in (d). Use points with `pch = 16`. Make sure to use a different color for set of row means and annotate them with a legend. In the second plot, plot `x` against the row standard deviations you constructed in (d). Use points with `pch = 16`. Make sure to use a different color for set of row standard deviations and annotate them with a legend.
+(f) Create a pair of plots by prefacing your `plot` commands with `par(mfrow = c(2, 1))`. In the first plot, plot `x` against the row means you constructed in (d). Use points with `pch = 16`. Make sure to use a different color for set of row means and annotate them with a legend. In the second plot, plot `x` against the row standard deviations you constructed in (e). Use points with `pch = 16`. Make sure to use a different color for set of row standard deviations and annotate them with a legend.
 
