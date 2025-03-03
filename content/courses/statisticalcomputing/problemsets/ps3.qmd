@@ -17,7 +17,7 @@ Keep your rendered `.pdf` to no more than 4 pages. Only provide code in the rend
 
 (d) Make a plot that is almost identical to the plots you made on Problem Set 2, with one change - make the limits of the $y$-axis $0$ and the maximum density value you observe in `A`.
 
-(e) Using `which.max` applied to each row of `A` and `x`, create a vector of length 4 named `maxx` with elements that describe the value of `x` at which the density is largest for each set of parameter values. Print the code you use to create this vector to the rendered `.pdf`.
+(e) Using `which.max` applied to each row of `A` and using `x`, create a vector of length 4 named `maxx` with elements that describe the value of `x` at which the density is largest for each set of parameter values. Print the code you use to create this vector to the rendered `.pdf`.
 
 (f) Using the `ifelse` command and some simple mathematical operations applied to `Y` as well as what you know about the Gamma distribution, create a vector of length 4 named `modex` with elements that correspond to the mode of a Gamma distribution with the shape and rate parameters in each row of `A`. Print the code you use to create this vector to the rendered `.pdf`.
 
