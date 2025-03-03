@@ -40,5 +40,5 @@ Keep your rendered `.pdf` to no more than 4 pages. Only provide code in the rend
 
 (e) Create vectors `ysd`, `zsd`, and `wsd` which contain the standard deviation of each row of `Y`, `Z`, and `W`, respectively.  Print the code you use to create this matrix to the rendered `.pdf`.
 
-(f) Create a pair of plots by prefacing your `plot` commands with `par(mfrow = c(2, 1))`. In the first plot, plot `x` against the row means you constructed in (d). Use points with `pch = 16`. Make sure to use a different color for set of row means and annotate them with a legend. In the second plot, plot `x` against the row standard deviations you constructed in (e). Use points with `pch = 16`. Make sure to use a different color for set of row standard deviations and annotate them with a legend.
+(f) Create a pair of plots by prefacing your `plot` commands with `par(mfrow = c(2, 1))` or `par(mfrow = c(1, 2))`. In the first plot, plot `x` against the row means you constructed in (d). Use points with `pch = 16`. Make sure to use a different color for set of row means and annotate them with a legend. In the second plot, plot `x` against the row standard deviations you constructed in (e). Use points with `pch = 16`. Make sure to use a different color for set of row standard deviations and annotate them with a legend.
 
