@@ -583,7 +583,7 @@ The dimensions of a matrix describe the number of rows and columns.
 
 ## Making a Matrix
 
-Making a matrix is a bit different from making a vector. We **cannot** grow a matrix - we need to start from a matrix initialized to have the desired dimensions.
+Making a matrix is a bit different from making a vector. We **cannot** grow a matrix in the same way we can grow a vector - we will start from a matrix initialized to have the desired dimensions.
 
 ```{r, echo = TRUE, eval = TRUE}
 A <- matrix(nrow = 3, ncol = 2)
@@ -601,7 +601,7 @@ A <- matrix(0, nrow = 3, ncol = 2)
 A <- matrix(1:(3*2), nrow = 3, ncol = 2)
 ```
 
-## Indexing Elements of a Matrix
+## Indexing Elements of/Subsetting a Matrix
 
 ```{r, echo = TRUE, eval = TRUE}
 A
@@ -619,6 +619,103 @@ A[1, ]
 A[, 1]
 ```
 
+## Avoiding Conversion to Vector
+
+```{r, eval = TRUE, echo = TRUE}
+A[1, , drop = FALSE]
+```
+
+```{r, eval = TRUE, echo = TRUE}
+A[, 1, drop = FALSE]
+```
+
+
+## Extracting the Dimensions of a Matrix
+
+```{r, eval = TRUE, echo = TRUE}
+dim(A)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+nrow(A)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+ncol(A)
+```
+
+## Growing a Matrix
+
+We can grow a matrix, but if we do so we need to add entire rows (`rbind`) or columns (`cbind`).
+
+```{r, eval = TRUE, echo = TRUE}
+A <- rbind(A, c(0, 0))
+```
+
+```{r, eval = TRUE, echo = TRUE}
+A
+```
+
+
+## Growing a Matrix
+
+We can grow a matrix, but if we do so we need to add entire rows (`rbind`) or columns (`cbind`).
+
+```{r, eval = TRUE, echo = TRUE}
+A <- cbind(A, c(0, 0, 0, 0), c(0, 0, 0, 0))
+```
+
+
+```{r, eval = TRUE, echo = TRUE}
+A
+```
+
+## Indexing Diagonals of Matrices
+
+```{r, eval = TRUE, echo = TRUE}
+A
+```
+
+```{r, eval = TRUE, echo = TRUE}
+diag(A)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+diag(A[1:2, ])
+```
+
+```{r, eval = TRUE, echo = TRUE}
+diag(A[-1, -ncol(A)])
+```
+
+
+## Making Special Matrices
+
+Another use of the `diag` function is to create a diagonal matrix.
+
+```{r, eval = TRUE, echo = TRUE}
+diag(2)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+diag(2, nrow = 2, ncol = 2)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+diag(c(1, 2))
+```
+
+
+## Subsetting a Matrix
+
+```{r, eval = TRUE, echo = TRUE}
+A
+```
+
+```{r, eval = TRUE, echo = TRUE}
+A <- A[1:3, 1:2]
+```
+
 ## Functions Summarizing Matrices
 
 Matrices are just fancy vectors, and many of the functions we have discussed for summarizing vectors can be applied to a matrix. The function will just "flatten" the matrix into a vector first.
@@ -631,6 +728,33 @@ max(A)
 range(A)
 ```
 
+The functions `sum`, `mean`, `sd`, `var`,  `min`, and `prod` work equivalently when applied to matrices.
+
+
+## Math for Matrices
+
+Most of the functions that we described for vectors also apply to matrices.
+
+```{r, echo = TRUE, eval = TRUE}
+A + 1
+```
+
+This applies to `+`, `*`, `/`, `-`, `abs`, `round`, `sqrt`, `^`, and will work if we replace `1` above with another scalar or a matrix with the same dimensions as `A`.
+
+What happens if we use mathematical functions like `+` with a matrix and a vector of a different size?
+
+## Operations on Matrices that Yield Logical Matrices
+
+The following functions we introduced for vectors work for matrices too, and return matrices:
+
+- Greater than `>`
+- Greater than or equal to `>=`
+- Less than `<`
+- Less than or equal to `<=`
+- Equal to `==`
+- Not equal to `!=`
+- `is.na`
+
 ## Coercing a Matrix Back to a Vector
 
 ```{r, echo = TRUE, eval = TRUE}
@@ -641,28 +765,30 @@ c(A)
 as.numeric(A)
 ```
 
-## Math for Matrices
+This is helpful for understanding what some functions do when applied to matrices. 
 
-Most of the functions that we described for vectors also apply to matrices.
-
-```{r, echo = TRUE, eval = TRUE}
-A + 1
-```
-
-What happens if we use mathematical functions like `+` with a matrix and a vector of a different size?
-
-## Linear Algebra
-
-Matrix multiplication uses `%*%`.
+## Identifying Elements of A Matrix that Satisfy a Certain Condition
 
 ```{r, eval = TRUE, echo = TRUE}
-A%*%c(1, 2)
+which(A > 1)
 ```
 
-The `t` function transposes a matrix.
+```{r, eval = TRUE, echo = TRUE}
+which(A > 1, arr.ind = TRUE)
+```
+
+
+## Subsetting a Matrix with Logical Vectors
+
+As with vectors, we can also subset matrices using logical vectors. 
 
 ```{r, eval = TRUE, echo = TRUE}
-t(A)
+A
+```
+
+
+```{r, eval = TRUE, echo = TRUE}
+A[A[, 1] > 1, A[2, ] < 1]
 ```
 
 ## Naming Rows/Columns of a Matrix
@@ -670,15 +796,30 @@ t(A)
 It can be very handy to give a matrix's rows and/or columns names, for easier use.
 
 ```{r, eval = TRUE, echo = TRUE}
-colnames(A) <- c("Sad", "Happy")
-row.names(A) <- c("Red", "Hope", "Wavy")
+colnames(A) <- c("alpha", "beta")
+row.names(A) <- c("a", "b", "c")
 ```
 
 ```{r, eval = TRUE, echo = TRUE}
 A
 ```
 
-## Summarizing Rows of a Matrix
+## Getting Rid of Row/Column Names
+
+```{r, eval = TRUE, echo = TRUE}
+A
+```
+
+```{r, eval = TRUE, echo = TRUE}
+colnames(A) <- NULL
+row.names(A) <- NULL
+```
+
+```{r, eval = TRUE, echo = TRUE}
+A
+```
+
+## Special Summaries of Rows of a Matrix
 
 - `rowSums`
 - `rowMeans`
@@ -687,7 +828,7 @@ A
 rowMeans(A)
 ```
 
-## Summarizing Rows of a Matrix
+## Special Summaries of Columns of a Matrix
 
 - `colSums`
 - `colMeans`
@@ -701,6 +842,10 @@ colSums(A)
 The `apply` function allows us to apply functions along dimensions of a matrix.
 
 ```{r, eval = TRUE, echo = TRUE}
+colSums(A)
+```
+
+```{r, eval = TRUE, echo = TRUE}
 apply(A, 2, sum)
 ```
 
@@ -708,3 +853,49 @@ apply(A, 2, sum)
 apply(A, 2, function(x) {sum(x)})
 ```
 
+## Summarizing Dimensions of a Matrix More Generally
+
+The `apply` function allows us to apply functions along dimensions of a matrix.
+
+```{r, eval = TRUE, echo = TRUE}
+rowSums(A)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+apply(A, 1, sum)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+apply(A, 1, function(x) {sum(x)})
+```
+
+What happens if we provide both array dimensions to `apply`, e.g. `apply(A, c(1, 2), sum)`?
+
+## Special Matrix Functions (Linear Algebra)
+
+Matrix multiplication uses `%*%`.
+
+```{r, eval = TRUE, echo = TRUE}
+A%*%c(1, 2)
+```
+
+The `t` function transposes a matrix.
+
+```{r, eval = TRUE, echo = TRUE}
+t(A)
+```
+
+## Special Matrix Functions (Linear Algebra)
+
+For any matrix:
+
+- `svd` returns the singular value decomposition
+
+For square matrices: 
+
+- `solve` returns the inverse of a matrix 
+- `eigen` returns an eigendecomposition
+
+For symmetric positive-definite square matrices:
+
+- `chol` returns a cholesky decomposition
