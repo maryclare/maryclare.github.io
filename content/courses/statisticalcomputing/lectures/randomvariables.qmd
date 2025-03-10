@@ -1,0 +1,76 @@
+---
+title: "Random Variables"
+format: beamer
+---
+
+## Random Variables in `R`
+
+`R` has built in functions for working with several common distributions:
+
+- Normal
+- Uniform
+- Gamma
+- Binomial
+- Chi-square
+- Poisson
+- Multinomial
+
+For a more complete list, type `help(Distributions)`.
+
+
+## Random Variables in `R`
+
+For every one of these distributions, `R` has at least 4 functions that 
+
+- Compute the density
+- Compute the CDF
+- Compute the inverse CDF
+- Simulate a random variable
+
+## Normal Random Variables
+
+- Compute the density `dnorm`
+- Compute the CDF `pnorm`
+- Compute the inverse CDF `qnorm`
+- Simulate a random variable `rnorm`
+
+## General Random Variables
+
+Different distributions have a corresponding suffix, e.g. `norm` for normal, and their density, CDF, inverse CDF, and random variable generation functions can be obtained by combining the appropriate letter - `d`, `p`, `q`, or `r` - with the corresponding suffix.
+
+## Early Random Number Generation
+
+- Coins, dice, spinning a cardboard disc
+- Tables/books of random numbers based on
+  * Experimental data combined with statistical theory 
+  * Randomly selecting numbers from tables/books of other numbers
+
+## Deterministic Random Number Generation
+
+- Middle Square Method (MSM):
+  * Start with a number $x$ with $2a$ digits and square it to get a number with $4a$ digits (pad with $0$'s if needed)
+  * Retain the middle $2a$ digits of the square
+  * Iterate
+- Digits of transcendental numbers
+
+MSM method can yield sequences that get stuck at $0$ or have a short ``cycle, '' try starting from $2500$ or starting from any two digit number.
+
+Digits of transcendental numbers are too expensive to obtain and store and hard to study mathematically.
+
+
+## What does `R` use?
+
+
+
+
+## All Roads Lead Back to the Uniform
+
+- By definition, quantiles of any independent, identically distributed random variable are uniform on $\left(0, 1\right)$
+- A sequence of positive numbers can be transformed to a distribution on $\left(0, 1\right)$ by adding a decimal point
+
+
+
+
+
+
+

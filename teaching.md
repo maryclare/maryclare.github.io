@@ -15,6 +15,7 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
 - Typed Notes:
   * Coding, IDE ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/codingide.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/codingide.qmd))
   * Modes, Structures ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/modesstructures.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/modesstructures.qmd))
+  * Random Variables ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/randomvariables.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/randomvariables.qmd))
 - Problem Sets:
   * Due 2/12 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.qmd))
   * Due 2/26 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.qmd))
