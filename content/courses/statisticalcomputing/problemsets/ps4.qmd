@@ -5,16 +5,16 @@ format: pdf
 
 In this problem set, you will continue to be asked to work with the gamma distribution and you may find it useful to refer back to the previous problem set and/or solutions. I recommend Wikipedia as a reference, `https://en.wikipedia.org/wiki/Gamma_distribution`. 
 
-Keep your rendered `.pdf` to no more than 4 pages. Only provide code in the rendered `.pdf` when it is specifically requested.
+Keep your rendered `.pdf` to no more than 5 pages. Only provide code in the rendered `.pdf` when it is specifically requested.
 
 
-1. This question refers back to 2. on the previous homework assignment. Create a matrix with 9 rows and 10,000 columns called `Y` with elements given by `sample((-3):3, 9*10000, replace = TRUE)`. 
+1. **Extra Credit** This question refers back to 2. on the previous homework assignment. Create a matrix with 9 rows and 10,000 columns called `Y` with elements given by `sample((-3):3, 9*10000, replace = TRUE)`. 
 
 (a) Repeat 2. (c)-(e) from the previous problem set using `apply`. Print the code you use to create these matrices and vectors to the rendered `.pdf`.
 
 (b) Repeat 2. (f) from the previous problem set with one addition - include points that correspond to the values in `x` on the $x$-axis and $0$ on the $y$-axis that use a point type that corresponds to a $\times$ symbol on the first plot. You may find the information provided by typing `help(pch)` in your console helpful. Also, add an additional point to the legend that refers to your $\times$ symbols and annotate it with "Truth" for the plot that contains the $\times$ symbols.
 
-(c) In at most one sentence, describe why the plot you made in the previous part and the plot you made for 2. (f) on Problem Set 3 differ and which you prefer. Use what you know about statistics. 
+(c) In at most one sentence, describe why the plot you made in the previous part and the plot you made for 2. (f) on Problem Set 3 differ and which you prefer. Use what you know about statistics.
 
 (d) Now, create a matrix with 9 rows and 10,000 columns called `Y` with elements given by `x + sample((-3):3, 9*10000, replace = TRUE)`. Repeat (b) for this matrix, this time including points that correspond to the values in `x` on the $x$-axis and `x` again on the $y$-axis and use a point type that corresponds to a $\times$ symbol on the first plot. Again add an additional point to the legend that refers to your $\times$ symbols and annotate it with "Truth" for the plot that contains the $\times$ symbols.
 
