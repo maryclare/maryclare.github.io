@@ -44,6 +44,8 @@ Different distributions have a corresponding suffix, e.g. `norm` for normal, and
 - Tables/books of random numbers based on
   * Experimental data combined with statistical theory 
   * Randomly selecting numbers from tables/books of other numbers
+  
+Even when these methods work well, they take a lot of effort and require importing sequences of random numbers onto a computer.
 
 ## Deterministic Random Number Generation
 
@@ -53,24 +55,79 @@ Different distributions have a corresponding suffix, e.g. `norm` for normal, and
   * Iterate
 - Digits of transcendental numbers
 
-MSM method can yield sequences that get stuck at $0$ or have a short ``cycle, '' try starting from $2500$ or starting from any two digit number.
+MSM method can yield sequences that get stuck at $0$ or have a short "cycle," try starting from $2500$ or starting from any two digit number.
 
 Digits of transcendental numbers are too expensive to obtain and store and hard to study mathematically.
 
 
 ## What does `R` use?
 
+You can read about what `R` uses and other options if you type `help(RNG)`. 
 
+`R` uses the "Mersenne-Twister" from 1998! 
 
+All of the options start from a specified seed, which is a number that you provide or the computer picks for you based on features of the session.
+
+You need to fix the seed to get replicable results, using `set.seed`.
+
+```{r, echo = TRUE, eval = TRUE}
+set.seed(372132)
+```
 
 ## All Roads Lead Back to the Uniform
 
-- By definition, quantiles of any independent, identically distributed random variable are uniform on $\left(0, 1\right)$
 - A sequence of positive numbers can be transformed to a distribution on $\left(0, 1\right)$ by adding a decimal point
+- Any random variable can be obtained using uniform variables on $\left(0, 1\right)$
+- By definition, applying a CDF to identically distributed random variables yields uniform variables on  $\left(0, 1\right)$ - we can reverse this!
+
+
+## Normal Random Variables from Uniform
+
+```{r, echo = TRUE, eval = TRUE}
+u <- runif(100000)
+```
+
+```{r, echo = TRUE, eval = TRUE}
+z <- qnorm(u)
+```
+
+```{r, echo = TRUE, eval = FALSE}
+hist(z, freq = FALSE)
+curve(dnorm, add = TRUE)
+```
 
 
 
+## Normal Random Variables from Uniform
+
+```{r, echo = FALSE, eval = TRUE}
+hist(z, freq = FALSE)
+curve(dnorm, add = TRUE)
+```
+
+## Normal Random Variables from Uniform
+
+We generated standard normal random variables$\dots$how do we generate normal random variables with mean $\mu$ and variance $\sigma^2$?
+
+## Gamma Variables from a Uniform
+
+```{r, echo = TRUE, eval = TRUE}
+g <- qgamma(u, 1, 1)
+```
+
+```{r, echo = FALSE, eval = TRUE}
+hist(g)
+```
 
 
+## Gamma Variables from a Uniform
 
+```{r, echo = TRUE, eval = TRUE}
+g <- qgamma(u, 0.0001, 1)
+```
 
+```{r, echo = TRUE, eval = TRUE}
+table(g == 0)
+```
+
+Sometimes the inversion method for simulating from a distribution can be numerically unstable. 
