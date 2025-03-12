@@ -131,3 +131,34 @@ table(g == 0)
 ```
 
 Sometimes the inversion method for simulating from a distribution can be numerically unstable. 
+
+## Why is simulation useful?
+
+- Simulation studies
+- Approximating intractable integrals
+
+\begin{align*}
+E\left[f\left(z\right)\right] &= \int f(z) p\left(z\right) dz\\
+&\approx \sum_i f(z_i)  
+\end{align*}
+if $z_i$ have density $p\left(z_i\right)$.
+
+```{r, eval = TRUE, echo = TRUE}
+mean(z)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+mean(z^4)
+```
+
+## Checking our Simulation
+
+```{r, eval = TRUE, echo = TRUE}
+integrate(function(x){x*dnorm(x)}, 
+          lower = -Inf, upper = Inf)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+integrate(function(x){x^4*dnorm(x)}, 
+          lower = -Inf, upper = Inf)
+```
