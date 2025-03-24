@@ -1,5 +1,4 @@
 # Creating an AR-1 Covariance Matrix with AR Parameter 0.5
-
 n <- 100
 
 start <- Sys.time()
@@ -66,3 +65,14 @@ a <- 1:n
 C <- 0.5^abs(tcrossprod(ones, a) - tcrossprod(a, ones))
 end <- Sys.time()
 end - start
+
+# Creating a function for arbitrary n and rho
+arcov <- function(n = 100, rho = 0.5) {
+  C <- matrix(NA, nrow = n, ncol = n)
+  for (i in 1:nrow(C)) {
+    for (j in 1:ncol(C)) {
+      C[i, j] <- rho^abs(i - j)
+    }
+  }
+  return(C)
+}

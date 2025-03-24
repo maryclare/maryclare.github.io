@@ -16,3 +16,11 @@ plot(x, y, pch = 16, col = "black")
 abline(a = 0, b = 1, lty = 3)
 points(x, z, pch = 16, col = "blue")
 points(x, w, pch = 16, col = "red")
+
+smooth <- function(y, k) {
+  w <- rep(NA, length(y))
+  for (i in 1:length(y)) {
+    w[i] <- mean(y[i:max(i - k + 1, 1)])
+  }
+  return(w)
+}
