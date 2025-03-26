@@ -1,0 +1,250 @@
+---
+title: "Accessing Data"
+format: beamer
+---
+
+## Datasets Available in Base `R`
+
+Some datasets are easily available in `R` and can be accessed with the `data` function.
+
+```{r, echo = TRUE, eval = TRUE}
+data(rivers)
+```
+
+```{r, echo = TRUE, eval = TRUE}
+rivers[1:5]
+```
+
+We can get a list of all available datasets by entering `data()` into the console.
+
+Note: Base `R` refers to `R` with no packages loaded.
+
+## Using the `data` Function
+
+When we first `data(rivers)`, `R` creates one or more objects that have value `<Promise>`.  
+
+Once we have actually used the objects, the contents become available in the environment.
+
+Try it out to see!
+
+## `data` Examples
+
+- `islands`
+- `volcano`
+- `WorldPhones`
+
+What types of objects are contained in this data?
+
+## The `data` Function Can Create Multiple Objects
+
+How many and what types of objects are contained in the `euro` data?
+
+## The Data Frame
+
+\footnotesize
+```{r, echo = TRUE, eval = TRUE}
+data(stackloss)
+```
+
+```{r, echo = TRUE, eval = TRUE}
+str(stackloss)
+```
+
+```{r, echo = TRUE, eval = TRUE}
+str(stack.x)
+```
+
+```{r, echo = TRUE, eval = TRUE}
+str(stack.loss)
+```
+
+## Data Frames are Like Matrices
+
+For the data frame `stackloss`:
+
+- Find number of rows
+- Find number of columns
+- Find column means
+- Find column standard deviations
+- Extract the first 3 columns
+- Extract the last row
+
+## Data Frames are Not Like Matrices
+
+We cannot do linear algebra on data frames without transforming them.
+
+```{r, echo = TRUE, eval = FALSE}
+rep(1/nrow(stackloss), nrow(stackloss))%*%stackloss
+```
+
+Data frames can contain columns of different modes.
+
+Columns of data frames can be accessed using `$`.
+
+```{r, echo = TRUE, eval = FALSE}
+stackloss$stack.loss
+```
+
+Using `$` creates a vector - we can confirm.
+```{r, echo = TRUE, eval = FALSE}
+all.equal(stackloss$stack.loss, stack.loss)
+```
+
+## Can we turn a data frame back into a matrix?
+
+Sometimes!
+
+```{r, echo = TRUE, eval = TRUE}
+rep(1/nrow(stackloss), nrow(stackloss))%*%
+  as.matrix(stackloss)
+```
+
+This will only work when the data frame does not contain characters or factors (which are a special way of storing characters that we're about to learn about).
+
+## How do we make a data frame?
+
+We can construct a data frame by combining matrices with $n$ rows and vectors with $n$ elements.
+
+```{r, eval = TRUE, echo = TRUE}
+sl <- data.frame(stack.x, stack.loss)
+```
+
+We can confirm they are the same!
+```{r, eval = TRUE, echo = FALSE}
+all.equal(sl, stackloss)
+```
+
+## Data Frames with Non-Numeric Data
+
+Again, data frames can contain columns of different modes.
+
+```{r, echo = TRUE, eval = TRUE}
+data(chickwts)
+```
+
+```{r, echo = TRUE, eval = TRUE}
+head(chickwts)
+```
+
+You can also look at a data frame as if it is a spreadsheet in `R` by using the `View` function. Try it!
+
+```{r, echo = TRUE, eval = FALSE}
+View(chickwts)
+```
+
+## Factors
+
+What appears to be a character vector is actually stored as a "factor."
+
+```{r, echo = TRUE, eval = TRUE}
+str(chickwts)
+```
+
+We will talk about this more in a bit.
+
+## Datasets Available in Packages
+
+Different packages contain additional datasets, often for use as a demonstration of certain functions.
+
+There are also some `R` packages that exist for the sole purpose of helping you load in specific datasets from online sources, e.g. `yahoofinancer` for downloading Yahoo Finance data.
+
+## Loading in Datasets
+
+In real life, we probably want to load in data that's not already available in base `R` or some `R` package.
+
+The most common format is a `.csv` file, where `.csv` stands for "commma separated value." These are often directly available or indirectly available, e.g. as an option for saving an spreadsheet in Excel.
+
+The downside of `.csv` files is that they can be a bit big - we'll talk about dealing with big files soon.
+
+## Downloading a .csv file
+
+Let's download files from a recent Evolution paper that have been made available: \href{https://datadryad.org/dataset/doi:10.5061/dryad.rs610}{https://datadryad.org/dataset/doi:10.5061/dryad.rs610}.
+
+The paper is available here, if you're curious: \href{https://academic.oup.com/evolut/article/69/10/2662/6851963}{https://academic.oup.com/evolut/article/69/10/2662/6851963}.
+
+## Filepaths
+
+In order to read in data, you need to figure out where the data is.
+
+In `R`, you can identify the current file path using `getwd()`. 
+
+```{r, echo = TRUE, eval = FALSE}
+getwd()
+```
+
+You can see what files are there using `list.files()`.
+
+```{r, echo = TRUE, eval = FALSE}
+list.files()
+```
+
+You can also set a new working directory using the `setwd` function and providing a file path.
+
+## Filepath Help
+
+If you're having a hard time finding your file path, you can load in a `.csv` file by going to the "File" menu, navigating down to "Import Dataset" and clicking "From Text (base)." Then find your `.csv` file.
+
+Once you do this, a line of code that starts with `read.csv` will get sent to your console. Save it! It will include the path to your file.
+
+## Reading in a .csv file
+
+\footnotesize
+The `read.csv` function reads a `.csv` file into `R`, creating a data frame.
+
+```{r, eval = TRUE, echo = TRUE}
+data <- read.csv("~/Downloads/seawater.archive.data.csv")
+```
+
+```{r, eval = TRUE, echo = TRUE}
+str(data)
+```
+
+## Characters versus Factors
+
+\footnotesize
+```{r, eval = TRUE, echo = TRUE}
+data <- read.csv("~/Downloads/seawater.archive.data.csv",
+                 stringsAsFactors = TRUE)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+str(data)
+```
+
+## What the heck is a factor??
+
+Factors are a mode that we haven't talked about yet. They can be thought of as fancy vectors.
+
+Factors are a way of storing elements as positive integers with each integer value associated with a character label. The character labels are called "levels."
+
+Generally, factors are annoying. However a nice thing about them is that they can clearly convey the total set of values that a variable could take on, even if certain values are not observed in the data. They are also sometimes convenient for plotting, summarizing, and analyzing data.
+
+## An Example of a Factor
+
+The variable `History` is treated as a level when we specify `stringsAsFactors = TRUE`.
+
+```{r, eval = TRUE, echo = TRUE}
+levels(data$History)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+unclass(data$History)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+as.numeric(data$History)
+```
+
+## Converting a Factor to its Values
+
+```{r, eval = TRUE, echo = TRUE}
+levels(data$History)[as.numeric(data$History)]
+```
+
+## More Importing Data
+
+We will now import some basketball data to give some more examples.
+
+Go here: \href{https://www.basketball-reference.com/teams/BOS/2024.html#all_per_minute_stats}{https://www.basketball-reference.com/teams/BOS/2024.html#all_per_minute_stats}
+
+Specifically, we'll focus on per 36 minute statistics.
