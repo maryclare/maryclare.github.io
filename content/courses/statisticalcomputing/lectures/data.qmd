@@ -110,7 +110,7 @@ sl <- data.frame(stack.x, stack.loss)
 ```
 
 We can confirm they are the same!
-```{r, eval = TRUE, echo = FALSE}
+```{r, eval = FALSE, echo = TRUE}
 all.equal(sl, stackloss)
 ```
 
@@ -241,10 +241,36 @@ as.numeric(data$History)
 levels(data$History)[as.numeric(data$History)]
 ```
 
+## Being Careful Converting Factors to Numeric Values
+
+\footnotesize
+Sometimes, quantities that should be numeric are treated as factors. For instance, the `Seed` variable in the `Loblolly` data.
+```{r, eval = TRUE, echo = TRUE}
+data(Loblolly)
+```
+
+If we want to convert a factor back to a number, we need to be careful about how we do it. Just applying `as.numeric` returns the integers associated with each level. That's not what we want!
+
+```{r, eval = TRUE, echo = TRUE}
+head(as.numeric(Loblolly$Seed))
+```
+
+We want to make the labels themselves to numbers.
+
+```{r, eval = TRUE, echo = TRUE}
+head(as.numeric(levels(Loblolly$Seed))[as.numeric(Loblolly$Seed)])
+```
+
+
+
 ## More Importing Data
 
 We will now import some basketball data to give some more examples.
 
-Go here: \href{https://www.basketball-reference.com/teams/BOS/2024.html#all_per_minute_stats}{https://www.basketball-reference.com/teams/BOS/2024.html#all_per_minute_stats}
+Go here:  \href{https://www.basketball-reference.com/teams/BOS/2024.html\#all\_per\_minute\_stats}{https://www.basketball-reference.com/teams/BOS/2024.html\#all\_per\_minute\_stats}
 
 Specifically, we'll focus on per 36 minute statistics.
+
+You can download these as an Excel Workbook or a `.csv`. 
+
+Try both approaches and import the data. If you download the Excel Workbook version, open it up and then save it as a `.csv`. Then load it into `R`. Try it!
