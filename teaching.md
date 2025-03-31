@@ -30,7 +30,7 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
   * Middle Square Method ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/middlesquare.R))
   * `.csv` Examples ([`sportsref_download_1.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_1.csv), [`sportsref_download_2.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_2.csv), [`sportsref_download_3.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_3.csv), [`sportsref_download_4.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_4.csv))
   * Other Data Examples ([`sportsref_download_5.txt`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_5.txt), [`sportsref_download_6.tsv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_6.tsv), [`sportsref_download_7.txt`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_7.txt), [`sportsref_download_8.txt`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_8.txt))
-
+  * Excel Data Example ([`sportsref_download.xls`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download.xls"))
 ### Statistical Learning
 
 - [Syllabus](https://maryclare.github.io/content/courses/statisticallearning/syllabus/syllabus_statlearn_fall2024.pdf)
