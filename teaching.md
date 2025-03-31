@@ -28,6 +28,7 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
   * Smoothing ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/smoothing.R))
   * Making an AR Covariance ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/arcovariance.R))
   * Middle Square Method ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/middlesquare.R))
+  * `.csv` Bug Examples ([`sportsref_download_bug1.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_bug1.csv), [`sportsref_download_bug2.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_bug2.csv), [`sportsref_download_bug3.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_bug3.csv))
 
 ### Statistical Learning
 
