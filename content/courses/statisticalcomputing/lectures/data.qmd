@@ -261,8 +261,6 @@ We want to make the labels themselves to numbers.
 head(as.numeric(levels(Loblolly$Seed))[as.numeric(Loblolly$Seed)])
 ```
 
-
-
 ## More Importing Data
 
 We will now import some basketball data to give some more examples.
@@ -274,3 +272,135 @@ Specifically, we'll focus on per 36 minute statistics.
 You can download these as an Excel Workbook or a `.csv`. 
 
 Try both approaches and import the data. If you download the Excel Workbook version, open it up and then save it as a `.csv`. Then load it into `R`. Try it!
+
+## `.csv` Examples
+
+On my [teaching page](https://maryclare.github.io/teaching.html), I have posted four examples of `.csv` files that will require a bit more care to read in.
+
+- [`sportsref_download_1.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_1.csv) 
+- [`sportsref_download_2.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_2.csv) 
+- [`sportsref_download_3.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_3.csv)
+- [`sportsref_download_4.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_4.csv)
+
+One at a time, let's try importing them using `read.csv`.
+
+Note - you can read in a `.csv` file from the internet!
+
+```{r, eval = FALSE, echo = TRUE}
+data <- 
+  read.csv("https://.../sportsref_download_1.csv")
+```
+
+(You need the complete link though!)
+
+## Other Formats - Other Delimiters
+
+A `.csv` file is a plain text file where each line corresponds to a new row and each element within a row is **delimited** or separated by a comma.
+
+There are other types of delimiters that are sometimes used, e.g. tabs and spaces.
+
+## `read.csv` versus `read.delim`, etc.
+
+The `read.delim` function is more general - it does not assume that elements within a row are **delimited** (i.e. separated by) commas, like `read.csv`.
+
+It tries to be smart and guess the delimiter being used, but sometimes it has trouble and requires specification of a specific delimiter using the `sep` argument, which takes on many values including:
+
+- `"\t"` for tab delimited data
+- `""` for white space delimited data
+- `";"` for semicolon delimited data
+
+## Other Dedicated `read.` Functions
+
+There are also several dedicated functions like `read.csv` that apply for other delimiters, 
+
+- `read.table` for white space delimited data
+- `read.csv2` for semicolon delimited data where commas are used to denote decimals
+- `read.delim2` for tab delimited data where commas are used to denote decimals
+
+(Commas are sometimes used to denote decimals in other countries.)
+
+## More Data Examples
+
+
+On my [teaching page](https://maryclare.github.io/teaching.html), I have also posted four examples of other files that we can read in:
+
+- [`sportsref_download_5.txt`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_5.txt) 
+- [`sportsref_download_6.tsv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_6.tsv) 
+- [`sportsref_download_7.txt`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_7.txt)
+- [`sportsref_download_8.txt`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_8.txt)
+
+Using `read.delim` or other related functions, you can read in these alternative versions of the same data we've been working with. Try it!
+
+## Other Formats - `xls`
+
+Sometimes, it may be better to avoid converting an `.xls` file to `.csv` before reading it in. 
+
+There are ways to do this! But they require additional packages and (in my experience) can be unstable across years of updates to Excel and `R`. This is why I taught you the brute force convert to `.csv` way.
+
+I recommend the `read_excel` function in the `readxl` package for functions to read in Excel files.
+
+```{r, echo = TRUE, eval = FALSE}
+library(readxl)
+data <- read_excel("sportsref_download.xls")
+```
+
+## Using `readxl`
+
+On my [teaching page](https://maryclare.github.io/teaching.html), I have posted an example `.xls` file that is related to the data we've been working with. 
+
+Download it and load `readxl`!
+
+```{r, echo = TRUE, eval = TRUE}
+library(readxl)
+data <- read_excel("~/Downloads/sportsref_download.xls")
+```
+
+There are two primary advantages to directly reading in files from Excel:
+
+- Fewer opportunities for things to make mistakes
+- You can access multiple sheets from one file
+
+## Sheets Using `readxl`
+
+By default, `read_excel` just reads in the first sheet.
+
+You can check how many sheets and what their names are using the `excel_sheets` or by manually inspecting the workbook.
+
+```{r, echo = TRUE, eval = TRUE}
+excel_sheets("~/Downloads/sportsref_download.xls")
+```
+
+Then you can change the `sheet` argument of `read_excel` to read in whichever sheet you like. Try it!
+
+## What the heck is a tibble?
+
+Data read in using `read_excel` is stored as a tibble.
+
+A tibble is an alternative to a data frame. For our purposes, there's no need to work with tibbles. You can convert a tibble to a data frame easily using `as.data.frame`.
+
+```{r, eval = TRUE, echo = TRUE}
+data <- as.data.frame(data)
+```
+
+## On Google Sheets
+
+You need to download them anyway, just download them as `.csv` files, one per sheet.
+
+## Other Formats - General
+
+The `foreign` package includes functions to read in:
+
+- `.dta` files from Stata
+- `.spss` files from SPSS
+
+We won't do this here but you may need it in your future!
+
+## A Data Analysis Reminder
+
+Some of these storage formats we have talked about let you edit data outside of `R`. For instance, you could open `sportsref_download.xls` in Excel, modify the data, and then work in `R`.
+
+**DO NOT DO THIS!!!**
+
+Changes made in Excel or directly to raw data files are not documented. No record of how you modified the data is created and stored. 
+
+In general, **all** manipulations of data should be done in `R` and only **raw** unmodified data should be stored.
