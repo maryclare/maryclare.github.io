@@ -339,11 +339,6 @@ There are ways to do this! But they require additional packages and (in my exper
 
 I recommend the `read_excel` function in the `readxl` package for functions to read in Excel files.
 
-```{r, echo = TRUE, eval = FALSE}
-library(readxl)
-data <- read_excel("sportsref_download.xls")
-```
-
 ## Using `readxl`
 
 On my [teaching page](https://maryclare.github.io/teaching.html), I have posted an example `.xls` file that is related to the data we've been working with. 
@@ -366,7 +361,7 @@ By default, `read_excel` just reads in the first sheet.
 
 You can check how many sheets and what their names are using the `excel_sheets` or by manually inspecting the workbook.
 
-```{r, echo = TRUE, eval = TRUE}
+```{r, echo = TRUE, eval = FALSE}
 excel_sheets("~/Downloads/sportsref_download.xls")
 ```
 
@@ -394,6 +389,46 @@ The `foreign` package includes functions to read in:
 - `.spss` files from SPSS
 
 We won't do this here but you may need it in your future!
+
+## Other Formats - Compressed
+
+Some of the formats we saw described in the `foreign` package are compressed, e.g. `.dta`. 
+
+This means that they are made smaller than they would be if stored as `.csv` files. 
+
+The file will be easier to move around and keep on your computer, but once it's in `R` it still takes up the same amount of memory because it is all read into memory at once.
+
+## Other Formats - Compressed
+
+Many compressed file types are software specific, e.g. `.dta` files are specific to Stata. `R` has two compressed data file types, which differ in terms of how much they can store:
+  
+  - `.RDS` files, which are read in with `readRDS`
+  - `.RData` files, which are read in with `load` 
+  
+A single `.RDS` file can store one object, whereas a single `.RData` file can store multiple objects.
+  
+## Other Compressed File Types
+
+Working in teams that use multiple programming languages is common, and for this reason compressed file types that are not software specific are popular. 
+
+Two popular file types are part of the Apache Arrow project, which has an associated `R` package `arrow`.
+
+They are:
+
+- `.feather` files, which are read in with `read_feather`
+- `.parquet` files, which are read in with `read_parquet`
+
+## Faster Ways to Load `.csv` Files
+
+If you don't want to compress your data but do want to get it into `R` faster, there are at least two functions:
+
+- `read_csv` in the `readr` package
+- `fread` in the `data.table` package
+- `read_csv_arrow` in the `arrow` package
+
+We did not focus on these functions in this class. Rather, we focused on functions that are available in base `R` because functions that are available via packages are more likely to become obsolete, cease to be maintained, or run into issues working across platforms or operating systems.
+
+However, they're great options as long as they work!
 
 ## A Data Analysis Reminder
 

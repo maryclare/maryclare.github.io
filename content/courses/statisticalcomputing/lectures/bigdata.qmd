@@ -1,0 +1,642 @@
+---
+title: "Accessing Big Data"
+format: beamer
+---
+
+## Big Data
+
+In real life, folks often work with data sets that are big.
+
+What do we mean by "big"?
+
+For a single data set (table),
+
+- Many variables (columns)
+- Many observations (rows)
+
+Data may also be big because it is comprised of many data sets (tables).
+
+## Working with Big Data
+
+We want to avoid reading it all in at once! 
+
+This may mean:
+
+- Accessing individual data sets (tables) without reading them all into memory
+- Accessing parts (rows and/or columns) of an individual data set without reading it all in
+- Generally, learning about a data set without reading any of it in
+
+## How Big is Big?
+
+Let's consider a simple example of a matrix with numeric elements. 
+
+```{r, eval = TRUE, echo = TRUE}
+bigmat <- matrix(rnorm(1000000*100), 
+                 nrow = 1000000, 
+                 ncol = 100)
+```
+
+We can use the `object.size` function combined with the `print` function to see how much space this matrix takes up in memory.
+```{r, eval = TRUE, echo = TRUE}
+print(object.size(bigmat), unit = "GB")
+```
+
+## How Big is Too Big?
+
+```{r, eval = TRUE, echo = TRUE}
+bigmat <- matrix(rnorm(1000000*100), 
+                 nrow = 1000000, 
+                 ncol = 100)
+```
+
+How big can you make the matrix before you get an error?
+
+Try fixing the number of columns and changing the number of rows, and then fixing the number of rows and changing the number of columns.
+
+## Ways to Interact with Big Data
+
+Hopefully you're convinced that it's possible to run into data that's too big in real life!
+
+This necessitates different ways of storing and interacting with data that let us store data in smaller pieces.
+
+We'll talk about a two approaches:
+
+- HDF5 
+- SQL
+
+All require packages, which we may have more or less success installing.
+
+## Hierarchical Data Format Version 5
+
+HDF5 stands for Hierarchical Data Format$\dots$ Version 5.
+
+It is a format used to store collections of files that are hierarchically arranged into groups, and is most appropriate for storing numeric data.
+
+This file type is used for:
+
+- Financial data
+- Spatial data
+- Imaging data
+- Sequencing data
+
+FYI: HDF5 files are sometimes known as netCDF-4 files.
+
+## HDF5 in `R`
+
+Even though HDF5 files are generic and widely used, the preferred package for working with HDF5 files `rhdf5` is not available on `CRAN`.
+
+We need to get it from [Bioconductor](https://www.bioconductor.org) instead. 
+
+```{r, eval = FALSE, echo = TRUE}
+install.packages("BiocManager")
+BiocManager::install("rhdf5")
+```
+
+## HDF5 via an Example
+
+NASA uses HDF5 files and makes a lot of their data publicly available: [https://www.earthdata.nasa.gov](https://www.earthdata.nasa.gov).
+
+We're going to use their VESDR data as an example, you can read about it [here](https://asdc.larc.nasa.gov/project/DSCOVR/DSCOVR_EPIC_L2_VESDR_01).
+
+You can download the file from Canvas, `nasa.h5`.
+
+## Learning About The Data
+
+```{r, eval = TRUE, echo = TRUE}
+library(rhdf5)
+nasa <- H5Fopen("~/Downloads/nasa.h5")
+```
+
+## Learning About The Data
+
+Printing `nasa` will provide information on the groups of objects that the file contains.
+
+```{r, eval = TRUE, echo = TRUE}
+nasa
+```
+
+## Learning About The Data
+
+We can learn more about each group of objects by adding `&` and a name in single quotes after `nasa` and entering that into the console.
+
+Type in the following in the console:
+
+- `nasa&'tile10'`
+- `nasa&'tile11'`
+- `nasa&'tile20'`
+
+Do these create objects in your environment? What do they tell you?
+
+## Learning About The Data
+
+We can learn more about each individual object by adding another `&` and a name in single quotes and entering that into the console.
+
+Type in the following in the console:
+
+- `nasa&'tile10'&'01_LAI'`
+- `nasa&'tile10'&'06_QA_VESDR'`
+- `nasa&'tile11'&'01_LAI'`
+
+Do these create objects in your environment? What do they tell you?
+
+## Loading in a Piece of Data
+
+We can load in data by replacing each `&` with `$`.
+
+Type in the following in the console:
+
+- `lai1001 <- nasa$'tile10'$'01_LAI`
+
+What is `lai1001`?
+
+We can also subset to specific rows and columns:
+
+- `lai1001 <- nasa$'tile10'$'01_LAI'[1:5, 1:5]`
+
+How is this `lai1001` different from the first?
+
+## Making Things More Efficient
+
+Let's carefully examine the following
+
+- `lai1001 <- nasa$'tile10'$'01_LAI'`
+
+This actually loads in more data than we really need, and then subsets it. 
+
+This is wasteful and sometimes may not be feasible! Fortunately, we can rewrite things to directly retrieve the subsetted data.
+
+- `lai1001 <- nasa$'tile10/01_LAI'`
+
+## Making Things More Efficient - Subsetting
+
+We can also avoid reading an entire object into `R` and rather read in a subset of elements by combining subsetting and the `&` operator.
+
+- `lai1001 <- (nasa&'tile10/01_LAI')[1:5, 1:5]'`
+
+Compare to `nasa$'tile10/01_LAI'[1:5, 1:5]`, which is faster?
+
+## Closing Things Up
+
+Once we are done working with HDF5 files, we do need to take one additional step to close them.
+
+```{eval = TRUE, echo = TRUE}
+h5closeAll()
+```
+
+## Why Isn't HDF5 Enough?
+
+- Text data
+- Need for multiple users to access concurrently (sometimes)
+- Language for manipulation is limited and not very readable
+
+Enter SQL!
+
+## What is SQL?
+
+SQL short for "Structured Query Language" and is pronounced "Sequel."
+
+It is a language that can be used across platforms and within `R` for interacting with databases management systems.
+
+Note: SQL does not describe how the data is stored (that's determined by the database management system), just how you access it. 
+
+We're going to be agnostic and demonstrate SQL.
+
+## Using SQL
+
+Using SQL has roughly two steps:
+
+- Connecting with a database (varies)
+- Querying a database (always the same)
+
+We won't really delve into connecting with a database here because it's so heterogeneous. 
+
+The database may be stored online, on a server, or elsewhere, and you may need to work with the people who manage the data to figure out how to connect to it.
+
+We'll work through example with an "SQLite" database that we'll download to our computer.
+
+## Wait - what is a database?
+
+We've already been using a database when we learned about HFD5. 
+
+A database is a collection of tables
+
+Tables are collections of records which share the same fields (variables)
+
+Records are a collection of values for different fields (variables), with one value per field
+
+In our HDF5 example, we had a **hierarchical** database that contained many tables of the same dimensions with the same (numeric) fields. 
+
+In general, databases are more flexible, they can contain
+
+- Tables of different dimensions with different fields
+- Non-numeric e.g. character fields
+
+## Connecting To Our Database
+
+Our database is stored in `baseball.db` on Canvas. Go get it!
+
+Some information about quantities in this database is available here:  [http://m.mlb.com/glossary/standard-stats](http://m.mlb.com/glossary/standard-stats).
+
+To connect to this database we'll use the `DBI` and `RSQLite` libraries. 
+
+- We need `DBI` or something similar regardless of how our database is stored, to send SQL queries to our database
+- We need `RSQLite` because our database is stored as an "SQLite" database
+
+## Installing and Loading `DBI` and `RSQLite`
+
+Install them!
+```{r, eval = FALSE, echo = TRUE}
+install.packages("DBI")
+install.packages("RSQLite")
+```
+
+Load them!
+```{r, eval = TRUE, echo = TRUE}
+library(DBI)
+library(RSQLite)
+```
+
+## Connecting To Our Database
+
+The first step is to use the `dbDriver` function in the `DBI` library to indicate that we will be accessing a "SQLite" database.
+
+```{r, eval = TRUE, echo = TRUE}
+drv <- dbDriver("SQLite")
+```
+
+The next step is to connect to the database by using the `dbConnect` function in the `DBI` library.
+
+```{r, eval = TRUE, echo = TRUE}
+con <- dbConnect(drv, dbname = "~/Downloads/baseball.db")
+```
+
+## Learning About Our Database 
+
+\footnotesize
+```{r, eval = TRUE, echo = TRUE}
+file.info("baseball.db")
+```
+
+## Learning About Our Database 
+
+\footnotesize
+```{r, eval = TRUE, echo = TRUE}
+dbListTables(con)
+```
+
+## Learning About Our Database 
+
+\footnotesize
+```{r, eval = TRUE, echo = TRUE}
+dbListFields(con, "Master") 
+```
+
+## Importing Data From Our Database
+
+To import data from our database, we need to indicate:
+
+- Which table we want data from
+- Which fields (variables) we are interested in
+
+We use SQL to communicate what we want
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "SELECT playerID, yearID, AB, H, HR FROM Batting")
+```
+
+## What Do We Get?
+
+\footnotesize
+```{r, eval = TRUE, echo = TRUE}
+str(db)
+```
+
+## SQL Is Not Case Sensitive
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "Select playerID, yearID, AB, h, HR FROM Batting")
+```
+
+That said - a common practice for readability is to type SQL commands (here, "Select" and "From") in all caps like we did originally.
+
+## SQL is Order Sensitive
+
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "SELECT yearID, playerID, AB, H, HR FROM Batting")
+```
+
+## SQL Allows Line Breaks
+
+Across all coding languages, extremely long lines of code that require scrolling to view are discouraged.
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "SELECT 
+  playerID, yearID, AB, H, HR 
+  FROM 
+  Batting")
+```
+
+## Getting All of the Fields (Variables)
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(con, "Select * FROM Batting")
+```
+
+## Getting All of the Fields (Variables)
+
+\footnotesize
+```{r, eval = TRUE, echo = TRUE}
+str(db)
+```
+
+
+## More Complicated Requests
+
+SQL allows us to easily: 
+
+- Reorder the table before importing it into `R`
+- Request a subset of records (rows/observations)
+
+## Requesting a Sorted Table
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "SELECT * FROM Salaries ORDER BY Salary")
+```
+
+## Requesting a Sorted Table (Decreasing)
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "SELECT * FROM Salaries ORDER BY Salary DESC")
+```
+
+## Subsetting Based on Ordering
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "SELECT * FROM Salaries 
+  ORDER BY Salary DESC 
+  LIMIT 5")
+```
+
+## Peeking At the Data
+
+We can also use LIMIT to just peek at the data if we don't assign values.
+
+```{r, eval = TRUE, echo = TRUE}
+dbGetQuery(con, "SELECT * FROM Salaries LIMIT 5")
+```
+
+## Subsetting Based on Conditions
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "SELECT PlayerID, yearID, AB, H 
+  FROM Batting 
+  WHERE AB > 100 AND H > 0")
+```
+
+## Subsetting Based on Conditions
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "SELECT *
+  FROM Master
+  WHERE nameLast IN (\"Alou\", \"Griffey\")")
+```
+
+## Subsetting Based on Conditions
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "SELECT *
+  FROM Master
+  WHERE nameLast LIKE '%riff%'")
+```
+
+## What is LIKE doing?
+
+- '%' Matches everything before the \%
+- '_' Matches before and after the \_, allows an arbitrary character in between
+- '[]' 	Matches before and after the \[\] sign, allows any character in the brackets in between
+- '[^]' Matches before and after the \[\] sign, allows any character expect those after \^ in the brackets in between
+- '[-]'	Matches before and after the \[\] sign, allows any character between the characters separated by \- in the brackets in between
+
+## Subsetting Based on Conditions
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "SELECT *
+  FROM Master
+  WHERE birthCountry == 'P.R.' 
+  AND 
+  birthYear LIKE '198%'")
+```
+
+## Summarizing Data
+
+```{r, eval = TRUE, echo = TRUE}
+dbGetQuery(
+  con, 
+  "SELECT MIN(AB), AVG(AB), MAX(AB) FROM Batting")
+```
+
+## Summarizing Data
+
+```{r, eval = TRUE, echo = TRUE}
+dbGetQuery(
+  con, 
+  "SELECT COUNT(*) FROM Batting")
+```
+
+Does it matter if there is an asterisk or one or more variable names between the parentheses?
+
+## Transforming Variables with Arithmetic
+
+SQL can create new variables from existing variables using basic elementwise arithmetic.
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "SELECT AB, H, H*AB 
+  FROM Batting")
+```
+
+The name of the new variable will be the text describing the operation you used to create it. This is not great, let's see how to fix this.
+
+```{r, eval = TRUE, echo = TRUE}
+names(db)
+```
+
+## Renaming Fields (Variables)
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "SELECT AB, H, H*AB AS HAB
+  FROM Batting")
+```
+
+```{r, eval = TRUE, echo = TRUE}
+names(db)
+```
+
+## Be Careful!
+
+```{r, eval = TRUE, echo = TRUE}
+dbGetQuery(con, "SELECT AB, H, H/AB 
+           FROM Batting LIMIT 7")
+```
+
+## Why?!?
+
+```{r, eval = TRUE, echo = TRUE}
+str(dbGetQuery(con, "SELECT AB, H, H/AB 
+               FROM Batting"))
+```
+
+## Transforming Then Summarizing
+
+```{r, eval = TRUE, echo = TRUE}
+dbGetQuery(con, 
+"SELECT MIN(H/CAST(AB AS REAL)) FROM Batting")
+```
+
+## Summarizing After Grouping
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(con, 
+                 "SELECT playerID, SUM(salary) 
+                 FROM Salaries GROUP BY playerID")
+```
+
+```{r, eval = TRUE, echo = TRUE}
+str(db)
+```
+
+## Summarizing After Grouping and Aggregating
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(con, 
+"SELECT playerID
+FROM batting
+WHERE yearID >= 2005      
+GROUP BY playerID
+HAVING SUM(RBI) >= 500")
+```
+
+```{r, eval = TRUE, echo = TRUE}
+str(db)
+```
+
+## Ordering After Grouping and Aggregating
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(con, 
+"SELECT playerID
+FROM batting
+WHERE yearID >= 2005      
+GROUP BY playerID
+HAVING SUM(RBI) >= 500
+ORDER BY SUM(RBI) DESC")
+```
+
+```{r, eval = TRUE, echo = TRUE}
+str(db)
+```
+
+## Joins (Merging Multiple Data Sets)
+
+An underratedly tricky but important task in real life is merging or joining data sets by one or more common records that are shared between them. 
+
+SQL can help us do this! 
+
+We'll learn how to do this in `R` later.
+
+There are three types of joins:
+
+- Inner joins (keep rows common to both datasets)
+- Left joins (keep rows in the dataset on the left)
+- Right joins (keep rows in the dataset on the right)
+
+Left and right refer to where in the SQL command the dataset appears.
+
+## An Inner Join Example
+
+```{r, eval = TRUE, echo = TRUE}
+dbListFields(con, "Batting") 
+```
+
+```{r, eval = TRUE, echo = TRUE}
+dbListFields(con, "Master") 
+```
+
+## How do we do an inner join?
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(con,
+"SELECT m.nameFirst First, m.nameLast Last, 
+sum(RBI) as RBI_TOTAL
+FROM batting b
+INNER JOIN master m ON b.playerID == m.playerID
+WHERE yearID >= 2005
+GROUP BY b.playerID
+HAVING RBI_total >= 500
+ORDER BY -RBI_total")
+```
+
+## Left Join Example
+
+```{r, eval = TRUE, echo = TRUE}
+dbGetQuery(con, "SELECT * FROM SchoolsPlayers")
+```
+
+```{r, eval = TRUE, echo = TRUE}
+dbListFields(con, "AwardsPlayers")
+```
+
+```{r, eval = TRUE, echo = TRUE}
+dbGetQuery(con, "SELECT DISTINCT(awardid) FROM AwardsPlayers")
+```
+
+## How do we do the left join?
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(con,
+"SELECT roy.playerID playerID, roy.yearID year, lgID league, schoolID
+FROM AwardsPlayers roy
+LEFT JOIN
+(SELECT * FROM SchoolsPlayers) c
+ON c.playerID == roy.playerID
+WHERE awardID LIKE \"Rookie%\"")
+```
+
+## Closing Things Up
+
+```{r, echo = TRUE, eval = TRUE}
+dbDisconnect(con)
+dbUnloadDriver(drv)
+```
+
+## More Information
+
+This is only the tip of the iceberg in terms of what you can do with SQL.
+
+Here's one handy reference for learning more: [https://sqlzoo.net/wiki/SQL_Tutorial](https://sqlzoo.net/wiki/SQL_Tutorial)
