@@ -145,7 +145,7 @@ We can load in data by replacing each `&` with `$`.
 
 Type in the following in the console:
 
-- `lai1001 <- nasa$'tile10'$'01_LAI`
+- `lai1001 <- nasa$'tile10'$'01_LAI'`
 
 What is `lai1001`?
 
@@ -171,7 +171,7 @@ This is wasteful and sometimes may not be feasible! Fortunately, we can rewrite 
 
 We can also avoid reading an entire object into `R` and rather read in a subset of elements by combining subsetting and the `&` operator.
 
-- `lai1001 <- (nasa&'tile10/01_LAI')[1:5, 1:5]'`
+- `lai1001 <- (nasa&'tile10/01_LAI')[1:5, 1:5]`
 
 Compare to `nasa$'tile10/01_LAI'[1:5, 1:5]`, which is faster?
 
