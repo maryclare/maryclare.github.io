@@ -498,6 +498,21 @@ db <- dbGetQuery(
 names(db)
 ```
 
+## Renaming Fields (Variables)
+
+Tip: You can skip the "AS"
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "SELECT AB, H, H*AB HAB
+  FROM Batting")
+```
+
+```{r, eval = TRUE, echo = TRUE}
+names(db)
+```
+
 ## Be Careful!
 
 ```{r, eval = TRUE, echo = TRUE}
@@ -604,20 +619,29 @@ ORDER BY -RBI_total")
 
 ## Left Join Example
 
+\footnotesize
+
+Goal: Find out where every Rookie of the Year winner went to school.
+
 ```{r, eval = TRUE, echo = TRUE}
-dbGetQuery(con, "SELECT * FROM SchoolsPlayers")
+dbGetQuery(con, "SELECT * FROM SchoolsPlayers LIMIT 5")
 ```
 
+## Left Join Example
+
+\footnotesize
 ```{r, eval = TRUE, echo = TRUE}
 dbListFields(con, "AwardsPlayers")
 ```
 
 ```{r, eval = TRUE, echo = TRUE}
-dbGetQuery(con, "SELECT DISTINCT(awardid) FROM AwardsPlayers")
+dbGetQuery(con, "SELECT DISTINCT(awardid) FROM AwardsPlayers LIMIT 5")
 ```
+
 
 ## How do we do the left join?
 
+\footnotesize 
 ```{r, eval = TRUE, echo = TRUE}
 db <- dbGetQuery(con,
 "SELECT roy.playerID playerID, roy.yearID year, lgID league, schoolID
@@ -626,6 +650,13 @@ LEFT JOIN
 (SELECT * FROM SchoolsPlayers) c
 ON c.playerID == roy.playerID
 WHERE awardID LIKE \"Rookie%\"")
+```
+
+## How do we do the left join?
+
+\footnotesize
+```{r, eval = TRUE, echo = TRUE}
+str(db)
 ```
 
 ## Closing Things Up
