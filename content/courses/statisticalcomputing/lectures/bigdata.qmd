@@ -527,6 +527,13 @@ str(dbGetQuery(con, "SELECT AB, H, H/AB
                FROM Batting"))
 ```
 
+## Be Careful!
+
+```{r, eval = TRUE, echo = TRUE}
+dbGetQuery(con, "SELECT AB, H, H/CAST(AB AS REAL) 
+           FROM Batting LIMIT 7")
+```
+
 ## Transforming Then Summarizing
 
 ```{r, eval = TRUE, echo = TRUE}

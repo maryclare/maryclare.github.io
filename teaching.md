@@ -19,6 +19,8 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
   * Functions ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/functions.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/functions.qmd))
   * Data ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/data.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/data.qmd))
   * Big Data ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/bigdata.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/bigdata.qmd))
+  * Lists ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/lists.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/lists.qmd))
+
 - Problem Sets:
   * Due 2/12 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.qmd))
   * Due 2/26 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.qmd))
