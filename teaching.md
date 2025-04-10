@@ -36,6 +36,7 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
   * Other Data Examples ([`sportsref_download_5.txt`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_5.txt), [`sportsref_download_6.tsv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_6.tsv), [`sportsref_download_7.txt`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_7.txt), [`sportsref_download_8.txt`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_8.txt))
   * Excel Data Example ([`sportsref_download.xls`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download.xls))
   * Reading in Data ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/reading_data.R))
+  * Massachusetts Employment Data ([`CESReport.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/CESReport.csv))
   
 ### Statistical Learning
 
