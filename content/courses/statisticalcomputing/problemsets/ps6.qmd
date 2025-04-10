@@ -19,7 +19,7 @@ Keep your rendered `.pdf` to no more than 5 pages. Only provide code in the rend
 
 (f) What fruit has the highest retail price? Print the code you use determine this to the rendered `.pdf`.
 
-(g) What fruit has the price, normalized for quantity (this is the `CupEquivalentPrice` variable)? Print the code you use determine this to the rendered `.pdf`.
+(g) What fruit has the highest price, normalized for quantity (this is the `CupEquivalentPrice` variable)? Print the code you use determine this to the rendered `.pdf`.
 
 (h) How many fresh fruits are described in this dataset? Print the code you use determine this to the rendered `.pdf`.
 
