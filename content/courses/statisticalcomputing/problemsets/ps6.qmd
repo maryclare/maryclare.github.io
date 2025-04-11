@@ -29,11 +29,6 @@ Keep your rendered `.pdf` to no more than 5 pages. Only provide code in the rend
 
 (a) Read this data into `R` using `read.csv`. You want to obtain a data frame with 172 observations and 15 variables. Print the code you use determine this to the rendered `.pdf`.
 
-```{r, eval = TRUE, echo = FALSE}
-data <- read.csv("~/Downloads/CESReport.csv",
-                 skip = 6)
-```
-
 (b) What are the modes of the variables in this data?
 
 (c) What happens if you apply `as.numeric` to the  `Year` variable? Explain in at most sentence.
@@ -43,8 +38,6 @@ data <- read.csv("~/Downloads/CESReport.csv",
 3. For this problem, we'll keep working with the baseball database that we have used in class. 
 
 (a) Create a table with 1 rows and 3 columns, where each column corresponds to one of the following datasets, "Salaries", "Master", "Batting", and each element describes the number of observations in the corresponding dataset using `kable`. Make sure that the table is self contained and readable. Print the code you use obtain the number of observations per dataset to the rendered `.pdf`.
-
-(b) Using `dbGetQuery`, read in all observations for all variables in the "Batting" data. Print the code you use to the rendered `.pdf`.
 
 (b) Using `dbGetQuery`, read in all observations for all variables in the "Batting" data. Print the code you use to the rendered `.pdf`.
 
