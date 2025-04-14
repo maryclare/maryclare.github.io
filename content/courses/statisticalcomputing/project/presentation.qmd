@@ -1,0 +1,21 @@
+---
+title: "Presentation Expectations"
+format: pdf
+---
+
+Your presentation will be worth 10 points total, with:
+
+* 8 points attributed to your presentation itself, focused on:
+  * Quality of presentation 
+  * Clarity of organization
+  * Legibility of text and/or figures
+* 2 points attributed to your answering of questions from classmates
+
+Presentations will be three minutes long, which will go quickly! They should be made up of no more than three slides. I suggest:
+
+* Slide 1: Introduction and relationship to what we did in class (30 seconds)
+* Slide 2: Demonstration of the main thing you explored (2 minutes)
+* Slide 3: Conclusions and extensions (30 seconds)
+
+
+

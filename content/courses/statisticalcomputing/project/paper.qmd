@@ -1,0 +1,16 @@
+---
+title: "Project Paper Expectations"
+format: pdf
+---
+
+Your final project paper will be worth 30 points total. It should be written in Quarto and submitted as (1) an `.qmd` file that reproduces the final project paper and (2) a `.pdf` file.
+
+They should be at most 1,000 words of printed text (which corresponds to 4 pages, double spaced). The word count does not include code, text in Figures or Tables, or references. They should be comprised of:
+
+* An Introduction that explains the motivation for what your project focuses on
+* A Demonstration of the focus of your project, which incorporates code to demonstrate the topic you are focusing on
+* A Discussion of how the Demonstration relates to the motivation of what your project focuses on, and a short review of additional or competing solutions to the problem(s) that motivated what your project focuses on
+
+Your project should contain references. Any figures included should be self-contained and legible. Please make reasonable font size and style choices, e.g. use a 12 point serif font.
+
+The project should be written from the perspective of teaching your classmates a new concept, beyond what we have learned in class. Think of writing the type of informative instructional `R` blog post you would like to read, or a helpful package vignette. 

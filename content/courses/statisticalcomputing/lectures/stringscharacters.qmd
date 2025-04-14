@@ -1,0 +1,301 @@
+---
+title: "Strings/Characters"
+format: beamer
+---
+
+## What is a string?
+
+A string is a collection of characters. It can be very helpful to be able to manipulate strings to make data usable.
+
+## Strings via an Example
+
+Let's consider the Celtics data on my [teaching page](https://maryclare.github.io/teaching.html), 
+
+```{r, eval = FALSE, echo = TRUE}
+data <- 
+  read.delim("https://.../sportsref_download_5.txt")
+```
+
+```{r, eval = TRUE, echo = FALSE}
+data <- read.delim("https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_5.txt")
+```
+
+This data has 3 character variables:
+
+- `Player`, player name
+- `Pos`, player position
+- `Awards`, player awards
+
+## Counting the Number of Characters
+
+The function `nchar` applied to a string counts the number of characters.
+
+For example, 
+
+```{r, eval = TRUE, echo = TRUE}
+nchar("Celtics")
+```
+
+When applied to a vector of strings, `nchar` counts the number of characters per element of the vector.
+
+```{r, eval = TRUE, echo = TRUE}
+nchar(data$Pos)
+```
+
+## Subsetting a String By Character Position
+
+Sometimes we might want to take a substring by extracting the characters in certain positions, e.g. we may want to extract just the first character.
+
+```{r, eval = TRUE, echo = TRUE}
+substr(data$Pos, 1, 1)
+```
+
+The first number tells `substr` the position of the first character to extract, and the last number tells `substr` the position of the last character.
+
+
+```{r, eval = TRUE, echo = TRUE}
+substr(data$Pos, 2, 2)
+```
+
+Note - if a string only has one character, then extracting the second character returns nothing, `""`.
+
+## Subsetting a String By Character Position
+
+You can pass **vectors** of starting and ending positions to `substr`. For instance, suppose you wanted to extract the last letter of variable `V2` for each player. 
+
+How would you do it?
+
+## Subsetting a String By Character Position
+
+We can create new variables by subsetting, e.g. we might want to make a new variable based on `Pos` that just indicates whether a player is a center, a forward, or a guard.
+
+```{r, eval = TRUE, echo = TRUE}
+data$CGF <- ifelse(nchar(data$Pos) == 1, data$Pos,
+                   substr(data$Pos, 2, 2))
+```
+
+```{r, eval = TRUE, echo = TRUE}
+table(data$CGF)
+```
+
+## Splitting Strings
+
+Suppose we want to break a string apart. For instance, we may want to do this if we want to create separate variables for first and last name.
+
+The `strsplit` function takes a vector of strings and splits them wherever the string indicated by the `split` argument appears.
+
+```{r, eval = TRUE, echo = TRUE}
+names <- strsplit(data$Player, split = " ")
+```
+
+It returns a **list** with the same length as the vector of strings. 
+
+Each element of the list has a variable number of elements, depending on how the string used to split appeared.
+
+## What `strsplit` Returns
+
+```{r, eval = TRUE, echo = TRUE}
+names[[1]]
+```
+
+```{r, eval = TRUE, echo = TRUE}
+names[[13]]
+```
+
+We will want to manipulate the output of `strsplit` using the functions we learned about for working with lists, `lapply` and `unlist`.
+
+## Summarizing Strings Created by `strsplit`
+
+We can summarize the number of substrings created by splitting player names whereever a space appears.
+
+```{r, eval = TRUE, echo = TRUE}
+table(unlist(lapply(names, length)))
+```
+
+## Extracting Individual Substrings
+
+Since the player's first name is always the first substring returned by splitting on spaces, we can create a new variable that corresponds to the first substring.
+
+```{r, echo = TRUE, eval = TRUE}
+data$First <- 
+  unlist(
+    lapply(
+      strsplit(data$Player, " "), 
+      function(x) {x[1]}))
+```
+
+## Extracting and Combining Individual Substrings
+
+Some players have last names that include a space, which leads to last names being made up of multiple substrings created by splitting on spaces. 
+
+This means that creating a last name variable will require learning how to **combine** strings.
+
+## Combining Strings
+
+The `paste` function allows us to combine strings. 
+
+It takes a collection of strings and an argument called `sep`, which describes how the strings are separated when combined.
+
+```{r, eval = TRUE, echo = TRUE}
+paste("Boston", "Celtics")
+```
+
+The default when `sep` is not specified is to separate strings with a single space.
+
+```{r, eval = TRUE, echo = TRUE}
+paste("Boston", "Celtics", sep = " ")
+```
+
+```{r, eval = TRUE, echo = TRUE}
+paste("Boston", "Celtics", sep = "")
+```
+
+## Combining Strings
+
+The `paste` function can also be applied to vectors, in multiple ways.
+
+If multiple vectors are specified, it will paste them together element by element and return a vector that is the same length as the longest vector that was supplied.
+
+```{r, eval = TRUE, echo = TRUE}
+paste(c("Boston", "Los Angeles"), c("Celtics", "Lakers"))
+```
+
+## Does `paste` "Recycle"?
+
+Yes. Be careful!
+
+```{r, eval = TRUE, echo = TRUE}
+paste(c("Boston", "Los Angeles"), c("Celtics"))
+```
+
+It returns a vector that is the same length as the longest vector that was supplied.
+
+```{r, eval = TRUE, echo = TRUE}
+paste(c("Boston"), c("Celtics", "Lakers"))
+```
+
+
+## Combining Elements of a Vector
+
+Sometimes, we may want to use `paste` to combine all elements of a single vector. To do this, we need to specify the `collapse` argument instead of the `sep` argument.
+
+```{r, eval = TRUE, echo = TRUE}
+paste(c("Boston", "Celtics"), collapse = " ")
+```
+
+The string provided to `collapse` will be used to separate elements of the provided vector when they are combined.
+
+## Creating a Last Name Variable
+
+We can use what we just learned to create a last name variable!
+
+```{r, eval = TRUE, echo = TRUE}
+data$Last <- unlist(
+  lapply(strsplit(data$Player, " "), 
+         function(x) {
+           paste(x[2:length(x)], collapse = " ")}))
+```
+
+## Creating Indicators for Awards
+
+We can use what we've learned to create indicator variables for:
+
+- Defensive Player of the Year
+- All Star
+
+An indicator or dummy variable takes on value of $1$ or $0$ depending on whether or not a statement is true.
+
+Try it!
+
+## Searching Strings
+
+There are two useful functions for searching strings:
+
+- `grep`, which takes string to search for, a vector of strings to search in, and returns a vector of indices for which the searched string appears
+- `grepl`, which takes string to search for, a vector of strings to search in, and returns a logical vector of that is `TRUE` when the searched string appears
+
+```{r, eval = TRUE, echo = TRUE}
+grep("Ja", data$First)
+```
+
+```{r, eval = TRUE, echo = TRUE}
+grepl("Ja", data$First)
+```
+
+## Creating Indicators for Awards with `grepl`
+
+You can use `grepl` to create  Defensive Player of the Year and All Star indicators.
+ 
+Try it!
+
+## Modifying Strings with `sub` and `gsub`
+
+There are two useful functions for modifying strings via substitution:
+
+- `sub` takes a string to look for, a new string to replace the string to look for with (once), and a vector of strings to apply the replacement to
+- `gsub` takes a string to look for, a new string to replace the string to look for with (as many times as needed), and a vector of strings to apply the replacement to
+
+```{r, eval = TRUE, echo = TRUE}
+sub("-", "", data$Awards[1:4])
+```
+
+```{r, eval = TRUE, echo = TRUE}
+gsub("-", "", data$Awards[1:4])
+```
+
+## Demonstration of `sub` and `gsub`
+
+```{r, eval = TRUE, echo = TRUE}
+data$Awards[1:4]
+```
+
+```{r, eval = TRUE, echo = TRUE}
+sub("-", "", data$Awards[1:4])
+```
+
+```{r, eval = TRUE, echo = TRUE}
+gsub("-", "", data$Awards[1:4])
+```
+
+## Creating `CGF` Variable with `sub` or `gsub`
+
+We can remake the new variable based on `Pos` that just indicates whether a player is a center, a forward, or a guard more easily with `sub` or `gsub`. 
+
+Try it!
+
+## Finding Starting Position
+
+There are two useful functions for finding the position where a specified string begins:
+
+- `regexpr`, takes a string to look for (once), and a vector of strings to look in
+- `gregexpr`,  takes a string to look for (multiple times), and a vector of strings to look in
+
+## Finding Starting Position with `regexpr`
+
+```{r, eval = TRUE, echo = TRUE}
+data$Player[1]
+```
+
+```{r, eval = TRUE, echo = TRUE}
+regexpr("a", data$Player[1])
+```
+
+## Finding Starting Position with `regexpr`
+
+```{r, eval = TRUE, echo = TRUE}
+data$Player[1]
+```
+
+```{r, eval = TRUE, echo = TRUE}
+gregexpr("a", data$Player[1])
+```
+
+## Finding Starting Position for Vectors
+
+```{r, eval = FALSE, echo = TRUE}
+regexpr("a", data$Player)
+```
+
+```{r, eval = FALSE, echo = TRUE}
+gregexpr("a", data$Player)
+```
