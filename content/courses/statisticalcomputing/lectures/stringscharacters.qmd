@@ -61,7 +61,7 @@ Note - if a string only has one character, then extracting the second character 
 
 ## Subsetting a String By Character Position
 
-You can pass **vectors** of starting and ending positions to `substr`. For instance, suppose you wanted to extract the last letter of variable `V2` for each player. 
+You can pass **vectors** of starting and ending positions to `substr`. For instance, suppose you wanted to extract the last letter of variable `Player` for each player. 
 
 How would you do it?
 
@@ -234,14 +234,6 @@ There are two useful functions for modifying strings via substitution:
 
 - `sub` takes a string to look for, a new string to replace the string to look for with (once), and a vector of strings to apply the replacement to
 - `gsub` takes a string to look for, a new string to replace the string to look for with (as many times as needed), and a vector of strings to apply the replacement to
-
-```{r, eval = TRUE, echo = TRUE}
-sub("-", "", data$Awards[1:4])
-```
-
-```{r, eval = TRUE, echo = TRUE}
-gsub("-", "", data$Awards[1:4])
-```
 
 ## Demonstration of `sub` and `gsub`
 
