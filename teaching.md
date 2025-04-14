@@ -13,7 +13,7 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
 
 - [Syllabus](https://maryclare.github.io/content/courses/statisticalcomputing/syllabus/syllabus_535_spring2025.pdf)
   * Project Presentation Expectations ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/project/presentation.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/project/presentation.qmd))
-  * Project Presentation Expectations ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/project/paper.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/project/paper.qmd))
+  * Project Paper Expectations ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/project/paper.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/project/paper.qmd))
 - Typed Notes:
   * Coding, IDE ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/codingide.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/codingide.qmd))
   * Modes, Structures ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/modesstructures.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/modesstructures.qmd))
@@ -22,7 +22,7 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
   * Data ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/data.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/data.qmd))
   * Big Data ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/bigdata.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/bigdata.qmd))
   * Lists ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/lists.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/lists.qmd))
-  * Strings and Characters ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/strings.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/strings.qmd))
+  * Strings and Characters ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/stringsandcharacters.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/stringsandcharacters.qmd))
 - Problem Sets:
   * Due 2/12 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.qmd))
   * Due 2/26 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.qmd))
