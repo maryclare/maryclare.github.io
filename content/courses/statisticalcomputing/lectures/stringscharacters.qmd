@@ -291,3 +291,90 @@ regexpr("a", data$Player)
 ```{r, eval = FALSE, echo = TRUE}
 gregexpr("a", data$Player)
 ```
+
+## Regular Expressions
+
+Remember when we saw all of the options for the `LIKE` command in SQL, which allows us to find make more specific requests for text matches? 
+
+Regular expressions are a related concept.
+
+They allow us to look for broad types of patterns in strings.
+
+## Using Regular Expressions
+
+We can put letters in brackets to look for strings that contain any of the letters
+
+```{r, eval = TRUE, echo = TRUE}
+grep("[ao]", data$First)
+```
+
+We can also search for strings of a specific length that have arbitrary letters where ever a period appears
+
+```{r, eval = TRUE, echo = TRUE}
+grep("Jay..n", data$First)
+```
+
+## Special Characters
+
+Note - we just saw that when using regular expression functions e.g. `grep`, certain characters such as `[` or `.` have a special meaning.
+
+```{r, eval = TRUE, echo = TRUE}
+grep(".", data$Last)
+```
+
+To actually look for these characters, we need to either specify an argument `fixed = TRUE` **or** use escapes characters `\\` to tell `R` to look for the specific character 
+
+```{r, eval = TRUE, echo = TRUE}
+grep(".", data$Last, fixed = TRUE)
+```
+
+
+```{r, eval = TRUE, echo = TRUE}
+grep("\\.", data$Last)
+```
+
+## Reading in Text Line by Line
+
+We can read in a text file line by line using the `readLines` command.
+
+This creates a vector with one element per line.
+
+For instance, we could read any of our `.csv` or `.txt` files in this way.
+
+```{r, eval = FALSE, echo = TRUE}
+lines <- 
+  readLines("https://.../sportsref_download_5.txt")
+```
+
+## Reading in Text Line by Line
+
+You may frequently get the following warning when using `readLines`.
+
+```{r, eval = TRUE, echo = FALSE, warning=TRUE}
+lines <- 
+  readLines("https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_5.txt")
+```
+
+This means that the last line didn't technically end with a line break. 
+
+`R` doesn't like that, but everything will still work ok. 
+
+If you want to make the error message go away you can open the file in your preferred text editor and add a line break at the end, so that the file ends with an empty line.
+
+## What `readLines` Provides
+
+We can look at a few lines of output from `readLines` to get a sense of what it provides:
+
+```{r, eval = TRUE, echo = TRUE}
+lines[1]
+```
+
+```{r, eval = TRUE, echo = TRUE}
+lines[2]
+```
+
+## Reading in Data from HTML Source Code
+
+As an activity, we're going to use `readLines` and what we have learned about working with strings to read in the same Celtics data we've been using from the source code:
+
+[https://www.basketball-reference.com/teams/BOS/2024.html#all_per_minute_stats](https://www.basketball-reference.com/teams/BOS/2024.html#all_per_minute_stats)
