@@ -40,6 +40,7 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
   * Excel Data Example ([`sportsref_download.xls`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download.xls))
   * Reading in Data ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/reading_data.R))
   * Massachusetts Employment Data ([`CESReport.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/CESReport.csv))
+  * Getting data from `html` source ([`readhtml.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/readhtml.R))
   
 ### Statistical Learning
 
