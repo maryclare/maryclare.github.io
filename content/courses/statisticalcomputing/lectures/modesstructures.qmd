@@ -577,18 +577,49 @@ x["second"]
 
 ## Additional Functions for Summarizing Vectors
 
-- `table` returns a vector of counts that correspond to the number of times each unique value was observed, excluding missing values (`NA`'s)
+`table` returns a vector of counts that correspond to the number of times each unique value was observed, excluding missing values (`NA`'s)
 
 ```{r, eval = TRUE, echo = TRUE}
 r <- c(1, 2, 2, 4, 3)
 table(r)
 ```
 
-- `unique` returns a vector of the unique values that the vector takes on in the order that they appear, including `NA`
+## Additional Functions for Summarizing Vectors
+
+`unique` returns a vector of the unique values that the vector takes on in the order that they appear, including `NA`
 
 ```{r, eval = TRUE, echo = TRUE}
 unique(r)
 ```
+
+## Additional Functions for Summarizing Vectors
+
+`order` returns a vector of integers that correspond to the elements of the vector ordered from smallest to largest by default
+
+```{r, eval = TRUE, echo = TRUE}
+order(r)
+```
+
+To reverse the order, we can supply the argument `decreasing` and set it equal to `TRUE`
+
+```{r, eval = TRUE, echo = TRUE}
+order(r, decreasing = TRUE)
+```
+
+## Additional Functions for Summarizing Vectors
+
+`sort` returns elements of a vector ordered from smallest to largest by default
+
+```{r, eval = TRUE, echo = TRUE}
+sort(r)
+```
+
+To reverse the order, we can supply the argument `decreasing` and set it equal to `TRUE`
+
+```{r, eval = TRUE, echo = TRUE}
+sort(r, decreasing = TRUE)
+```
+
 
 ## Matrices
 
