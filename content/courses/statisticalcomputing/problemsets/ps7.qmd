@@ -13,8 +13,6 @@ format: pdf
 
 (c) Which fruit type is is prepared in the most different ways? Print the code you use to do this to the rendered `.pdf`.
 
-(c) Which fruit type is is prepared in the most different ways? Print the code you use to determine this to the rendered `.pdf`.
-
 (d) Create a table with 7 rows and 1 column, where each row corresponds to a different type of preparation (including no information on preparation) and each column corresponds to the number of fruits prepared in that way using `kable`. Make sure that the table is self contained and readable. Print the code you use to create this table to the rendered `.pdf`.
 
 2. Again, find the dataset summarizing some Massachusetts employment statistics called `CESReport.csv`. It was downloaded from here: [https://lmi.dua.eol.mass.gov/LMI/CurrentEmploymentStatistics](https://lmi.dua.eol.mass.gov/LMI/CurrentEmploymentStatistics)
