@@ -575,6 +575,21 @@ names(x) <- c("first", "second", "third")
 x["second"]
 ```
 
+## Additional Functions for Summarizing Vectors
+
+- `table` returns a vector of counts that correspond to the number of times each unique value was observed, excluding missing values (`NA`'s)
+
+```{r, eval = TRUE, echo = TRUE}
+r <- c(1, 2, 2, 4, 3)
+table(r)
+```
+
+- `unique` returns a vector of the unique values that the vector takes on in the order that they appear, including `NA`
+
+```{r, eval = TRUE, echo = TRUE}
+unique(r)
+```
+
 ## Matrices
 
 Like vectors, matrices are collections of elements that share the same mode. However, they have two dimensions (rows and columns) and accordingly, are indexed by pairs of indices.

@@ -90,6 +90,21 @@ Using `$` creates a vector - we can confirm.
 all.equal(stackloss$stack.loss, stack.loss)
 ```
 
+## Data Frames are Not Like Matrices
+
+You can grow a data frame by adding columns.
+
+You can create a new variable by assigning a vector with the same number of elements as the data frame has rows to the data frame using `$` and the name of the new variable.
+
+For example, we can create a new variable in the `stackloss` dataframe called `variable` that contains the order that each observation appears in.
+
+```{r, echo = TRUE, eval = FALSE}
+stackloss$variable <- 1:nrow(stackloss)
+```
+
+
+You can call the new variable whatever you want, it doesn't have to be `variable`.
+
 ## Can we turn a data frame back into a matrix?
 
 Sometimes!
