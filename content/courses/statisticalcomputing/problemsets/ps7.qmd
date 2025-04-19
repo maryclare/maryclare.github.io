@@ -23,7 +23,7 @@ Start by reading this data into `R` using `read.csv`, skipping the first six lin
 
 (b) Expanding on your code in (a), write a for loop over the columns that correspond to names of months that removes all commas and asterisks and then converts the values to numeric.
 
-(c) Summarize the month variable values in a table with 12 rows, one for each month, and 4 columns, one for the number of non-missing observations, one for the mean of the non-missing observations, and one for the standard deviation of the non-missing observations. Create this table using `kable`. Make sure that the table is self contained and readable. Print the code you use obtain the table to the rendered `.pdf`.
+(c) Summarize the month variable values in a table with 12 rows, one for each month, and 3 columns, one for the number of non-missing observations, one for the mean of the non-missing observations, and one for the standard deviation of the non-missing observations. Create this table using `kable`. Make sure that the table is self contained and readable. Print the code you use obtain the table to the rendered `.pdf`.
 
 (d) Your table in (c) will show that different months are missing different amounts of data. In at most two sentences and based on examining which rows of the data are missing, explain the missing data.
 
