@@ -42,6 +42,7 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
   * Reading in Data ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/reading_data.R))
   * Massachusetts Employment Data ([`CESReport.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/CESReport.csv))
   * Getting data from `html` source ([`readhtml.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/readhtml.R))
+  * Manipulating Data ([`manipulation.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/manipulation.R))
   
 ### Statistical Learning
 
