@@ -7,7 +7,8 @@ flights <- nycflights13::flights
 flights <- as.data.frame(flights)
 
 firstof <- filter(flights, month == 1, day == 1)
-firstof <- flights[flights$month == 1 & flights$day == 1, ]
+firstof <- flights[flights$month == 1 & 
+                     flights$day == 1, ]
 
 novdec <- filter(flights, month == 11 | month == 12)
 novdec <- filter(flights, month %in% c(11, 12))
@@ -16,7 +17,8 @@ novdec <- flights[flights$month == 11 |
 novdec <- flights[flights$month %in% c(11, 12), ]
 
 notdel <- filter(flights, 
-                 !(arr_delay > 120 | dep_delay > 120))
+                 !(arr_delay > 120 | 
+                     dep_delay > 120))
 notdel <- flights[!is.na(flights$arr_delay) & 
                     !is.na(flights$dep_delay) & 
                     !(flights$arr_delay > 120 | 
@@ -92,15 +94,18 @@ renamed$tail_num <- flights$tailnum
 renamed$tailnum <- NULL
 
 renamed <- flights
-names(renamed)[names(renamed) == "tailnum"] <- "tail_num"
+names(renamed)[names(renamed) == "tailnum"] <- 
+  "tail_num"
 
 flightsnew <- mutate(flights,
                      gain = dep_delay - arr_delay,
                      speed = distance / air_time * 60)
 
 flightsnew <- flights
-flightsnew$gain <- flightsnew$dep_delay - flightsnew$arr_delay
-flightsnew$speed <- flightsnew$distance/flightsnew$air_time * 60
+flightsnew$gain <- flightsnew$dep_delay - 
+  flightsnew$arr_delay
+flightsnew$speed <- flightsnew$distance/
+  flightsnew$air_time * 60
 
 flightsnew2 <- mutate(flights,
                       gain = dep_delay - arr_delay,
@@ -115,12 +120,12 @@ flightsnew2$gain_per_hour <-  flightsnew2$gain/flightsnew2$hours
 flightsnew3 <- transmute(flights,
                          gain = dep_delay - arr_delay,
                          hours = air_time / 60,
-                         gain_per_hour = gain / hour)
+                         gain_per_hour = gain / hours)
 flightsnew3 <- flights
 flightsnew3$gain <- flightsnew3$dep_delay - flightsnew3$arr_delay
-flightsnew3$gain_per_hour <-  flightsnew3$gain/flightsnew3$hour
-flightsnew3$speed <- flightsnew3$distance/flightsnew3$air_time * 60
-flightsnew3 <- flightsnew3[, c("gain", "gain_per_hour", "speed")]
+flightsnew3$hours <- flightsnew3$air_time / 60
+flightsnew3$gain_per_hour <-  flightsnew3$gain/flightsnew3$hours
+flightsnew3 <- flightsnew3[, c("gain", "hours", "gain_per_hour")]
 
 flightsnew4 <- transmute(flights,
                          dep_time,
@@ -129,9 +134,11 @@ flightsnew4 <- transmute(flights,
 
 flightsnew4 <- transmute(flights, 
                          dep_time, 
-                         dep_time_mins_since_midnight = 60 * (dep_time %/% 100) + dep_time %% 100,
+                         dep_time_mins_since_midnight = 
+                           60 * (dep_time %/% 100) + dep_time %% 100,
                          sched_dep_time, 
-                         sched_time_mins_since_midnight = 60 * (sched_dep_time %/% 100) + sched_dep_time %% 100)
+                         sched_time_mins_since_midnight = 
+                           60 * (sched_dep_time %/% 100) + sched_dep_time %% 100)
 
 summarise(flights, delay = mean(dep_delay, na.rm = TRUE))
 mean(flights$dep_delay, na.rm = TRUE)
@@ -160,13 +167,14 @@ means <- merge(distmeans, dep_delaymeans, by = c("month", "year"))
 flightsnew5 <- mutate(group_by(flights, year, month), 
                       n_bymonth = n())
 
-npermonth <- aggregate(flights$month, list("month" = flights$month), length)
+npermonth <- aggregate(flights$month, list("month" = flights$month), 
+                       length)
 npermonth[ncol(npermonth)] <- "n_bymonth"
 flightsnew5 <- merge(flights, npermonth, by = "month")
 
-summarise(group_by(flights, year, month), 
-          delay = mean(dep_delay, na.rm = TRUE),
-          count = n())
+flightsnew5 <- mutate(group_by(flights, year, month), 
+                      n_bymonth = n(),
+                      dep_delay_bymonth = mean(dep_delay, na.rm = TRUE))
 
 by_dest <- group_by(flights, dest)
 delay <- summarise(by_dest,
@@ -177,7 +185,9 @@ delay <- filter(delay, count > 20, dest != "HNL")
 delay
 
 grouped_flights <- group_by(flights, dest)
-unfiltered_summary <- summarise(grouped_flights, count = n(), dist = mean(distance, na.rm = TRUE), delay = mean(arr_delay, na.rm = TRUE))
+unfiltered_summary <- summarise(grouped_flights, count = n(), 
+                                dist = mean(distance, na.rm = TRUE), 
+                                delay = mean(arr_delay, na.rm = TRUE))
 delays <- filter(unfiltered_summary, count > 20, dest != "HNL")
 
 delays <- 
@@ -188,6 +198,20 @@ delays <-
     dist = mean(distance, na.rm = TRUE),
     delay = mean(arr_delay, na.rm = TRUE)
   ) %>%
-  filter(count > 20, dest != "HNL")
+  filter(count > 20, dest != "HNL") %>% arrange(desc(count))
+
+
+
+flights %>% 
+  group_by(carrier) %>%
+  summarize(dist = max(distance, na.rm = TRUE)) %>%
+  arrange(desc(dist))
+
+flights %>% filter(carrier == "HA") %>% summarize(num = n())
+
+flights %>% filter(carrier == "HA") %>% select(distance, origin)
+
+
+
 
 
