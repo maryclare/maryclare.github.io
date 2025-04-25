@@ -19,12 +19,12 @@ Keep your rendered `.pdf` to no more than 5 pages. Only provide code in the rend
 
 (b) Create a new variable called `YTD` which is the sum of the month variables, omitting missing values. Print the code you use to do this to the rendered `.pdf`. Note: You may want to revisit `apply` or `rowSums`.
 
-(b) Using `group_by` and `mutate`, create a new variable called `mYTD` which gives the average value of `YTD` across years within sector, as described by `Description`. Print the code you use to do this to the rendered `.pdf`.
+(c) Using `group_by` and `mutate`, create a new variable called `mYTD` which gives the average value of `YTD` across years within sector, as described by `Description`. Print the code you use to do this to the rendered `.pdf`.
 
-(c) Using `kable`, `arrange`, and `select`, create a table that provides `Year`, `Description`, `YTD`, and `mYTD` for the years and sectors that had the three highest values of `YTD`/`mYTD`. Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`.
+(d) Using `kable`, `arrange`, and `select`, create a table that provides `Year`, `Description`, `YTD`, and `mYTD` for the years and sectors that had the three highest values of `YTD`/`mYTD`. Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`.
 
-(d) Using `kable`, `arrange`, and `select`, create a table that provides `Year`, `Description`, `YTD`, and `mYTD` for the years and sectors that had the three lowest values of `YTD`/`mYTD`. Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`.
+(e) Using `kable`, `arrange`, and `select`, create a table that provides `Year`, `Description`, `YTD`, and `mYTD` for the years and sectors that had the three lowest values of `YTD`/`mYTD`. Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`.
 
-(e) Explain what you observe in (c) and (d) in at most two sentences.
+(f) Explain what you observe in (d) and (e) in at most two sentences.
 
-(f) Using `kable`, `arrange`, and `summarize`, create a table with 1 column and 34 rows that is the sorted list of sectors ordered from most to least variable across years in terms of year to date employment as measured by `YTD`. Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`.
+(g) Using `kable`, `arrange`, and `summarize`, create a table with 1 column and 34 rows that is the sorted list of sectors ordered from most to least variable across years in terms of year to date employment as measured by `YTD`. Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`.
