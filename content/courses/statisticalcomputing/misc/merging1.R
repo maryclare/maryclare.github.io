@@ -53,6 +53,8 @@ batting <- batting %>%
 
 table(batting$nid)
 
+batting %>% filter(nid > 1)
+
 batting <- batting %>% 
   group_by(playerID, yearID, stint) %>%
   mutate(nid = n())
@@ -93,4 +95,7 @@ new <- new %>%
 
 all.equal(new, db)
 
+master <- master %>% rename(playerid = playerID)
 
+new <- merge(batting, master, by.x = "playerID",
+             by.y = "playerid")
