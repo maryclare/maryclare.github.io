@@ -21,9 +21,9 @@ Keep your rendered `.pdf` to no more than 5 pages. Only provide code in the rend
 
 (c) Using `group_by` and `mutate`, create a new variable called `mYTD` which gives the average value of `YTD` across years within sector, as described by `Description`. Print the code you use to do this to the rendered `.pdf`.
 
-(d) Using `kable`, `arrange`, and `select`, create a table that provides `Year`, `Description`, `YTD`, and `mYTD` for the years and sectors that had the three highest values of `YTD`/`mYTD`. Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`.
+(d) Using `kable`, `arrange`, and `select`, create a table that provides `Year`, `Description`, `YTD`, and `mYTD` for the years and sectors that had the three highest values of `YTD`/`mYTD`. Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`. This table will have a total of 3 rows.
 
-(e) Using `kable`, `arrange`, and `select`, create a table that provides `Year`, `Description`, `YTD`, and `mYTD` for the years and sectors that had the three lowest values of `YTD`/`mYTD`. Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`.
+(e) Using `kable`, `arrange`, and `select`, create a table that provides `Year`, `Description`, `YTD`, and `mYTD` for the years and sectors that had the three lowest values of `YTD`/`mYTD`. Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`. This table will have a total of 3 rows.
 
 (f) Explain what you observe in (d) and (e) in at most two sentences.
 
