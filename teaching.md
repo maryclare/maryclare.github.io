@@ -32,6 +32,7 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
   * Due 4/16 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps6.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps6.qmd))
   * Due 4/23 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps7.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps7.qmd))
   * Due 4/30 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps8.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps8.qmd))
+  * Due 5/16 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps9.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps9.qmd))
 
 - Misc:
   * Demo ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.qmd))
