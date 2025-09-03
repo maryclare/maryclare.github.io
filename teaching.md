@@ -9,6 +9,15 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
 
 - [R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
+### Statistical Learning
+
+- [Syllabus](https://maryclare.github.io/content/courses/statisticallearning/syllabus/syllabus_statlearn_fall2025.pdf)
+- Typed Notes:
+  * Overview ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/1overview.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/1overview.Rmd))
+  * Statistical Learning ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/2statisticallearning.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/2statisticallearning.Rmd))
+  * Regression ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/3linearregression.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/3linearregression.Rmd))
+  * Classification ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/4classification.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/4classification.Rmd))
+
 ### Statistical Computing
 
 - [Syllabus](https://maryclare.github.io/content/courses/statisticalcomputing/syllabus/syllabus_535_spring2025.pdf)
@@ -49,15 +58,6 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
   * Merging Data ([`merging1.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging1.R)), ([`merging2.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging2.R),  ([`merging3.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging3.R))
   * Reshaping Data ([`reshape1.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/reshape1.R)), ([`reshape2.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/reshape2.R))
   
-### Statistical Learning
-
-- [Syllabus](https://maryclare.github.io/content/courses/statisticallearning/syllabus/syllabus_statlearn_fall2024.pdf)
-- Typed Notes:
-  * Overview ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/1overview.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/1overview.Rmd))
-  * Statistical Learning ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/2statisticallearning.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/2statisticallearning.Rmd))
-  * Regression ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/3linearregression.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/3linearregression.Rmd))
-  * Classification ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/4classification.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/4classification.Rmd))
-
 ### Time Series
 
 - [Syllabus](https://maryclare.github.io/content/courses/timeseries/syllabus/syllabus_697_spring2022.pdf)
