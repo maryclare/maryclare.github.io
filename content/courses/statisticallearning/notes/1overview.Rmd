@@ -26,7 +26,7 @@ Throughout, we will use the following notation:
 * $x_i = \left(\begin{array}{c} x_{i1} \\ \vdots \\ x_{ip} \end{array}\right)$ denotes the $p$ dimensional vector of input variables for observation $i$
 * $\boldsymbol x_j = \left(\begin{array}{c} x_{1j} \\ \vdots \\ x_{nj} \end{array}\right)$ denotes the $n$ dimensional vector of all observations of input variable $j$
 * $\boldsymbol y = \left(\begin{array}{c} y_{1} \\ \vdots \\ y_{n} \end{array}\right)$ denotes the $n$ dimensional vector observations of the quantity we want to predict or output variable
-* When outputs are observed, we denote our observed data as $\{(x1, y_1), \dots, (x_n, y_n)\}$.
+* When outputs are observed, we denote our observed data as $\{(x_1, y_1), \dots, (x_n, y_n)\}$.
 * We may sometimes drop the subscripts and capitalize to refer to an arbitrary, potentially not yet observed, input or output e.g. $X = (X_1,\dots, X_p)$ or $Y$.
 * We may denote estimators of unknown quantities by using the same notation but putting a hat on it, e.g. $\hat{\beta}$ refers to an estimator of an unknown parameter $\beta$.
 
