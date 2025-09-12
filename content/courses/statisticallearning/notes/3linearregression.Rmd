@@ -47,11 +47,11 @@ Going back to the idea that we assume that the true relationship between $X$ and
 
 When the simple linear model holds, the least squares estimates $\hat{\beta}_0$ and $\hat{\beta}_1$ are unbiased estimators for $\beta_0$ and $\beta_1$, i.e. $E[\hat{\beta}_0] = \beta_0$ and $E[\hat{\beta}_1] = \beta_1$. With some additional assumptions, specifically that the errors $\epsilon$ are independent, identically distributed, and have finite variance $\sigma^2 = \text{Var}[\epsilon] < \infty$, the variances of $\hat{\beta}_0$ and $\hat{\beta}_1$ under the simple linear model are 
 \begin{align*}
-\text{Var}[\hat{\beta}_0] = \sigma^2\left(\frac{1}{n} + \frac{\bar{x}^2}{\sum_{i = 1}^n (x_i - \bar{x})^2}\right)\text{, \quad}\text{Var}[\hat{\beta}_0] = \sigma^2\left(\frac{1}{\sum_{i = 1}^n (x_i - \bar{x})^2}\right).
+\text{Var}[\hat{\beta}_0] = \sigma^2\left(\frac{1}{n} + \frac{\bar{x}^2}{\sum_{i = 1}^n (x_i - \bar{x})^2}\right)\text{, \quad}\text{Var}[\hat{\beta}_1] = \sigma^2\left(\frac{1}{\sum_{i = 1}^n (x_i - \bar{x})^2}\right).
 \end{align*}
 We can estimate these variances by plugging in an estimate of $\sigma^2$, obtained by dividing the residual sum of squares by $n - 2$. The square root of the estimated variances is often called the **standard error**,
 \begin{align*}
-\text{SE}[\hat{\beta}_0]^2 = \left(\frac{\text{RSS}}{n-2}\right)\left(\frac{1}{n} + \frac{\bar{x}^2}{\sum_{i = 1}^n (x_i - \bar{x})^2}\right)\text{, \quad}\text{SE}[\hat{\beta}_0]^2 = \left(\frac{\text{RSS}}{n-2}\right)\left(\frac{1}{\sum_{i = 1}^n (x_i - \bar{x})^2}\right).
+\text{SE}[\hat{\beta}_0]^2 = \left(\frac{\text{RSS}}{n-2}\right)\left(\frac{1}{n} + \frac{\bar{x}^2}{\sum_{i = 1}^n (x_i - \bar{x})^2}\right)\text{, \quad}\text{SE}[\hat{\beta}_1]^2 = \left(\frac{\text{RSS}}{n-2}\right)\left(\frac{1}{\sum_{i = 1}^n (x_i - \bar{x})^2}\right).
 \end{align*}
 
 Standard errors can be used to obtain $100\times(1-\alpha)\%$  **confidence intervals**, which describes a range of values which are expected to cover the true value of the corresponding parameter in $100\times(1-\alpha)\%$ of repeated samples. An approximate $100\times(1-\alpha)\%$ confidence interval is 
