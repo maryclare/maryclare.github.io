@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This material is based on Chapter 3 of [Introduction to Statistical Learning (ISL)](https://www.statlearning.com) and parts of Chapter 3 of [Elements of Statistical Learning (ESL)](https://hastie.su.domains/ElemStatLearn/). We will tend to follow ISL more closely, and look to ESL for occasional additional higher level material.
 
-**Simple linear regression** relates a quantitative response $Y$ to a single predictor variable $Y$ by assuming 
+**Simple linear regression** relates a quantitative response $Y$ to a single predictor variable $X$ by assuming 
 
 \begin{align} 
 Y \approx \beta_0 + \beta_1 X \label{eq:slr}
@@ -90,7 +90,7 @@ As in simple linear regression, we estimate $\beta_0, \beta_1, \dots, \beta_p$ b
 \begin{align*}
 \sum_{i = 1}^n (y_i - b_0 - x_{i1} b_1 - \dots - x_{ip}b_p)^2,
 \end{align*}
-with respect to $b_0, b_1, \dots, b_p$. Importantly, there is only a unique minimizer of the leasst squares criterion when $p < n$, i.e. we have more observations than predictors, and when the predictors $\boldsymbol x_1, \dots, \boldsymbol x_p$ aren't too correlated with each other.
+with respect to $b_0, b_1, \dots, b_p$. Importantly, there is only a unique minimizer of the least squares criterion when $p < n$, i.e. we have more observations than predictors, and when the predictors $\boldsymbol x_1, \dots, \boldsymbol x_p$ aren't too correlated with each other.
 
 The least squares criterion evaluated at the estimates $\hat{\beta}_0, \hat{\beta}_1, \dots, \hat{\beta}_p$ is
 \begin{align}
