@@ -63,7 +63,7 @@ Above, the MSE is defined as a function of the training data, i.e. the $n$ obser
 We can imagine averaging this over all possible observations that we haven't seen before but may in the future.
 This quantity measures how well an estimate $\hat{f}$ of $f$ performs when used to fit data that we have not seen before.
 
-Having defined training and test MSE allows us to better define **overfitting**. A model that is **overfitting** will have a very low training MSE and a very low test MSE.
+Having defined training and test MSE allows us to better define **overfitting**. A model that is **overfitting** will have a very low training MSE and a very high test MSE.
 
 Unfortunately, we cannot compute the test MSE as defined, because the test MSE depends on data that we have not seen before. Fortunately, we can approximate it by repeatedly defining training data as a subset of our observed data, and defining test data as the remainder that was not used to fit the model. This procedure describes cross-validation, and we will return to it in future lectures.
 
