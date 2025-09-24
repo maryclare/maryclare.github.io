@@ -78,7 +78,7 @@ We can also interpret $R^2$ as a measure of the correlation between $X$ and $Y$,
 \begin{align*}
 r = \frac{\sum_{i = 1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i = 1}^n (x_i - \bar{x})^2}\sqrt{\sum_{i = 1}^n (y_i - \bar{y})^2}}.
 \end{align*}
-It can be shown that $R^2 = r$.
+It can be shown that $R^2 = r^2$.
 
 Most interesting questions involve more than one predictor variable, i.e. $X = (X_1, \dots, X_p)$ with $p > 1$. This requires a **multiple linear regression model**,
 \begin{align}
