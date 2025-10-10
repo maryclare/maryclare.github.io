@@ -23,7 +23,7 @@ If we want to predict future values of the output, it no longer makes sense to t
 \begin{align*}
 E[(Y - \hat{f}(X))^2]
 \end{align*}
-when $Y$ is qualitative. Rather, our goal will be to obtain predictions $\hat{Y}$ based on estimated functions of the inputs $\hat{f}(X)$ that correctly identify the value the observed outpout is most likely to take on, i.e. we want to obtain predictions $\hat{Y}$ from $\hat{f}(X)$ that satisfy $\hat{Y} = Y$ as often as possible. We refer to this as predictions that minimize the **error rate** and we refer to the estimated function $\hat{f}(X)$ mapping from $\hat{f}(X)$ to $\hat{Y}$ as a **classifier**.
+when $Y$ is qualitative. Rather, our goal will be to obtain predictions $\hat{Y}$ based on estimated functions of the inputs $\hat{f}(X)$ that correctly identify the value the observed output is most likely to take on, i.e. we want to obtain predictions $\hat{Y}$ from $\hat{f}(X)$ that satisfy $\hat{Y} = Y$ as often as possible. We refer to this as predictions that minimize the **error rate** and we refer to the estimated function $\hat{f}(X)$ mapping from $\hat{f}(X)$ to $\hat{Y}$ as a **classifier**.
 
 Let $I(y_i \neq \hat{y}_i)$ refer to an indicator function that is equal to $0$ if $y_i = \hat{y}_i$, i.e. if the prediction for the $i$-th training data point matches the observed value of the output, and $1$ otherwise. We can quantify the performance of a classifier on the training data via the **training error rate**,
 \begin{align*}
@@ -90,7 +90,7 @@ Similarly, the simplest parametric classifier is obtained by using linear regres
 \end{align*}
 with respect to $b_0, b_1, \dots, b_p$. Then predictions $\hat{Y}$ can be obtained by setting $\hat{Y} = I(\hat{\beta}_0+ \hat{\beta}_1 X_1 + \dots + \hat{\beta}_p X_p > 0.5)$. As in the regression case, there is only a unique minimizer of the least squares criterion when $p < n$, i.e. we have more observations than predictors, and when the predictors $\boldsymbol x_1, \dots, \boldsymbol x_p$ aren't too correlated with each other. We emphasize that this is only reasonable in the binary setting with $M = 2$ when the output is defined to take on values $0$ and $1$. 
 
-There are one obvious issue with using linear regression for classification in this way - it can produce nonsensical estimated probabilities that are less than $0$ or greater than $1$! This leads us to **logistic regression**, which is a special case of a **generalized linear model**. A generalized linear model is made up of:
+There is one obvious issue with using linear regression for classification in this way - it can produce nonsensical estimated probabilities that are less than $0$ or greater than $1$! This leads us to **logistic regression**, which is a special case of a **generalized linear model**. A generalized linear model is made up of:
 
 * A choice of **link function** $g(\cdot)$ that relates the conditional mean of an output $E[Y|X]$ to a linear function of the inputs $\beta_0 + \beta_1 X_1 + \dots + \beta_p X_p$, satisfying $E[Y|X] = g(\beta_0 + \beta_1 X_1 + \dots + \beta_p X_p)$;
 * An assumed conditional distribution of the output given values of the input.
@@ -107,7 +107,7 @@ which maps the real valued linear function $\beta_0 + \beta_1 X_1 + \dots + \bet
 Y|X\stackrel{indep.}{\sim} \text{Bernoulli}\left(\frac{1}{1 + \text{exp}\{-\beta_0 - \beta_1 X_1 - \dots - \beta_p X_p\}}\right).
 \end{align*}
 
-When we use a nonlinear model, we can still interpret nonzero $\beta_j$ for $j > 0$ as indicating the presence of a relationship between the outpout and the input, but the interpretation of individual $\beta_j$ for $j > 0$ changes. The interpretation will now describe how the log odds of $Y = 1$ change with changes in individual inputs $X_j$, where the log odds are 
+When we use a nonlinear model, we can still interpret nonzero $\beta_j$ for $j > 0$ as indicating the presence of a relationship between the output and the input, but the interpretation of individual $\beta_j$ for $j > 0$ changes. The interpretation will now describe how the log odds of $Y = 1$ change with changes in individual inputs $X_j$, where the log odds are 
 \begin{align*}
 \text{log}\left(\frac{\text{Pr}\left(Y = 1 | X\right)}{1 - \text{Pr}\left(Y = 1 | X\right)}\right).
 \end{align*}
@@ -122,9 +122,9 @@ Estimates of the logistic regression coefficients $\hat{\beta}_0, \hat{\beta}_1,
 \end{align*}
 with respect to $b_0, b_1, \dots, b_p$. This is a nonlinear function of $b_0, b_1, \dots, b_p$, and we will rely on statistical software to maximize it and find the maximum likelihood estimator $\hat{\beta}_0, \hat{\beta}_1, \dots, \hat{\beta}_p$. 
 
-This may seem new, we have already been using maximum likelihood in this class without explicitly saying it! The least squares estimator is the maximum likelihood estimator obtained by assuming that the outpout is conditionally normal given the inputs with mean $\beta_0 + \beta_1 X_1 + \dots + \beta_p X_p$ and constant variance!
+This may seem new, we have already been using maximum likelihood in this class without explicitly saying it! The least squares estimator is the maximum likelihood estimator obtained by assuming that the output is conditionally normal given the inputs with mean $\beta_0 + \beta_1 X_1 + \dots + \beta_p X_p$ and constant variance!
 
-A great think about many commonly used generalized linear models broadly and also for logistic regression is that it has been shown that the asymptotic distribution of the estimated regression coefficients $\hat{\beta}_0, \hat{\beta}_1, \dots, \hat{\beta}_p$ as $n \rightarrow \infty$ can be derived to be normal and centered at the truth $\beta_0,\beta_1, \dots, \beta_p$ with a variance-covariance matrix that can be estimated from the data. This means that we can construct hypotheses tests of null hypotheses that any individual $\beta_j$ is equal to a certain value or that subsets of coefficients are equal to a certain value and construct confidence intervals for the estimated regression coefficients.
+A great thing about many commonly used generalized linear models broadly and also for logistic regression is that it has been shown that the asymptotic distribution of the estimated regression coefficients $\hat{\beta}_0, \hat{\beta}_1, \dots, \hat{\beta}_p$ as $n \rightarrow \infty$ can be derived to be normal and centered at the truth $\beta_0,\beta_1, \dots, \beta_p$ with a variance-covariance matrix that can be estimated from the data. This means that we can construct hypotheses tests of null hypotheses that any individual $\beta_j$ is equal to a certain value or that subsets of coefficients are equal to a certain value and construct confidence intervals for the estimated regression coefficients.
 
 Logistic regression is also straightforward to extend to qualitative outputs with $M > 2$ levels. This extension is called **multinomial logistic regression**. Let $\beta_{kj}$ for $j = 0, 1, \dots, p$ refer to the regression coefficient associated with the probability that the output $Y$ is equal to the $k$-th level $v_k$ for the intercept (if $j = 0$) or predictor $X_j$ (if $j > 0$). Multinomial logistic regression assumes that the probability that the probability that the output $Y$ is equal to the $k$-th level $v_k$ is 
 \begin{align*}
@@ -260,6 +260,7 @@ Rewriting this as before to resemble the softmax parametrization of multinomial 
 where we can recognize $\text{log}(\pi_k)$ as an intercept and $\text{log}(f_{kj}(X_j))$ as potentially nonlinear functions of each predictor. This corresponds to a **generalized additive model**, which we will learn about in future weeks. 
 
 To summarize, we have learned about the following types of models for classification:
+
 * Linear Regression Models
 * Logistic Regression Models
 * Linear Discriminant Analysis
