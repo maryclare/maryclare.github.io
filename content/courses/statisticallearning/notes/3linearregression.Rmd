@@ -126,11 +126,11 @@ We can plug in the least squares estimator for $\sigma^2$, $RSS/(n-p-1)$, to obt
 \begin{align*}
 \left(\frac{RSS}{n-p-1}\right) \left(\boldsymbol X^\top \boldsymbol X\right)^{-1}
 \end{align*}
-Square roots of diagonal elements of this variance-covariance matrix are the standard errors of the corresponding regression coefficent. As in the simple linear regression setting, we can use the estimated standard errors, along with the estimated coefficients, to construct confidence intervals and perform tests of null hypotheses that an individual regression coefficient is equal to a specific value.
+Square roots of diagonal elements of this variance-covariance matrix are the standard errors of the corresponding regression coefficient. As in the simple linear regression setting, we can use the estimated standard errors, along with the estimated coefficients, to construct confidence intervals and perform tests of null hypotheses that an individual regression coefficient is equal to a specific value.
 Furthermore, the estimated variance-covariance matrix can be used to estimate the variance of predictions, construct confidence intervals for predictions, and construct prediction intervals for future values.
 <!-- Go over figure here 3.4 here --> 
 
-When the linear regression model holds and the errors are independent and identically distributed with finite variance $\text{Var}[\epsilon] = \sigma^2 < \infty$, we can test the null hypothesis $H_0$ that that there is no relationship between the response and the predictors versus the alternative $H_a$ that there is a relationship between at least one of the predictors. The null hypothesis $H_0$ corresponds to the scenario where $\beta_1 = \dots = \beta_p = 0$, and the alternative hypothesis $H_a$ corresponds to the scenario where at least one $\beta_j$ is non-zero. To perform a level-$\alpha$ test of this hypothesis, we can compute the $F$-statistic
+When the linear regression model holds and the errors are independent and identically distributed with finite variance $\text{Var}[\epsilon] = \sigma^2 < \infty$, we can test the null hypothesis $H_0$ that there is no relationship between the response and the predictors versus the alternative $H_a$ that there is a relationship between at least one of the predictors. The null hypothesis $H_0$ corresponds to the scenario where $\beta_1 = \dots = \beta_p = 0$, and the alternative hypothesis $H_a$ corresponds to the scenario where at least one $\beta_j$ is non-zero. To perform a level-$\alpha$ test of this hypothesis, we can compute the $F$-statistic
 \begin{align*}
 \frac{(\text{TSS} - \text{RSS})/p}{\text{RSS}/(n-p-1)}
 \end{align*}
@@ -138,7 +138,7 @@ and compare it to the $1 - \alpha$ quantile of an $F$ distribution with $p$ and 
 
 <!--12 F test, subset -->
 
-Alternatively, we may want to test the null hypothesis $H_0$ that that there is no relationship between the response and a specific subset of $q$ predictors versus the alternative $H_a$ that there is a relationship between at least one of the $q$ selected predictors. Without loss of generality, we can imagine that the specific set of $q$ predictors whose relationship with the response we want to test are the last $q$ predictors. Then the null hypothesis $H_0$ corresponds to the scenario where $\beta_{p - q + 1} = \dots = \beta_p = 0$, and the alternative hypothesis $H_a$ corresponds to the scenario where at least one $\beta_j$ is non-zero for $p - q + 1 \leq j \leq p$. To perform a level-$\alpha$ test of this hypothesis, we can compute the $F$-statistic
+Alternatively, we may want to test the null hypothesis $H_0$ that there is no relationship between the response and a specific subset of $q$ predictors versus the alternative $H_a$ that there is a relationship between at least one of the $q$ selected predictors. Without loss of generality, we can imagine that the specific set of $q$ predictors whose relationship with the response we want to test are the last $q$ predictors. Then the null hypothesis $H_0$ corresponds to the scenario where $\beta_{p - q + 1} = \dots = \beta_p = 0$, and the alternative hypothesis $H_a$ corresponds to the scenario where at least one $\beta_j$ is non-zero for $p - q + 1 \leq j \leq p$. To perform a level-$\alpha$ test of this hypothesis, we can compute the $F$-statistic
 \begin{align*}
 \frac{(\text{RSS}_0 - \text{RSS})/q}{\text{RSS}/(n-p-1)},
 \end{align*}
