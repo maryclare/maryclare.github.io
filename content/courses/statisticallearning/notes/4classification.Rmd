@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This material is based on Chapters 2 and 4 of [Introduction to Statistical Learning (ISL)](https://www.statlearning.com) and parts of Chapter 4 of [Elements of Statistical Learning (ESL)](https://hastie.su.domains/ElemStatLearn/). We will tend to follow ISL more closely, and look to ESL for occasional additional higher level material. There may be some slight changes to the notation.
 
-For the past several lectures, we have been focused on the supervised learning problem where where we observe inputs $\boldsymbol X$ and a quantitative output $\boldsymbol y$ and assuming
+For the past several lectures, we have been focused on the supervised learning problem where we observe inputs $\boldsymbol X$ and a quantitative output $\boldsymbol y$ and assuming
 \begin{align*}
 Y = f(X) + \epsilon,
 \end{align*}
@@ -29,7 +29,7 @@ Let $I(y_i \neq \hat{y}_i)$ refer to an indicator function that is equal to $0$ 
 \begin{align*}
 \sum_{i = 1}^n I(y_i \neq \hat{y}_i).
 \end{align*}
-Analagously to the setting where the output is quantitative, we can also quantify the performance of a classifier on test data that were not used to fit the classifier. Letting $(x_0, y_0)$ refer to an arbitrary data point that has not been seen before, we define the **test error rate** as
+Analogously to the setting where the output is quantitative, we can also quantify the performance of a classifier on test data that were not used to fit the classifier. Letting $(x_0, y_0)$ refer to an arbitrary data point that has not been seen before, we define the **test error rate** as
 \begin{align}
 I(y_0 \neq \hat{y}_0).\label{eq:ter}
 \end{align}
@@ -57,7 +57,7 @@ Just as in the regression setting where we could decompose the performance of an
 1 - E[\text{max}_j f_j(X)], \label{eq:ber}
 \end{align}
 where the expectation is taken with respect to $X$.
-This describes the error rate even if the true probablities $f_j(X)$ were known. 
+This describes the error rate even if the true probabilities $f_j(X)$ were known. 
 The Bayes error rate is equal to $0$ when the **Bayes decision boundary**, which describes the set of values of $X$ for which all possible values of the outcome are equally likely perfectly separates the outputs. This corresponds to the setting where $\text{max}_j Pr(Y = v_j|X) = 1$ for all $X$ and the outputs are deterministic functions of the inputs. In real life (and furthermore in this *statistical* learning class in which we are studying random outputs), the outputs are rarely deterministic functions of the inputs and the Bayes error rate is rarely $0$.
 
 <!-- Go over figure 2.13 -->
