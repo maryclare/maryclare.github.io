@@ -16,6 +16,12 @@ To actually make use of what you learn in your statistics classes, you need to:
 
 Keeping in mind, **any job you do that involves data analysis will require you to explain what you have done to people who know less about the data and statistical methods than you do**.
 
+## Why are we still coding given that generative AI exists?
+
+Generative AI is a tremendously helpful accelerator, but it is not foolproof and needs to be checked.
+
+Without understanding the basics, it's going to be very hard to check your code.
+
 ## Why are we coding in `R`?
 
 - Compared to Matlab, SAS, and Stata, it's free! 

@@ -9,40 +9,32 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
 
 - [R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
-### Statistical Learning
-
-- [Syllabus](https://maryclare.github.io/content/courses/statisticallearning/syllabus/syllabus_statlearn_fall2025.pdf)
-- Typed Notes:
-  * Overview ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/1overview.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/1overview.Rmd))
-  * Statistical Learning ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/2statisticallearning.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/2statisticallearning.Rmd))
-  * Regression ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/3linearregression.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/3linearregression.Rmd))
-  * Classification ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/4classification.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/4classification.Rmd))
-
 ### Statistical Computing
 
-- [Syllabus](https://maryclare.github.io/content/courses/statisticalcomputing/syllabus/syllabus_535_spring2025.pdf)
-  * Project Presentation Expectations ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/project/presentation.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/project/presentation.qmd))
-  * Project Paper Expectations ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/project/paper.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/project/paper.qmd))
+- [Syllabus](https://maryclare.github.io/content/courses/statisticalcomputing/syllabus/syllabus_535_fall2026.pdf)
+<!--  * Project Presentation Expectations ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/project/presentation.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/project/presentation.qmd)) -->
+<!--  * Project Paper Expectations ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/project/paper.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/project/paper.qmd)) -->
 - Typed Notes:
   * Coding, IDE ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/codingide.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/codingide.qmd))
-  * Modes, Structures ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/modesstructures.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/modesstructures.qmd))
-  * Random Variables ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/randomvariables.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/randomvariables.qmd))
-  * Functions ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/functions.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/functions.qmd))
-  * Data ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/data.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/data.qmd))
-  * Big Data ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/bigdata.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/bigdata.qmd))
-  * Lists ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/lists.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/lists.qmd))
-  * Strings and Characters ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/stringscharacters.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/stringscharacters.qmd))
-- Problem Sets:
-  * Due 2/12 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.qmd))
-  * Due 2/26 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.qmd))
-  * Due 3/5 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps3.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps3.qmd))
-  * Due 3/12 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps4.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps4.qmd))
-  * Due 4/9 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps5.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps5.qmd))
-  * Due 4/16 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps6.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps6.qmd))
-  * Due 4/23 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps7.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps7.qmd))
-  * Due 4/30 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps8.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps8.qmd))
-  * Due 5/16 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps9.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps9.qmd))
+<!--  * Modes, Structures ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/modesstructures.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/modesstructures.qmd)) -->
+<!--  * Random Variables ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/randomvariables.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/randomvariables.qmd)) -->
+<!--  * Functions ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/functions.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/functions.qmd)) -->
+<!--  * Data ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/data.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/data.qmd)) -->
+<!--  * Big Data ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/bigdata.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/bigdata.qmd)) -->
+<!--  * Lists ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/lists.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/lists.qmd)) -->
+<!--  * Strings and Characters ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/stringscharacters.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/stringscharacters.qmd)) -->
+<!-- - Problem Sets: -->
+<!--   * Due 2/12 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.qmd)) -->
+<!--   * Due 2/26 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.qmd)) -->
+<!--   * Due 3/5 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps3.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps3.qmd)) -->
+<!--   * Due 3/12 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps4.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps4.qmd)) -->
+<!--   * Due 4/9 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps5.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps5.qmd)) -->
+<!--   * Due 4/16 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps6.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps6.qmd)) -->
+<!--   * Due 4/23 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps7.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps7.qmd)) -->
+<!--   * Due 4/30 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps8.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps8.qmd)) -->
+<!--   * Due 5/16 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps9.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps9.qmd)) -->
 
+<!--
 - Misc:
   * Demo ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.qmd))
   * Smoothing ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/smoothing.R))
@@ -57,7 +49,17 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
   * Manipulating Data ([`manipulation.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/manipulation.R))
   * Merging Data ([`merging1.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging1.R)), ([`merging2.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging2.R),  ([`merging3.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging3.R))
   * Reshaping Data ([`reshape1.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/reshape1.R)), ([`reshape2.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/reshape2.R))
-  
+-->
+
+### Statistical Learning
+
+- [Syllabus](https://maryclare.github.io/content/courses/statisticallearning/syllabus/syllabus_statlearn_fall2025.pdf)
+- Typed Notes:
+  * Overview ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/1overview.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/1overview.Rmd))
+  * Statistical Learning ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/2statisticallearning.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/2statisticallearning.Rmd))
+  * Regression ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/3linearregression.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/3linearregression.Rmd))
+  * Classification ([`.pdf`](https://maryclare.github.io/content/courses/statisticallearning/notes/4classification.pdf), [`.Rmd`](https://maryclare.github.io/content/courses/statisticallearning/notes/4classification.Rmd))
+
 ### Time Series
 
 - [Syllabus](https://maryclare.github.io/content/courses/timeseries/syllabus/syllabus_697_spring2022.pdf)
