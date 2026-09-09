@@ -148,7 +148,7 @@ It can be tempting to replace `<-` with `=`. Sometimes this will work and it can
 x <- seq(0, 1, length.out = 100)
 ```
 
-The `seq` function with first argument `0`, second argument `1`, and `length.out = 100` creates a **vector** with $100$ elements, where the value of the $k$-th element is $k/100$.
+The `seq` function with first argument `0`, second argument `1`, and `length.out = 100` creates a **vector** with $100$ elements, where the value of the $k$-th element is $(k-1)/99$.
 
 It creates an evenly spaced sequence of `length.out` numbers between the first argument and the second argument.
 
