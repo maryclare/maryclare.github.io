@@ -36,8 +36,8 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
 
 
 - Misc:
-  * Demo ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.qmd)) <!--
-  * Smoothing ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/smoothing.R))
+  * Demo ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.qmd))
+ <!--  * Smoothing ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/smoothing.R))
   * Making an AR Covariance ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/arcovariance.R))
   * Middle Square Method ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/middlesquare.R))
   * `.csv` Examples ([`sportsref_download_1.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_1.csv), [`sportsref_download_2.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_2.csv), [`sportsref_download_3.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_3.csv), [`sportsref_download_4.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_4.csv))
