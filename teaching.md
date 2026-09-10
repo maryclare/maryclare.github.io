@@ -16,7 +16,7 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
 <!--  * Project Paper Expectations ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/project/paper.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/project/paper.qmd)) -->
 - Typed Notes:
   * Coding, IDE ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/codingide.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/codingide.qmd))
-<!--  * Modes, Structures ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/modesstructures.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/modesstructures.qmd)) -->
+  * Modes, Structures ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/modesstructures.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/modesstructures.qmd))
 <!--  * Random Variables ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/randomvariables.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/randomvariables.qmd)) -->
 <!--  * Functions ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/functions.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/functions.qmd)) -->
 <!--  * Data ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/data.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/data.qmd)) -->
@@ -34,9 +34,9 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
 <!--   * Due 4/30 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps8.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps8.qmd)) -->
 <!--   * Due 5/16 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps9.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps9.qmd)) -->
 
-<!--
+
 - Misc:
-  * Demo ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.qmd))
+  * Demo ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/demo.qmd)) <!--
   * Smoothing ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/smoothing.R))
   * Making an AR Covariance ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/arcovariance.R))
   * Middle Square Method ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/middlesquare.R))

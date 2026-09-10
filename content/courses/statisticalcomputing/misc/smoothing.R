@@ -7,7 +7,7 @@ z <- NA
 w <- NA
 
 for (i in 1:9) {
-#   z[i] <- (y[i] + y[i - 1])/2
+  # z[i] <- (y[i] + y[i - 1])/2
   z[i] <- mean(y[i:max(i - 1, 1)])
   w[i] <- mean(y[i:max(i - 2, 1)])
 }
