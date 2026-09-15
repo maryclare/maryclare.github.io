@@ -774,8 +774,22 @@ max(A)
 range(A)
 ```
 
-The functions `sum`, `mean`, `sd`, `var`,  `min`, and `prod` work equivalently when applied to matrices.
+The functions `sum`, `mean`, `sd`,  `min`, and `prod` work equivalently when applied to matrices.
 
+## An Exception
+
+One function that does **not** "flatten" a matrix is the `var` function.
+
+```{r, echo = TRUE, eval = TRUE}
+var(A)
+```
+
+This computes a sample variance-covariance matrix, with entries that correspond to the sample covariance of pairs of columns of `A`.
+
+```{r, echo = TRUE, eval = TRUE}
+rbind(c(var(A[, 1], A[, 1]), var(A[, 1], A[, 2])),
+      c(var(A[, 2], A[, 1]), var(A[, 2], A[, 2])))
+```
 
 ## Math for Matrices
 
