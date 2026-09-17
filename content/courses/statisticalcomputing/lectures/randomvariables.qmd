@@ -132,6 +132,10 @@ table(g == 0)
 
 Sometimes the inversion method for simulating from a distribution can be numerically unstable. 
 
+```{r, echo = TRUE, eval = TRUE}
+table(rgamma(length(u), 0.0001, 1) == 0)
+```
+
 ## Why is simulation useful?
 
 - Simulation studies
