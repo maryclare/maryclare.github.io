@@ -25,8 +25,8 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
 <!--  * Strings and Characters ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/stringscharacters.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/stringscharacters.qmd)) -->
 
 Problem Sets: 
-  * Due 9/18 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.qmd))
-<!--   * Due 2/26 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.qmd)) -->
+  * Due 9/17 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.qmd))
+  * Due 9/24 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.qmd)) 
 <!--   * Due 3/5 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps3.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps3.qmd)) -->
 <!--   * Due 3/12 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps4.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps4.qmd)) -->
 <!--   * Due 4/9 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps5.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps5.qmd)) -->

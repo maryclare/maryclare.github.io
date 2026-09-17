@@ -3,7 +3,8 @@ title: "Problem Set 2"
 format: pdf
 ---
 
-In this problem set, you will continue to be asked to work with the gamma distribution and you may find it useful to refer back to the previous problem set and/or solutions. I recommend Wikipedia as a reference, `https://en.wikipedia.org/wiki/Gamma_distribution`. 
+In this following, you will be asked to work with the gamma distribution. I recommend Wikipedia as a reference, `https://en.wikipedia.org/wiki/Gamma_distribution`. 
+You may find it useful to refer back to the previous problem set and/or solutions. Additionally, complete the associated prompt that is part of the Canvas submission related to reading the article "History of Uniform Random Number Generation," posted on Canvas. 
 
 Keep your rendered `.pdf` to no more than 4 pages. Only provide code in the rendered `.pdf` when it is specifically requested.
 
