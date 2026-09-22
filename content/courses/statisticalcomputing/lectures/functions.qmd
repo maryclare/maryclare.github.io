@@ -18,7 +18,7 @@ integrate(function(x){x*dnorm(x)},
 
 Functions are key to writing **generalizable** code. If there's code we want to repeatedly apply to very or even just slightly different data, we want to avoid copying and pasting that code and instead store the code in a function that can be called again.
 
-## Components of A Function
+## Components of a Function
 
 All functions have some "body" or content comprised of lines of code they call.
 
