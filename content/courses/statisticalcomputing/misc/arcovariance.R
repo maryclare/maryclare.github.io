@@ -56,3 +56,10 @@ C <- 0.5^abs(tcrossprod(ones, a) - tcrossprod(a, ones))
 end <- Sys.time()
 end - start
 
+arcovariance <- function(n, rho) {
+  C <- apply(matrix(1:n, nrow = n, ncol = 1), 1, 
+             function(x) {rho^abs(x - 1:n)})
+  return(C)
+}
+
+arcovariance(n = 5, 0)

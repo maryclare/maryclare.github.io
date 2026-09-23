@@ -226,8 +226,8 @@ In practice, we will often want to allow a function to have multiple arguments.
 For the `ex` function, we may want to change the mean and standard deviation of the normal density.
 
 ```{r, echo = TRUE, eval = FALSE}
-ex <- function(x, mean, sd) {
-  x*dnorm(x, mean = mean, sd = sd)
+ex <- function(x, mu, sig) {
+  x*dnorm(x, mean = mu, sd = sig)
 }
 ```
 
@@ -240,8 +240,8 @@ What happens if we don't specify `mean` and `sd`?
 If some arguments have typical `default` values, we can specify those when defining the function.
 
 ```{r, echo = TRUE, eval = FALSE}
-ex <- function(x, mean = 0, sd = 1) {
-  x*dnorm(x, mean = mean, sd = sd)
+ex <- function(x, mu = 0, sig = 1) {
+  x*dnorm(x, mean = mu, sd = sig)
 }
 ```
 
