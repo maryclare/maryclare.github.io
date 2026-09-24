@@ -30,15 +30,15 @@ Keep your rendered `.pdf` to no more than 4 pages. Only provide code in the rend
 
 2. In class, we did a little exercise where we created our own data. Given a vector `x <- seq(1, 9, by = 1)`, we created a vector `y` by adding a random integer between $-3$ and $3$ to each element of `x`,  `y <- x + c(2, 2, -3, 0, -1, -2, 2, 3, 1)`. 
 
-(a) Create a matrix with 9 rows and 100 columns called `Y` with elements given by `sample((-3):3, 9*100, replace = TRUE)`. Print the code you use to create this matrix to the rendered `.pdf`.
+(a) Create a matrix with 9 rows and 100 columns called `Y` with each column defined as `x + sample((-3):3, 9, replace = TRUE)`. Print the code you use to create this matrix to the rendered `.pdf`.
 
 (b) Read the documentation of the function `sample` found by entering `help(sample)` into `R` and, given what you have learned about vectors and matrices, explain what `Y` is and how a row of `Y` relates to what we did in class in at most one sentence.
 
-(c) In class, we smoothed `y` by averaging the pairs of consecutive observations (`z` with `z[1] = y[1]`, `z[2] = (y[1] + y[2])/2`, etc.) and then triads of consecutive observations  (`w` with `w[1] = y[1]`, `w[2] = (y[1] + y[2])/2`, `w[3] = (y[1] + y[2] + y[3])/3`, etc.). Create matrices `Z` and `W` of the same dimensions as `Y`, but with rows that contain smoothed rows of `Y` obtained by averaging pairs of consecutive observations (for `Z`) and triads of consecutive observations (for `W`). Print the code you use to create this matrix to the rendered `.pdf`.
+(c) In class, we smoothed `y` by averaging observations with their nearest neighbors in each direction (`z` with `z[1] = (y[1] + y[2])/2`, `z[2] = (y[1] + y[2] + y[3])/3`, etc.) and then again by averaging observations with their $k$ nearest neighbors in each direction  (for $k = 2$, we have `w` with `w[1] = (y[1] + y[2] + y[3])/3`, `w[2] = (y[1] + y[2] + y[3] + y[4])/4`, `w[3] = (y[1] + y[2] + y[3] + y[4] + y[5])/5`, etc.). Create matrices `Z` and `W` of the same dimensions as `Y`, but with columns that contain smoothed columns of `Y` obtained by averaging observations with their nearest neighbors in each direction (for `Z`) and their nearest two neighbors in either direction (for `W`). You can use the `smoothing` function defined in `smoothing.R`. Print the code you use to create these matrices to the rendered `.pdf`. 
 
-(d) Create vectors `ymean`, `zmean`, and `wmean` which contain the average of each row of `Y`, `Z`, and `W`, respectively.  Print the code you use to create this matrix to the rendered `.pdf`.
+(d) Create vectors `ymean`, `zmean`, and `wmean` which contain the average of each row of `Y`, `Z`, and `W`, respectively.  Print the code you use to create these vectors  to the rendered `.pdf`.
 
-(e) Create vectors `ysd`, `zsd`, and `wsd` which contain the standard deviation of each row of `Y`, `Z`, and `W`, respectively.  Print the code you use to create this matrix to the rendered `.pdf`.
+(e) Create vectors `ysd`, `zsd`, and `wsd` which contain the standard deviation of each row of `Y`, `Z`, and `W`, respectively.  Print the code you use to create these vectors to the rendered `.pdf`.
 
 (f) Create a pair of plots by prefacing your `plot` commands with `par(mfrow = c(2, 1))` or `par(mfrow = c(1, 2))`. In the first plot, plot `x` against the row means you constructed in (d). Use points with `pch = 16`. Make sure to use a different color for set of row means and annotate them with a legend. In the second plot, plot `x` against the row standard deviations you constructed in (e). Use points with `pch = 16`. Make sure to use a different color for set of row standard deviations and annotate them with a legend.
 

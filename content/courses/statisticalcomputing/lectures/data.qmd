@@ -21,7 +21,7 @@ Note: Base `R` refers to `R` with no packages loaded.
 
 ## Using the `data` Function
 
-When we first `data(rivers)`, `R` creates one or more objects that have value `<Promise>`.  
+When we first enter `data(rivers)`, `R` creates one or more objects that have value `<Promise>`.  
 
 Once we have actually used the objects, the contents become available in the environment.
 
@@ -96,7 +96,7 @@ You can grow a data frame by adding columns.
 
 You can create a new variable by assigning a vector with the same number of elements as the data frame has rows to the data frame using `$` and the name of the new variable.
 
-For example, we can create a new variable in the `stackloss` dataframe called `variable` that contains the order that each observation appears in.
+For example, we can create a new variable in the `stackloss` data frame called `variable` that contains the order that each observation appears in.
 
 ```{r, echo = TRUE, eval = FALSE}
 stackloss$variable <- 1:nrow(stackloss)
@@ -167,7 +167,7 @@ There are also some `R` packages that exist for the sole purpose of helping you 
 
 In real life, we probably want to load in data that's not already available in base `R` or some `R` package.
 
-The most common format is a `.csv` file, where `.csv` stands for "commma separated value." These are often directly available or indirectly available, e.g. as an option for saving an spreadsheet in Excel.
+The most common format is a `.csv` file, where `.csv` stands for "comma separated value." These are often directly available or indirectly available, e.g. as an option for saving an spreadsheet in Excel.
 
 The downside of `.csv` files is that they can be a bit big - we'll talk about dealing with big files soon.
 
