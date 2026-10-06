@@ -27,8 +27,8 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
 Problem Sets: 
   * Due 9/17 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.qmd))
   * Due 9/24 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.qmd)) 
-  * Due 10/1 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps3.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps3.qmd)) -->
-<!--   * Due 3/12 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps4.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps4.qmd)) -->
+  * Due 10/1 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps3.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps3.qmd)) 
+  * Due 10/15 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps4.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps4.qmd)) 
 <!--   * Due 4/9 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps5.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps5.qmd)) -->
 <!--   * Due 4/16 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps6.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps6.qmd)) -->
 <!--   * Due 4/23 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps7.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps7.qmd)) -->
