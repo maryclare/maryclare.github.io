@@ -20,7 +20,7 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
   * Random Variables ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/randomvariables.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/randomvariables.qmd)) 
   * Functions ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/functions.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/functions.qmd))
   * Data ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/data.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/data.qmd)) 
-<!--  * Big Data ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/bigdata.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/bigdata.qmd)) -->
+  * Big Data ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/bigdata.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/bigdata.qmd))
 <!--  * Lists ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/lists.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/lists.qmd)) -->
 <!--  * Strings and Characters ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/stringscharacters.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/stringscharacters.qmd)) -->
 
