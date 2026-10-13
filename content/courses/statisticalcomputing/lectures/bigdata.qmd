@@ -432,11 +432,10 @@ db <- dbGetQuery(
 
 ## What is LIKE doing?
 
-- '%' Matches everything before the \%
-- '_' Matches before and after the \_, allows an arbitrary character in between
-- '[]' 	Matches before and after the \[\] sign, allows any character in the brackets in between
-- '[^]' Matches before and after the \[\] sign, allows any character expect those after \^ in the brackets in between
-- '[-]'	Matches before and after the \[\] sign, allows any character between the characters separated by \- in the brackets in between
+- Two '%''s with text in between find where text in between appears 
+- '%' after text finds where beginning is provided text
+- '%' before text finds where end is provided text
+- '_' allows for an arbitrary character
 
 ## Subsetting Based on Conditions
 
@@ -449,6 +448,19 @@ db <- dbGetQuery(
   AND 
   birthYear LIKE '198%'")
 ```
+
+## Subsetting Based on Conditions
+
+```{r, eval = TRUE, echo = TRUE}
+db <- dbGetQuery(
+  con, 
+  "SELECT *
+  FROM Master
+  WHERE birthCountry == 'P.R.' 
+  AND 
+  birthYear LIKE '19_9'")
+```
+
 
 ## Summarizing Data
 
