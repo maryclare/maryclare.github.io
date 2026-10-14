@@ -29,7 +29,7 @@ Keep your rendered `.pdf` to no more than 6 pages. Only provide code in the rend
 
 2. This question is introducing the multivariate normal distribution, which I don't expect you to be familiar with yet, and the computational challenges that come up when we work with it.
 
-(a) Simulate $3$ independent standard normal variables and store them in a vector called `z`. Print the code you use to create `z` to the rendered `.pdf`.
+(a) Simulate $3$ independent standard normal variables and store them in a vector called `z`. Print the code you use to create `y` to the rendered `.pdf`.
 
 (b) Write a for loop that generates $3$ normal random variables stored in a vector `y` using `z` and basic mathematical operations, where the first element of `y` has a standard normal distribution and the remaining elements of `y` conditional on previous elements have a normal distribution with a mean that of $0.5$ times the last element of `y` and variance $0.75$. Print the code you use to create `z` to the rendered `.pdf`.
 
@@ -43,11 +43,11 @@ Keep your rendered `.pdf` to no more than 6 pages. Only provide code in the rend
 
 (g) Write a function that takes $n$, the length of the vector that you'd like to simulate and $\rho$, an autocovariance parameter and returns an $n$ dimensional random vector obtained by constructing a covariance matrix $\boldsymbol C$ with elements $c_{ij} = \rho^{\left|i-j\right|}$, taking its Cholesky decomposition, and multiplying the transpose of its Cholesky decomposition by $n$ independent standard normal random variables (note - order matters). Print the code you use define the function to the rendered `.pdf`.
 
-(h) Write a for loop that generates $50$ random vectors of length $2$ using your function from $(a)$ with $\rho = 0.99$ and stores them in a $2\times 50$ matrix called `mat`. Print the code you use to create this matrix and implement this for loop to the rendered `.pdf`. Include a line of code that ensures that the values you obtain are reproducible by someone else on another computer.
+(h) Write a for loop that generates $50$ random vectors of length $2$ using your function from $(g)$ with $\rho = 0.99$ and stores them in a $2\times 50$ matrix called `mat`. Print the code you use to create this matrix and implement this for loop to the rendered `.pdf`. Include a line of code that ensures that the values you obtain are reproducible by someone else on another computer.
 
-(i) Evaluate the sample means, covariances, and correlation of the bivariate random variables you simulated in (b). Summarize your results in a table made using `kable`. Use your knowledge from previous statistics classes to compute these quantities.
+(i) Evaluate the sample means, covariances, and correlation of the bivariate random variables you simulated in (h). Summarize your results in a table made using `kable`. Use your knowledge from previous statistics classes to compute these quantities.
 
-(j) In at most one sentence, describe how the results in the table in (c) relate to what you would expect to see.
+(j) In at most one sentence, describe how the results in the table in (i) relate to what you would expect to see.
 
 3. Consider a truncated gamma random variable $x$ with shape $a$ and rate $b$ that is constrained to the interval $\left(0, c\right)$. The density $g\left(x | a, b, c\right)$ of this random variable satisfies:
 
