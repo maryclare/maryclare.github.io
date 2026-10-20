@@ -29,7 +29,7 @@ Problem Sets:
   * Due 9/24 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps2.qmd)) 
   * Due 10/1 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps3.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps3.qmd)) 
   * Due 10/15 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps4.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps4.qmd)) 
-<!--   * Due 4/9 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps5.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps5.qmd)) -->
+  * Due 10/29 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps5.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps5.qmd))
 <!--   * Due 4/16 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps6.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps6.qmd)) -->
 <!--   * Due 4/23 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps7.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps7.qmd)) -->
 <!--   * Due 4/30 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps8.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps8.qmd)) -->
@@ -45,7 +45,7 @@ Problem Sets:
   * Other Data Examples ([`sportsref_download_5.txt`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_5.txt), [`sportsref_download_6.tsv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_6.tsv), [`sportsref_download_7.txt`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_7.txt), [`sportsref_download_8.txt`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download_8.txt)) 
   * Excel Data Example ([`sportsref_download.xls`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/sportsref_download.xls))
   * Reading in Data ([`.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/reading_data.R))
- <!--  * Massachusetts Employment Data ([`CESReport.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/CESReport.csv)) -->
+  * Massachusetts Employment Data ([`CESReport.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/CESReport.csv)) 
  <!--  * Getting data from `html` source ([`readhtml.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/readhtml.R)) -->
  <!--  * Manipulating Data ([`manipulation.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/manipulation.R)) -->
  <!--  * Merging Data ([`merging1.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging1.R)), ([`merging2.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging2.R),  ([`merging3.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging3.R)) -->
