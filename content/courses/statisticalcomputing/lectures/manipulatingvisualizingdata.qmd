@@ -1,0 +1,150 @@
+---
+title: "Manipulating and Visualizing Data"
+format: beamer
+---
+
+## Why do we need an extra week on this?
+
+Base ```R``` is limited for data manipulation and visualization
+
+It can be:
+
+- Hard to read, especially across languages
+- Inefficient (many lines of code to perform a common operation)
+
+## What is Base ```R```
+
+"Base ```R```" $=$ What is available in ```R``` with no added packages.
+
+Note: There are benefits to Base ```R```.
+
+- "Lightweight" (no additional time/space to install)
+- Especially stable across updates
+
+## What is the alternative?
+
+"Tidyverse" describes a suite of ```R``` packages supported by Posit
+
+Information at: [https://tidyverse.org](https://tidyverse.org)
+
+Associated with "R for Data Science": [https://r4ds.hadley.nz](https://r4ds.hadley.nz)
+
+Install it!
+
+## What will we learn about the "Tidyverse"?
+
+We will learn about:
+
+- ```dplyr```: Helps filter and aggregate data
+- ```ggplot2```: Helps create nice plots
+
+## Getting Ready to Explore ``dplyr```
+
+We're going to use ```dplyr``` to summarize data on flights that departed New York City from JFK, LGA, or EWR in 2013.
+
+```{r, echo = TRUE, eval = TRUE}
+library(nycflights13)  
+library(dplyr)
+flights <- nycflights13::flights
+```
+
+## The Flights Data is a ```tibble```
+
+```{r, echo = TRUE, eval = TRUE}
+str(flights)
+```
+
+## Converting the Flights Data to a Data Frame
+
+To avoid learning about a new data structure, we'll convert the ```tibble``` to a data frame.
+
+```{r, echo = TRUE, eval = TRUE}
+flights <- as.data.frame(flights)
+```
+
+## The ```filter``` Function
+
+Allows us to easily subset data according to the values that a variable takes on
+
+```{r, echo = TRUE, eval = FALSE}
+filter(flights, month == 1, day == 1)
+```
+
+Previously we did this by indexing using logical vectors
+```{r, echo = TRUE, eval = FALSE}
+flights[flights$month == 1 & 
+          flights$day == 1, ]
+```
+
+
+## Filtering on Multiple Values
+
+Just like we saw before when learning about logical vectors, there's multiple ways to do this.
+
+```{r, echo = TRUE, eval = FALSE}
+filter(flights, month == 11 | month == 12)
+filter(flights, month %in% c(11, 12))
+```
+
+## Missing Value Handling
+
+Missing values (```NA```) are handled in natural ways by ```filter```
+```{r, echo = TRUE, eval = FALSE}
+filter(flights, 
+       !(arr_delay > 120 | 
+           dep_delay > 120))
+```
+
+Before, we would have needed to type
+```{r, echo = TRUE, eval = FALSE}
+flights[!is.na(flights$arr_delay) & 
+          !is.na(flights$dep_delay) & 
+          flights$arr_delay <= 120 & 
+          flights$dep_delay <= 120, ]
+```
+
+## Filtering Using Intervals
+
+The ```between``` function with ```left``` and ```right``` arguments allow us to filter on variables being in an interval.
+```{r, echo = TRUE, eval = FALSE}
+filter(flights, arr_delay <= 120, 
+       between(x = dep_delay, left = 80, right = 120))
+```
+
+This is much uglier with base ```R```!
+```{r, echo = TRUE, eval = FALSE}
+flights[!is.na(flights$arr_delay) & 
+          !is.na(flights$dep_delay) & 
+          flights$arr_delay <= 120 & 
+          flights$dep_delay >= 80 & 
+          flights$dep_delay <= 120, ]
+```
+
+## Letting Missing Values Through
+
+Sometimes, we want to retain some observations with missing values.
+```{r, echo = TRUE, eval = FALSE}
+filter(flights, is.na(arr_delay) | 
+         arr_delay <= 120, 
+       between(x = dep_delay, left = 80, right = 120))
+```
+
+In base ```R``` this would have been
+```{r, echo = TRUE, eval = FALSE}
+flights[!is.na(flights$dep_delay) & 
+          flights$arr_delay <= 120 & 
+          flights$dep_delay >= 80 & 
+          flights$dep_delay <= 120, ]
+```
+
+## Activities to Try Yourself
+
+Find all flights that were:
+
+- Delayed two or more hours
+- Flew to Houston 
+- Were operated by United, American, or Delta
+- Departed in summer (July, August, and September)
+- Arrived more than two hours late, but didn’t leave late
+- Delayed at least an hour, but made up over 30 minutes in flight
+- Departed between midnight and 6:00AM (inclusive)
