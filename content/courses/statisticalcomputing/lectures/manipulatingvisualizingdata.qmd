@@ -38,7 +38,7 @@ We will learn about:
 - ```dplyr```: Helps filter and aggregate data
 - ```ggplot2```: Helps create nice plots
 
-## Getting Ready to Explore ``dplyr```
+## Getting Ready to Explore ```dplyr```
 
 We're going to use ```dplyr``` to summarize data on flights that departed New York City from JFK, LGA, or EWR in 2013.
 
@@ -148,3 +148,296 @@ Find all flights that were:
 - Arrived more than two hours late, but didn’t leave late
 - Delayed at least an hour, but made up over 30 minutes in flight
 - Departed between midnight and 6:00AM (inclusive)
+
+## The ```arrange``` Function
+
+The ```arrange``` function allows us to sort data frames easily by multiple variables
+
+```{r, eval = FALSE, echo = TRUE}
+arrange(flights, year, month, day)
+```
+
+Again, we could have done this in base ```R```
+```{r, eval = FALSE, echo = TRUE}
+flights[order(flights$year, flights$month, flights$day), ]
+```
+
+## Sorting in Reverse
+
+```{r, eval = FALSE, echo = TRUE}
+arrange(flights, desc(dep_delay))
+```
+
+Note: This is starting to look like SQL!
+
+## The ```select``` Function
+
+The ```select``` function allows us to subset variables
+
+```{r, eval = FALSE, echo = TRUE}
+select(flights, year, month, day)
+```
+
+```{r, eval = FALSE, echo = TRUE}
+select(flights, year:day)
+```
+
+```{r, eval = FALSE, echo = TRUE}
+select(flights, -(year:day))
+```
+
+```{r, eval = FALSE, echo = TRUE}
+select(flights, time_hour, air_time, everything())
+```
+
+## The ```rename``` Function
+
+The ```rename``` function lets us subset multiple variables at once.
+
+```{r, eval = FALSE,  echo = TRUE}
+renamed <- rename(flights, tail_num = tailnum)
+```
+
+This would have been much more code in base ```R```!
+
+```{r, eval = FALSE,  echo = TRUE}
+renamed <- flights
+renamed$tail_num <- flights$tailnum
+renamed$tailnum <- NULL
+```
+
+```{r, eval = FALSE, echo = TRUE}
+renamed <- flights
+names(renamed)[names(renamed) == "tailnum"] <- 
+  "tail_num"
+```
+
+## The ```mutate``` Function
+
+The ```mutate``` function makes it easy to construct new variables.
+
+```{r, eval = FALSE, echo = TRUE}
+flightsnew <- mutate(flights,
+                     gain = dep_delay - arr_delay,
+                     speed = distance / air_time * 60)
+```
+
+This would also be a pain in base ```R```
+```{r, eval = FALSE, echo = TRUE}
+flightsnew <- flights
+flightsnew$gain <- flightsnew$dep_delay - 
+  flightsnew$arr_delay
+flightsnew$speed <- flightsnew$distance/
+  flightsnew$air_time * 60
+```
+
+## The ```mutate``` Function
+
+The ```mutate``` function even allows you to use newly defined variables to define other new variables
+
+```{r, eval = FALSE, echo = TRUE}
+flightsnew2 <- mutate(flights,
+                      gain = dep_delay - arr_delay,
+                      hours = air_time / 60,
+                      gain_per_hour = gain / hours)
+```
+
+This would **really** be a pain in base ```R```
+```{r, eval = FALSE, echo = TRUE}
+flightsnew2 <- flights
+flightsnew2$gain <- flightsnew2$dep_delay - flightsnew2$arr_delay
+flightsnew2$hours <- flightsnew2$air_time/60
+flightsnew2$gain_per_hour <-  flightsnew2$gain/flightsnew2$hours
+```
+
+## The ```transmute``` Function
+
+The ```transmute``` function is similar to ```mutate```, but drops variables that aren't modified
+
+```{r, eval = TRUE, echo = TRUE}
+flightsnew2 <- transmute(flights,
+                         gain = dep_delay - arr_delay,
+                         hours = air_time / 60,
+                         gain_per_hour = gain / hours)
+head(flightsnew2)
+```
+
+## Activities to Try Yourself
+
+Using the ```filter``` function, identify flights with missing departure delay.
+
+What's going on?
+
+## The ```summarize``` Function
+
+The ```summarize``` function allows us to create aggregate summaries
+
+```{r, eval = TRUE, echo = TRUE}
+summarise(flights, delay = mean(dep_delay, na.rm = TRUE))
+```
+
+This was easy to do  in base ```R```
+```{r, eval = TRUE, echo = TRUE}
+mean(flights$dep_delay, na.rm = TRUE)
+```
+
+## Aggregating within Groups
+
+When combined with ```group_by```, we can also construct aggregate summaries within levels of other variables
+
+```{r, eval = TRUE, echo = TRUE}
+bymy <- summarise(group_by(flights, year, month), 
+                  delay = mean(dep_delay, na.rm = TRUE))
+```
+
+Doing this in base ```R``` requires the aggregate function
+```{r, eval = TRUE, echo = TRUE}
+bymy <- aggregate(flights$dep_delay, 
+                  list("year" = flights$year, 
+                       "month" = flights$month), 
+                  mean, na.rm = TRUE)
+```
+
+## Aggregating within Groups - Comparison
+
+\footnotesize
+
+The output of ```summarize``` is much nicer
+
+```{r, eval = TRUE, echo = TRUE}
+summarise(group_by(flights, year, month), 
+          delay = mean(dep_delay, na.rm = TRUE))[1, ]
+```
+
+Doing this in base ```R``` requires the aggregate function
+```{r, eval = TRUE, echo = TRUE}
+aggregate(flights$dep_delay, 
+          list("year" = flights$year, 
+               "month" = flights$month), 
+          mean, na.rm = TRUE)[1, ]
+```
+
+## Creating Multiple Aggregate Variables
+
+This becomes **much** easier with ```dplyr``` than base `R`
+```{r, eval = TRUE, echo = TRUE}
+bymy <- summarise(group_by(flights, year, month), 
+                  delay = mean(dep_delay, na.rm = TRUE),
+                  dist = mean(distance, na.rm = TRUE),
+                  count = n())
+```
+
+## Creating Multiple Aggregate Variables (Base)
+
+\footnotesize
+In base ```R```, we need to create the new variables one at a time and then merge them together. Ugh!
+```{r, eval = TRUE, echo = TRUE}
+dep_delaymeans <- aggregate(flights$dep_delay, 
+                       list("year" = flights$year, 
+                            "month" = flights$month), 
+                       mean, na.rm = TRUE)
+colnames(dep_delaymeans)[ncol(dep_delaymeans)] <- "dep_delay"
+distmeans <- aggregate(flights$dist, 
+                            list("year" = flights$year, 
+                                 "month" = flights$month), 
+                            mean, na.rm = TRUE)
+colnames(distmeans)[ncol(distmeans)] <- "dist"
+distcounts <- aggregate(flights$dist, 
+                            list("year" = flights$year, 
+                                 "month" = flights$month), 
+                            length)
+colnames(distcounts)[ncol(distcounts)] <- "n"
+bymy <- merge(distmeans, dep_delaymeans, by = c("month", "year"))
+bymy <- merge(bymy, distcounts, by = c("month", "year"))
+```
+
+## A Diversion on Merging
+
+We learned about merging (joining) in SQL. What about ```R```?
+
+We use the ```merge``` function.
+```{r, eval = FALSE, echo = TRUE}
+bymy <- merge(bymy, distcounts, by = c("month", "year"),
+              all.x = TRUE, all.y = TRUE)
+```
+
+The arguments ```all.x``` and ```all.y``` refer to the first and second data frames provided and determine if it is a left, right, or inner join.
+
+## Creating Aggregate Variables without Aggregating Data
+
+Combining ```mutate``` with ```group_by``` lets us add summaries to the original data
+```{r, eval = FALSE, echo = TRUE}
+mutate(group_by(flights, year, month), 
+       dep_delay_bymonth = mean(dep_delay, na.rm = TRUE))
+```
+
+In base ```R```, this always involves multiple steps
+```{r, eval = FALSE, echo = TRUE}
+delaypermonth <- aggregate(flights$dep_delay, 
+                           list("month" = flights$month), 
+                       mean, na.rm = TRUE)
+names(delaypermonth)[ncol(delaypermonth)] <- 
+  "dep_delay_bymonth"
+flightsnew5 <- merge(flights, delaypermonth, by = "month")
+```
+
+## Grouping the Data
+
+Sometimes, it can be beneficial to group the data as a separate command before applying ``summarize``` or ```mutate```
+
+```{r, eval = FALSE, echo = TRUE}
+flights <- group_by(flights, dest)
+delay <- summarise(flights,
+                   count = n(),
+                   dist = mean(distance, na.rm = TRUE),
+                   delay = mean(arr_delay, na.rm = TRUE))
+delay <- filter(delay, count > 20, dest != "HNL")
+```
+
+Note: Ungroup after with ```flights <- ungroup(flights)```!! Otherwise any use of ```summarize```, ```mutate```, or ```transmute``` after will use the grouping you previously provided.
+
+## Aggregating at Different Levels
+
+For a single analysis, we may want to aggregate at multiple levels
+
+```{r, eval = FALSE, echo = TRUE}
+flights <- group_by(flights, dest)
+delay <- summarise(flights,
+                   count = n(),
+                   dist = mean(distance, na.rm = TRUE),
+                   delay = mean(arr_delay, na.rm = TRUE))
+delay <- filter(delay, count > 20, dest != "HNL")
+```
+
+
+## The Pipe Operator
+
+A big selling point of using ```dplyr``` is the incorporation of the pipe operator ```|>```
+
+- Originated from an external package, was ```%>%```
+- ```|>``` is the base ```R``` equivalent of ```%>%```, is now preferred over ```%>%```
+
+## Use of ```|>```
+
+The pipe operator  ```|>``` passes output from one function to another function as the first argument. 
+
+```{r, eval = FALSE, echo = TRUE}
+delay <- flights |> 
+  group_by(dest) |>
+  summarize(count = n(),
+                   dist = mean(distance, na.rm = TRUE),
+                   delay = mean(arr_delay, na.rm = TRUE)) |>
+  filter(count > 20, dest != "HNL")
+```
+
+## To Summarize
+
+We have learned about:
+
+- ```filter```
+- ```arrange```
+- ```select```
+- ```rename```
+- ```mutate```
+- ```transmute```
+
