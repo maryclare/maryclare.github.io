@@ -5,53 +5,40 @@ format: pdf
 
 Keep your rendered `.pdf` to no more than 5 pages. Only provide code in the rendered `.pdf` when it is specifically requested.
 
-1. We can download data on fruit prices from the USDA: [https://www.ers.usda.gov/data-products/fruit-and-vegetable-prices](https://www.ers.usda.gov/data-products/fruit-and-vegetable-prices). Download the file linked below "ALL FRUITS – Average prices (CSV format)."
+1. Revisit the data on fruit prices from the USDA: [https://www.ers.usda.gov/data-products/fruit-and-vegetable-prices](https://www.ers.usda.gov/data-products/fruit-and-vegetable-prices). Again, download the file linked below "ALL FRUITS – Average prices (CSV format)." Use the data with the `FruitType` and `Preparation` variables as created in the previous solutions.
 
-(a) What character separates distinct fields in this file?
+(a) Create a table of the top 10 most expensive (in terms of average price normalized for quantity as measured by `AveragePricePerCupEquivalent` and averaged over fruit type) fruit types (as measured by `FruitType`) using `kable`. This table should have 10 rows and be arranged in decreasing order of price.  Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`.
 
-(b) Print the code you use to read in the unaltered file using `read.csv` to the rendered `.pdf`.
+(a) Create a table of the top 10 least expensive (in terms of average price normalized for quantity as measured by `AveragePricePerCupEquivalent` and averaged over fruit type) fruit types (as measured by `FruitType`) using `kable`. This table should have 10 rows and be arranged in alphabetical order of fruit type.  Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`.
 
-(c) How many rows does this dataset contain? Print the code you use determine this to the rendered `.pdf`.
+(c) Create a table with 7 rows and 5 columns, where each row corresponds to a different type of preparation as measured by `Preparation` (including no information on preparation) and columns correspond to the number of fruits prepared in that way, the average retail price of fruits prepared in that way, the average yield of fruits prepared in that way, the cup equivalent size of fruits prepared in that way, and the cup equivalent price of fruits prepared in that way using `kable`. This table should rows arranged in decreasing order of the number of fruits prepared in each way. Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`.
 
-(d) How many columns does this contain? Print the code you use determine this to the rendered `.pdf`.
+2. Again, find the dataset summarizing some Massachusetts employment statistics called `CESReport.csv`. It was downloaded from here: [https://lmi.dua.eol.mass.gov/LMI/CurrentEmploymentStatistics](https://lmi.dua.eol.mass.gov/LMI/CurrentEmploymentStatistics). Use the 170 observations and 15 variables that you obtain after carefully cleaning the data as requested in previous problem set, removing uninformative rows and converting variables to the appropriate type. Note that you can limit the data to just the 170 rows that contain information by specifying the `nrow` argument when you apply the `read.csv` function (although other approaches are also acceptable).
 
-(e) What variables are contained in this dataset? Print the code you use determine this to the rendered `.pdf`.
+(a) Remove observations from 2025 using `filter`. Print the code you use to do this to the rendered `.pdf`.
 
-(f) What fruit has the highest retail price? Print the code you use determine this to the rendered `.pdf`.
+(b) Create a new variable called `YTD` which is the sum of the month variables, omitting missing values. Print the code you use to do this to the rendered `.pdf`. Note: You may want to revisit `apply` or `rowSums`.
 
-(g) What fruit has the highest price, normalized for quantity (this is the `CupEquivalentPrice` variable)? Print the code you use determine this to the rendered `.pdf`.
+(c) Using `group_by` and `mutate`, create a new variable called `mYTD` which gives the average value of `YTD` across years within sector, as described by `Description`. Print the code you use to do this to the rendered `.pdf`.
 
-(h) How many fresh fruits are described in this dataset? Print the code you use determine this to the rendered `.pdf`.
+(d) Using `kable`, `arrange`, and `select`, create a table that provides `Year`, `Description`, `YTD`, and `mYTD` for the years and sectors that had the three highest values of `YTD`/`mYTD`. Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`. This table will have a total of 3 rows.
 
-(i) What happens if you remove all quotes from the file and then read in the file using `read.csv`. Explain in at most one sentence.
+(e) Using `kable`, `arrange`, and `select`, create a table that provides `Year`, `Description`, `YTD`, and `mYTD` for the years and sectors that had the three lowest values of `YTD`/`mYTD`. Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`. This table will have a total of 3 rows.
 
-2. On my teaching page, you can find a dataset summarizing some Massachusetts employment statistics called `CESReport.csv`. It was downloaded from here: [https://lmi.dua.eol.mass.gov/LMI/CurrentEmploymentStatistics](https://lmi.dua.eol.mass.gov/LMI/CurrentEmploymentStatistics)
+(f) Explain what you observe in (d) and (e) in at most two sentences.
 
-(a) Read this data into `R` using `read.csv`. You want to obtain a data frame with 172 observations and 15 variables. Print the code you use determine this to the rendered `.pdf`.
+(g) Using `kable`, `arrange`, and `summarize`, create a table with 1 column and 34 rows that is the sorted list of sectors ordered from most to least variable across years in terms of year to date employment as measured by `YTD`. Make sure that the table is self contained and readable. Print the code you use to do this to the rendered `.pdf`.
 
-(b) What are the modes of the variables in this data?
+(h) Download the additional data on earnings across years and sectors available here: [https://download.bls.gov/pub/time.series/ce/ce.data.02b.AllRealEarningsAE](https://download.bls.gov/pub/time.series/ce/ce.data.02b.AllRealEarningsAE). Detailed information about this data is provided here: [https://download.bls.gov/pub/time.series/ce/ce.txt](https://download.bls.gov/pub/time.series/ce/ce.txt). You don't need to get into the weeds understanding it, but you may find it helpful to look at as you go. Read this data into `R` and only keep rows that contain CES" in the `series_id` variable. Print the code you use to do this to the rendered `.pdf`. 
 
-(c) What happens if you apply `as.numeric` to the  `Year` variable? Explain in at most sentence.
+(i) The `series_id` variable describes the sector in a more detailed way than our `CES.Series.Code` variable. Later digits describe finer levels of detail, and the first few digits describe the coarse sector definition that matches the level of detail we have in our original dataset. Using functions for manipulating strings, create a new variable in the data from the previous part called `CES.Series.Code` that matches the first 5 characters of `CES.Series.Code` in our original data, excluding the dash. Print the code you use to do this to the rendered `.pdf`. 
 
-(d) What happens if you apply `as.numeric` to the  `January` variable? Explain in at most sentence.
+(j) Aggregate the new data so that you have one observation per new coarser `CES.Series.Code` and year and the average of `value` across all observations with that `CES.Series.Code` and year. Print the code you use to do this to the rendered `.pdf`. 
 
-3. For this problem, we'll keep working with the baseball database that we have used in class. 
+(k) Aggregate the original data so that you have one observation per `CES.Series.Code` and year and the sum of all `YTD` values across all observations with that `CES.Series.Code` and `Year`. Print the code you use to do this to the rendered `.pdf`. 
 
-(a) Create a table with 1 rows and 3 columns, where each column corresponds to one of the following datasets, "Salaries", "Master", "Batting", and each element describes the number of observations in the corresponding dataset using `kable`. Make sure that the table is self contained and readable. Print the code you use obtain the number of observations per dataset to the rendered `.pdf`.
+(l) Merge the two datasets by sector and year, keeping only sectors that appear in both. You may have to modify the `CES.Series.Code` variable in the original dataset. Print the code you use to do this to the rendered `.pdf`. 
 
-(b) Using `dbGetQuery`, read in all observations for all variables in the "Batting" data. Print the code you use to the rendered `.pdf`.
+(m) Aggregate the new merged dataset so that you have one observation per `CES.Series.Code` and the average earnings and jobs variable for each `CES.Series.Code`. Print the code you use to do this to the rendered `.pdf`.
 
-(c) Using `dbGetQuery`, read in all observations for the `playerID`, `yearID`, and `HR` variables in the "Batting" data. Print the code you use to the rendered `.pdf`.
-
-(d) Now we are going to start conducting some timing comparisons. Recall that in `arcovariance.R` file on my teaching page we used the `Sys.time()` function to time different operations in `R`. We will use it again here. Record the time it takes to perform the tasks in (b) and (c). Print the code you use to the rendered `.pdf`.
-
-(e) Provide your results from (d) and explain why they do or do not make sense, in at most one sentence.
-
-(f) Using `dbGetQuery`, read in all observations for the `playerID`, `yearID`, and `HR` variables in the "Batting" data. **Then** subset the data to just observations with year 2000 or later. Print the code you use to the rendered `.pdf`.
-
-(g) Using `dbGetQuery`, read in observations during and after 2000 for the `playerID`, `yearID`, and `HR` variables in the "Batting" data. Print the code you use to the rendered `.pdf`.
-
-(h) Record the time it takes to perform the tasks in (f) and (g). Print the code you use to the rendered `.pdf`.
-
-(i) Provide your results from (h) and explain why they do or do not make sense, in at most one sentence.
-
+(n) Using the merged data, plot total jobs against average earnings using an $x$-axis from $0$ to $10,000,000$. Using the `text` command in `R`, add text on top of each point that describes the sector, adjusting `cex` to make things fit.
