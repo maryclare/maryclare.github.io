@@ -440,4 +440,97 @@ We have learned about:
 - ```rename```
 - ```mutate```
 - ```transmute```
+- ```summarize```
+- ```group_by```
 
+## Reshaping Data
+
+A common challenge in data analysis arises when your data aren't necessarily arranged the right way.
+
+For example, consider the CES data
+```{r, eval = TRUE, echo = TRUE}
+data <- read.csv("~/Downloads/CESReport.csv",
+                 skip = 6, nrow = 170)
+```
+\tiny
+```{r, eval = TRUE, echo = FALSE}
+data[1:2, ]
+```
+
+## Reshaping Data
+
+The CES data are in what we would describe as **wide** format - the same quantity is provided for different months as different variables.
+
+We might want it in **long** format, where each observation corresponds to a year and a month.
+
+
+## Reshaping Data
+
+We can "reshape" our data using:
+
+- The ```reshape``` function from base ```R```
+- The ```pivot_longer``` and ```pivot_wider``` functions in ```tidyr```
+
+## Reshaping the CES Data using ```reshape```
+
+\footnotesize
+```{r, eval = TRUE, echo = TRUE}
+reshape(data, 
+        direction = "long", 
+        varying = c("January", "February", "March", 
+                    "April", "May", "June", "July", 
+                    "August", "September", "October", 
+                    "November", "December"), 
+        v.names = "Jobs",
+        timevar = "Month")[1:3, ]
+```
+
+## Reshaping the CES Data using ```pivot_longer```
+
+The function ```pivot_longer``` is much easier to use than ```reshape```.
+
+```{r, eval = TRUE, echo = TRUE}
+library(tidyr)
+pivot_longer(data,
+             cols = c("January", "February", "March",
+                      "April", "May", "June", "July", 
+                      "August", "September", "October", 
+                      "November", "December"), 
+    names_to = "Month", 
+    values_to = "Jobs")
+```
+
+## Reshaping Long Data to Wide - An Example
+
+Sometimes, we might actually want to go the other direction and take data available in **long** format and transform it to **wide** format.
+
+Consider the baseball awards data, which has a row for award given.
+
+We might instead want data with a row for each year and player and variables for each award.
+
+
+## Viewing the Long Format Baseball Data
+
+```{r, eval = TRUE, echo = TRUE}
+library(DBI)
+library(RSQLite)
+library(dplyr)
+drv <- dbDriver("SQLite")
+con <- dbConnect(drv, dbname = "~/Downloads/baseball.db")
+awards <- dbGetQuery(con, "SELECT * FROM AwardsPlayers")
+dbDisconnect(con)
+awards[1:3, ]
+```
+
+## Reshaping Using ```pivot_wider```
+\tiny
+```{r, eval = TRUE, echo = TRUE}
+pivot_wider(awards, 
+            id_cols = c("playerID", "yearID", "lgID"), 
+              names_from = awardID,
+              values_from = awardID)
+```
+
+## Visualizing Data
+
+I'm going to punt ```ggplot2``` and related visualization techniques to student projects and other classes, given that enough students have seen it before and there are opportunities to see it in the future in other classes.
