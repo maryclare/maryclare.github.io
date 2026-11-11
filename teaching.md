@@ -49,7 +49,8 @@ Problem Sets:
   * Massachusetts Employment Data ([`CESReport.csv`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/CESReport.csv)) 
   * Getting data from `html` source ([`readhtml.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/readhtml.R)) 
   * Manipulating Flight Data ([`flight_code_class.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/flight_code_class.R))
-  * Merging Data ([`merging1.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging1.R)), ([`merging2.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging2.R),  ([`merging3.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging3.R))
+  * Starting Maximumization ([`maximum_likelihood.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/maximum_likelihood.R))
+ <!--   * Merging Data ([`merging1.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging1.R)), ([`merging2.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging2.R),  ([`merging3.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/merging3.R)) -->
  <!--  * Reshaping Data ([`reshape1.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/reshape1.R)), ([`reshape2.R`](https://maryclare.github.io/content/courses/statisticalcomputing/misc/reshape2.R)) -->
 
 
