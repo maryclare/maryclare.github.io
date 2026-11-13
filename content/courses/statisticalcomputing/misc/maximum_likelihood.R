@@ -16,9 +16,21 @@ for (i in 1:length(thetas)) {
 }
 
 ll <- function(theta, y, t) {
-  -sum(y*log(50*exp(-theta*t)) - 50*exp(-theta*t)) 
+  -sum(y*log(50*exp(-theta*t)) - 50*exp(-theta*t) - log(factorial(y))) 
+}
+
+llgrad <- function(theta, y, t) {
+  -sum(-y*t + t*50*exp(-theta*t))
 }
 
 opt <- optim(0.2, ll, y = y, t = t)
 plot(thetas, lls, type = "l")
 abline(v = opt$par, lty = 2, col= "blue")
+
+llgrad(opt$par, y = y, t = t)
+llgrad(optim(0.2, ll, y = y, t = t, method = "CG")$par, y = y, t = t)
+llgrad(optim(0.2, ll, y = y, t = t, method = "BFGS")$par, y = y, t = t)
+llgrad(optimize(ll, y = y, t = t, lower = 0, upper = 2)$minimum, y = y, t = t)
+
+optim(0.2, ll, llgrad, y = y, t = t, method = "BFGS")
+optim(0.2, ll, y = y, t = t, method = "BFGS")

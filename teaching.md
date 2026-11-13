@@ -24,6 +24,7 @@ Below are names of classes I am teaching/have taught, a recent syllabus, and not
   * Lists ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/lists.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/lists.qmd)) 
   * Strings and Characters ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/stringscharacters.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/stringscharacters.qmd))
   * Manipulating, Visualizing Data ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/manipulatingvisualizingdata.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/manipulatingvisualizingdata.qmd))
+  * Estimation via Maximization ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/estimation_via_maximization.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/lectures/estimation_via_maximization.qmd))
 
 Problem Sets: 
   * Due 9/17 ([`.pdf`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.pdf), [`.qmd`](https://maryclare.github.io/content/courses/statisticalcomputing/problemsets/ps1.qmd))

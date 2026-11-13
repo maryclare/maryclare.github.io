@@ -1,0 +1,264 @@
+---
+title: "Estimation via Maximization"
+format: beamer
+---
+
+## Switching Gears to Estimation
+
+Now that we understand the basics of coding in ```R```, we're going to talk about estimating unknown parameters.
+
+This material is based on the free textbook: [Core Statistics](https://webhomes.maths.ed.ac.uk/~swood34/core-statistics.pdf)
+
+There are many approaches to parameter estimation, but we will focus on two:
+
+- Estimation via **maximization**
+- Estimation via **simulation**
+
+## Estimation via Maximization
+
+Examples of estimation via maximization include:
+
+- Maximum likelihood estimation
+- Method of moments estimation
+- Loss function based estimators
+- Maximum a posteriori (MAP) estimation
+
+## Maximization vs. Minimization vs. Solving a System
+
+We're going to treat all three as equivalent.
+
+Maximizing something is the same as minimizing $-1$ times something.
+
+Solving a system of equations is the same as minimizing absolute or squared deviations of the left hand sides and the right hand sides.
+
+## Working Through an Example 
+
+Consider some data:
+```{r, echo = TRUE, eval = TRUE}
+t <- seq(2, 14, by = 1)
+y <- c(35, 33, 33, 39, 24, 25, 
+       18, 20, 23, 13, 14, 20, 18)
+```
+
+- ```y[i]``` represents the $i$-th count of cells in a culture
+- ```t[i]``` describes hours since treatment of the culture with an antibiotic for the $i$-th count
+
+## Always Visualize First
+
+```{r, eval = TRUE, echo = TRUE}
+plot(t, y, pch = 16)
+```
+
+## What does maximum likelihood require?
+
+A statistical model for the data, in this case ```y``` and ```t```.
+
+The researchers want to fit the a model that describes the expected culture count as
+
+$$E[y_i] = 50\times \text{exp}\left\{-\theta t_i\right\}$$
+
+Where $50$ describes the count of cells in the culture before the antibiotic was administered and the parameter is $\theta$.
+
+Is this a model?
+
+## A Model for Our Data
+
+We need to assume a distribution for each $y_i$ and we need to assume a dependence structure relating distinct elements of $y_i$ and to each other
+
+We assume
+
+$$y_i\stackrel{indep}{\sim}\text{Poisson}(50\times \text{exp}\left\{-\theta t_i\right\})$$
+
+## Our First Likelihood
+
+To start, let's pick a candidate value of $\theta$ to evaluate the likelihood at. 
+```{r, eval = TRUE, echo = TRUE}
+theta0 <- 1
+```
+
+We can use the built in Poisson density function to obtain the likelihood for any observation, e.g.
+```{r, eval = FALSE, echo = TRUE}
+dpois(y[1], 50*exp(-theta0*t[1]))
+```
+
+We obtain the likelihood for the complete data by taking the product...
+```{r, eval = FALSE, echo = TRUE}
+prod(dpois(y, 50*exp(-theta0*t)))
+```
+
+## Maximizing the Likelihood
+
+Intuitively, we find the maximum by evaluating the likelihood at a set of candidate values for $\theta$ and identifying which value achieves the maximum likelihood.
+
+For instance, we could evaluate the likelihood for values of $\theta$ between $0$ and $1$.
+
+```{r, eval = TRUE, echo = TRUE}
+thetas <- seq(0, 1, length.out = 100)
+ls <- rep(NA, length(thetas))
+for (i in 1:length(thetas)) {
+  ls[i] <- prod(dpois(y, 50*exp(-thetas[i]*t)))
+}
+```
+
+## Maximizing the Likelihood
+\footnotesize
+```{r, eval = TRUE, echo = TRUE} 
+plot(thetas, ls, pch = 16)
+```
+
+## Working on the Log Scale
+
+We can see that something a little weird is happening with our likelihood...
+```{r, eval = TRUE, echo = TRUE}
+tail(ls)
+```
+
+The last several values are exactly $0$, because they correspond to products of many tiny (but not nonzero) numbers.
+
+This motivates working on the log scale for maximum likelihood.
+
+Finding the value that maximizes the log of a function $=$ finding the value that maximizes a function
+
+## Maximizing the Log Likelihood
+
+```{r, eval = TRUE, echo = TRUE}
+lls <- rep(NA, length(thetas))
+for (i in 1:length(thetas)) {
+  lls[i] <- sum(dpois(y, 50*exp(-thetas[i]*t), log = TRUE))
+}
+```
+
+## Maximizing the Log-Likelihood
+\footnotesize
+```{r, eval = TRUE, echo = TRUE, warning=FALSE} 
+plot(thetas, lls, pch = 16)
+abline(v = thetas[which.max(lls)], col = "blue", lty = 2)
+```
+
+## This is very inefficient!
+
+The approach we just took does give us a sense of:
+
+- Where the maximizing value is
+- The shape of the likelihood
+
+However, it:
+
+- Gives an imprecise solution
+- Requires specification of an interval to check
+
+## Using ```optim```
+
+In practice, we will use optimization algorithms to maximize likelihoods. 
+
+In ```R```, the most basic way to do this uses ```optim```.
+
+The ```optim``` function minimizes by default and requires:
+
+- Starting values for the parameters that are being minimize over
+- A function to minimize
+
+## Creating a Log-Likelihood Function
+
+```{r, eval = TRUE, echo = TRUE}
+ll <- function(theta, y, t) {
+  -sum(dpois(y, 50*exp(-theta*t), log = TRUE))
+}
+```
+
+Note: ```optim``` likes to have the parameter that will be minimized over specified first.
+
+## Applying ```optim``` and Interpreting Output
+
+```{r, eval = TRUE, echo = TRUE, warning=TRUE}
+opt <- optim(0.2, ll, y = y, t = t)
+```
+
+We do get a warning - but this is one that it can be ok to ignore and we will talk about why it's happening and ways around it.
+
+## Interpreting ```optim```  Output
+
+```{r, eval = TRUE, echo = TRUE}
+opt
+```
+
+## Our New Estimator
+\footnotesize
+```{r, eval = TRUE, echo = TRUE, warning=FALSE} 
+plot(thetas, lls, pch = 16)
+abline(v = thetas[which.max(lls)], col = "blue", lty = 2)
+abline(v = opt$par, col = "red", lty = 2)
+```
+
+## Getting Rid of the ```optim``` Error
+
+The ```optim``` error arises when your unknown parameter is a **scalar**.
+
+There are multiple ways to get rid of it but none use ```method="Nelder-Mead"```, with or without providing an interval to maximize over.
+
+```{r, eval = TRUE, echo = TRUE, warning=TRUE}
+opt <- optim(0.2, ll, y = y, t = t, method = "BFGS")
+opt <- optim(0.2, ll, y = y, t = t, method = "L-BFGS-B")
+opt <- optim(0.2, ll, y = y, t = t, method = "CG")
+```
+
+```{r, eval = TRUE, echo = TRUE, warning=TRUE}
+opt <- optim(0.2, ll, y = y, t = t, method = "Brent", 
+             lower = 0, upper = 1)
+opt <- optimize(ll, y = y, t = t, lower = 0, upper = 1)
+```
+
+Check how they compare!
+
+## What the heck are these methods?
+
+Nelder-Mead, BFGS, L-BFGS-B, CG, and Brent all describe different algorithms for minimizing or maximizing a function, and which works best depends on the type of problem. 
+
+In general, L-BFGS-B is most stable, especially when we have a parameter vector.
+
+## What's an additional way we can check our solution?
+
+We may want to verify that the gradient is in fact sufficiently close to $0$ at the maximum likelihood estimate of $\theta$.
+
+What is the gradient? We need to write out the log likelihood and take a derivative with respect to $\theta$.
+
+## Rewriting the Log-Likelihood
+
+First, let's write out the log likelihood but in ```R``` so we can check our work.
+```{r, eval = TRUE, echo = TRUE}
+llnew <- function(theta, y, t) {
+  -sum(y*log(50) -y*theta*t +
+         - 50*exp(-theta*t) - log(factorial(y)))
+}
+```
+
+```{r, eval = TRUE, echo = TRUE}
+ll(theta0, y, t)
+llnew(theta0, y, t)
+```
+
+## Defining a Gradient Function
+
+```{r, eval = TRUE, echo = TRUE}
+llgrad <- function(theta, y, t) {
+  -sum(-y*t + t*50*exp(-theta*t))
+}
+```
+
+Examining the gradient function at candidate solutions
+```{r, eval = TRUE, echo = TRUE}
+llgrad(0.09377259, y = y, t = t)
+llgrad(thetas[which.max(lls)], y = y, t = t)
+```
+
+## Modifying the Example to Have a Vector Parameter
+
+Suppose we did not know the cell count before antibiotics were administered. 
+
+Then we would consider
+$$y_i\stackrel{indep}{\sim}\text{Poisson}(\theta_2\times \text{exp}\left\{-\theta_1 t_i\right\})$$
+
+
+## Doing It Ourselves with Newton's Method
+
+It can be helpful to work through an optimization algorithm ourselves.
